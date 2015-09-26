@@ -10,5 +10,6 @@ public class SweetHolidaysApplication
 	public static void main(String[] args)
 	{
 		SpringApplication.run(SweetHolidaysApplication.class, args);
+		
 	}
 }
