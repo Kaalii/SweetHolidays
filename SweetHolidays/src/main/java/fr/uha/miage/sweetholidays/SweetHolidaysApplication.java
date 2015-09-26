@@ -6,7 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class SweetHolidaysApplication
 {
-	
+	//Ceci est un deuxième commentaire
 	public static void main(String[] args)
 	{
 		SpringApplication.run(SweetHolidaysApplication.class, args);
