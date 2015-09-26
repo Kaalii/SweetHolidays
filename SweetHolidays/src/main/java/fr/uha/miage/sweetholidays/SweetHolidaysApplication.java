@@ -6,6 +6,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class SweetHolidaysApplication
 {
+
+	//Un commentaire
 	//Ceci est un deuxième commentaire
 	public static void main(String[] args)
 	{
