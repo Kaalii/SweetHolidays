@@ -1,0 +1,224 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>The Paradise-Hotel Website Template | Activities :: w3layouts</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700' rel='stylesheet' type='text/css'/>
+<link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
+<script src="js/jquery.min.js"></script>
+<link type="text/css" rel="stylesheet" href="css/JFGrid.css" />
+<link type="text/css" rel="stylesheet" href="css/JFFormStyle-1.css" />
+		<script type="text/javascript" src="js/JFCore.js"></script>
+		<script type="text/javascript" src="js/JFForms.js"></script>
+		<!-- Set here the key for your domain in order to hide the watermark on the web server -->
+		<script type="text/javascript">
+			(function() {
+				JC.init({
+					domainKey: ''
+				});
+				})();
+		</script>
+<!--nav-->
+<script>
+//<![CDATA[
+		$(function() {
+			var pull 		= $('#pull');
+				menu 		= $('nav ul');
+				menuHeight	= menu.height();
+
+			$(pull).on('click', function(e) {
+				e.preventDefault();
+				menu.slideToggle();
+			});
+
+			$(window).resize(function(){
+        		var w = $(window).width();
+        		if(w > 320 && menu.is(':hidden')) {
+        			menu.removeAttr('style');
+        		}
+    		});
+		});
+		//]]>
+</script>
+</head>
+<body>
+<!-- start header -->
+<div class="header_bg">
+<div class="wrap">
+	<div class="header">
+		<div class="logo">
+			<a href="SweetHolidays"><img src="images/logo.png" alt=""/></a>
+		</div>
+		<div class="h_right">
+			<!--start menu -->
+			<ul class="menu">
+				<li><a href="SweetHolidays">hotel</a></li>
+				<li><a href="SweetPlace">rooms &amp; suits</a></li>
+				<li><a href="SweetResa">reservation</a></li>
+				<li class="active"><a href="SweetActivities">activities</a></li>
+				<li><a href="SweetContact">contact</a></li>
+			</ul>
+			<!-- start profile_details -->
+					<form class="style-1 drp_dwn">
+						<div class="row">
+							<div class="grid_3 columns">
+								<select class="custom-select" id="select-1">
+									<option selected="selected">EN</option>
+									<option>FR</option>
+									<option>DE</option>
+								</select>
+							</div>		
+						</div>		
+					</form>
+		</div>
+		<div class="clear"></div>
+		<div class="top-nav">
+		<nav class="clearfix">
+				<ul>
+				<li class="active"><a href="SweetHolidays">hotel</a></li> 
+				<li><a href="SweetPlace">rooms &amp; suits</a></li> 
+				<li><a href="SweetResa">reservation</a></li> 
+				<li><a href="SweetActivities">activities</a></li> 
+				<li><a href="SweetContact">contact</a></li>
+				</ul>
+				<a href="#" id="pull">Menu</a>
+			</nav>
+		</div>
+	</div>
+</div>
+</div>
+<!--start main -->
+<div class="main_bg">
+<div class="wrap">
+	<div class="main">
+<!-- start main_content -->
+				<ul class="service_list">
+					<li>
+						<div class="ser_img">
+							<a href="SweetDetails">
+								<img src="images/ser_pic1.jpg" alt="" />
+								<span class="next"> </span>
+							</a>
+						</div>	
+						<a href="SweetDetails"><h3>Sed condimentum</h3></a>
+						<p class="para">There are many variations of passages of Lorem Ipsum available,</p>
+						<h4><a  href="SweetDetails">Lorem ipsum</a></h4>
+					</li>
+					<li>
+						<div class="ser_img">
+							<a href="SweetDetails">
+								<img src="images/ser_pic2.jpg" alt="" />
+								<span class="next"> </span>
+							</a>
+						</div>	
+						<a href="SweetDetails"><h3>Integer facilisis</h3></a>
+						 <p class="para">Our website design and development provides quality web,</p>
+						 <h4><a href="SweetDetails">Nulla accumsan</a></h4>
+					</li>
+					<li>
+						<div class="ser_img">
+							<a href="SweetDetails">
+								<img src="images/ser_pic3.jpg" alt="" />
+								<span class="next"> </span>
+							</a>
+						</div>						
+						 <a href="SweetDetails"><h3>Morbi sit amet mauris</h3></a>
+						 <p class="para">There are many variations of passages of Lorem Ipsum available,</p>
+						 <h4><a href="SweetDetails">Vestilum feliing</a></h4>
+					</li>
+					<li>
+						<div class="ser_img">
+							<a href="SweetDetails">
+								<img src="images/ser_pic4.jpg" alt="" />
+								<span class="next"> </span>
+							</a>
+						</div>						
+						<a href="SweetDetails"><h3>Nulla commodo erat</h3></a>
+						 <p class="para">Lorem ipsum dolor sit amet, consectetur elit,EIUSMOD tempor,</p>
+						 <h4><a href="SweetDetails">Nulla commodo</a></h4>
+					</li>
+				</ul>
+				<ul class="service_list top">
+					<li>
+						<div class="ser_img">
+							<a href="SweetDetails">
+								<img src="images/ser_pic5.jpg" alt="" />
+								<span class="next"> </span>
+							</a>
+						</div>						
+						 <a href="SweetDetails"><h3>Nulla commodo erat</h3></a>
+						 <p class="para">There are many variations of passages of Lorem Ipsum available,</p>
+						<h4><a  href="SweetDetails">Lorem ipsum</a></h4>
+					</li>
+					<li>
+						<div class="ser_img">
+							<a href="SweetDetails">
+								<img src="images/ser_pic6.jpg" alt="" />
+								<span class="next"> </span>
+							</a>
+						</div>						
+						 <a href="SweetDetails"><h3>Morbi sit amet mauris</h3></a>
+						 <p class="para">Lorem ipsum dolor sit amet, consectetur elit,EIUSMOD tempor,</p>
+						 <h4><a href="SweetDetails">Nulla accumsan</a></h4>
+					</li>
+					<li>
+						<div class="ser_img">
+							<a href="SweetDetails">
+								<img src="images/ser_pic7.jpg" alt="" />
+								<span class="next"> </span>
+							</a>
+						</div>	
+						 <a href="SweetDetails"><h3>Integer facilisis</h3></a>
+						<p class="para">There are many variations of passages of Lorem Ipsum available,</p>
+						<h4><a href="SweetDetails">Vestilum feliing</a></h4>
+											
+					</li>
+					<li>
+						<div class="ser_img">
+							<a href="SweetDetails">
+								<img src="images/ser_pic8.jpg" alt="" />
+								<span class="next"> </span>
+							</a>
+						</div>		
+						 <a href="SweetDetails"><h3>Sed condimentum</h3></a>
+						 <p class="para">Our website design and development provides quality web,</p>
+						<h4><a  href="SweetDetails">Lorem ipsum</a></h4>
+					</li>
+				</ul>
+		<div class="clear"></div>
+	<!-- end main_content -->
+
+	</div>
+</div>
+</div>		
+<!--start main -->
+<div class="footer_bg">
+<div class="wrap">
+<div class="footer">
+			<div class="copy">
+				<p class="link"><span>© All rights reserved Team BAZOOKA</span></p>
+			</div>
+			<div class="f_nav">
+				<ul>
+					<li><a href="SweetHolidays">home</a></li>
+					<li><a href="SweetPlace">rooms &amp; suits</a></li>
+					<li><a href="SweetResa">reservation</a></li>
+					<li><a href="SweetContact">Contact</a></li>
+				</ul>
+			</div>
+			<div class="soc_icons">
+				<ul>
+					<li><a class="icon1" href="#"></a></li>
+					<li><a class="icon2" href="#"></a></li>
+					<li><a class="icon3" href="#"></a></li>
+					<li><a class="icon4" href="#"></a></li>
+					<li><a class="icon5" href="#"></a></li>
+				</ul>	
+			</div>
+			<div class="clear"></div>
+</div>
+</div>
+</div>		
+</body>
+</html>
