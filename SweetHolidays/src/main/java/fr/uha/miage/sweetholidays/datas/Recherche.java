@@ -1,17 +1,24 @@
 package fr.uha.miage.sweetholidays.datas;
 
+import javax.validation.constraints.NotNull;
+
+
 public class Recherche {
 
+	@NotNull
 	private String ArrivalDate;
+	@NotNull
 	private String DepartureDate; 
-	
+	@NotNull
 	private int Number_of_People ;
 
 	public Recherche(String arrivalDate, String departureDate,
 			int number_of_People) {
-		super();
+		
 		ArrivalDate = arrivalDate;
+
 		DepartureDate = departureDate;
+
 		Number_of_People = number_of_People;
 	}
 

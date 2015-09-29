@@ -304,7 +304,7 @@
 						es vacances n'a jamais été aussi facile :D </p>
 					</div>
 					<div class="reservation">
-					<form action="SweetSearch">
+					<form th:action="@{/SweetSearch}" method="post" th:object="${recherche}">
 						<ul>
 							<li class="span1_of_1">
 								<h5>Type de chambre :</h5> <!--start section_room-->
@@ -320,26 +320,26 @@
 							<li class="span1_of_1 left">
 								<h5>Date d'arrivée :</h5>
 								<div class="book_date">
-									<input class="date" id="datepicker" type="text"	value="DD/MM/YY" onfocus="this.value = '';"
+									<input th:field="*{ArrivalDate}" class="date" id="datepicker" type="text" value="DD/MM/YY" onfocus="this.value = '';"
 											onblur="if (this.value == '') {this.value = 'DD/MM/YY';}" />
 								</div>
 							</li>
 							<li class="span1_of_1 left">
 								<h5>Date de sortie :</h5>
 								<div class="book_date">
-									<input class="date" id="datepicker1" type="text" value="DD/MM/YY" onfocus="this.value = '';"
+									<input th:field="*{DepartureDate}" class="date" id="datepicker1" type="text" value="DD/MM/YY" onfocus="this.value = '';"
 											onblur="if (this.value == '') {this.value = 'DD/MM/YY';}" />
 								</div>
 							</li>
 							<li class="span1_of_2 left">
 								<h5>Adultes :</h5> <!--start section_room-->
 								<div class="section_room">
-									<select id="country2" onchange="change_country(this.value)"
+									<select th:field="*{Number_of_People}" id="country2" onchange="change_country(this.value)"
 										class="frm-field required">
-										<option value="null">1</option>
-										<option value="null">2</option>
-										<option value="AX">3</option>
-										<option value="AX">4</option>
+										<option value="1">1</option>
+										<option value="2">2</option>
+										<option value="3">3</option>
+										<option value="4">4</option>
 									</select>
 								</div>
 							</li>
