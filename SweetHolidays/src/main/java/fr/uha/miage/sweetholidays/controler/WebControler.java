@@ -46,6 +46,11 @@ package fr.uha.miage.sweetholidays.controler;
 	        return "contact";
 	    }
 	    
+	    @RequestMapping(value="/SweetNew", method=RequestMethod.GET)
+	    public String showNew() {
+	        return "new";
+	    }
+	    
 	    @RequestMapping(value="/SweetDetails", method=RequestMethod.GET)
 	    public String showDetail() {
 	        return "details";
