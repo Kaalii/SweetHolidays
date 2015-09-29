@@ -450,6 +450,28 @@ select option {
 .date_btn form input[type="submit"]:hover {
 	background: #228AC6;
 }
+
+.date_btn input[type="submit"] {
+	text-transform: capitalize;
+	width: 100% !important;
+	background: #32A2E3;
+	font-family: 'Open Sans', sans-serif;
+	color: #FFF;
+	padding: 8px;
+	border: none;
+	font-size: 1em;
+	transition: 0.5s all;
+	-webkit-transition: 0.5s all;
+	-moz-transition: 0.5s all;
+	-o-transition: 0.5s all;
+	outline: none;
+	cursor: pointer;
+}
+
+.date_btn input[type="submit"]:hover {
+	background: #228AC6;
+}
+
 /* start grids_of_3 */
 .grids_of_3 {
 	display: block;
@@ -726,18 +748,18 @@ p.para {
 
 .grids_of_2 {
 	display: block;
-	margin: 8% 0;
+	margin: 7% 0;
 }
 
 .grids_of_img {
 	float: left;
-	width: 22.33333%;
+	width: 28%;
 }
 
 .grids_of_para {
 	float: left;
-	width: 73.333333%;
-	margin-left: 4.333333%;
+	width: 68%;
+	margin-left: 4%;
 }
 /* res_online */
 .res_online h4 {

@@ -304,6 +304,7 @@
 						es vacances n'a jamais été aussi facile :D </p>
 					</div>
 					<div class="reservation">
+					<form action="SweetSearch">
 						<ul>
 							<li class="span1_of_1">
 								<h5>Type de chambre :</h5> <!--start section_room-->
@@ -319,22 +320,15 @@
 							<li class="span1_of_1 left">
 								<h5>Date d'arrivée :</h5>
 								<div class="book_date">
-									<form>
-										<input class="date" id="datepicker" type="text"
-											value="DD/MM/YY" onfocus="this.value = '';"
+									<input class="date" id="datepicker" type="text"	value="DD/MM/YY" onfocus="this.value = '';"
 											onblur="if (this.value == '') {this.value = 'DD/MM/YY';}" />
-									</form>
-
 								</div>
 							</li>
 							<li class="span1_of_1 left">
 								<h5>Date de sortie :</h5>
 								<div class="book_date">
-									<form>
-										<input class="date" id="datepicker1" type="text"
-											value="DD/MM/YY" onfocus="this.value = '';"
+									<input class="date" id="datepicker1" type="text" value="DD/MM/YY" onfocus="this.value = '';"
 											onblur="if (this.value == '') {this.value = 'DD/MM/YY';}" />
-									</form>
 								</div>
 							</li>
 							<li class="span1_of_2 left">
@@ -351,12 +345,11 @@
 							</li>
 							<li class="span1_of_3">
 								<div class="date_btn">
-									<form action="SweetSearch">
-										<input type="submit" value="Cherchez" href="SweetResa"/>
-									</form>
-								</div>
+									<input type="submit" value="Cherchez"/>
+								</div>	
 							</li>
 						</ul>
+					</form>
 					</div>
 					<div class="clear"></div>
 				</div>
