@@ -326,7 +326,7 @@ body {
 .booking_room {
 	padding: 2%;
 	float: left;
-	width: 22.33333%;
+	width: 28%;
 	background: #E4E4E4;
 }
 
@@ -348,12 +348,13 @@ body {
 	font-family: 'Open Sans', sans-serif;
 	padding: 2%;
 	float: left;
-	width: 74.33333%;
+	width: 80%;
 	background: #FFFFFF;
 }
 
 .reservation ul li {
 	float: left;
+	margin-top:2%;
 }
 
 .reservation ul li.left {
