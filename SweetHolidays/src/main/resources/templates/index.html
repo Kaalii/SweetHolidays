@@ -16,12 +16,8 @@
 <script src="js/css3-mediaqueries.js"></script>
 <script src="js/fwslider.js"></script>
 <!--end slider -->
-
 <script type="text/javascript" src="js/jquery.leanModal.min.js"></script>
 <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" />
-
-
-
 <!--start-date-piker-->
 <link rel="stylesheet" href="css/jquery-ui.css" />
 <script src="js/jquery-ui.js"></script>
@@ -33,7 +29,6 @@
 <!--End-date-piker-->
 <link type="text/css" rel="stylesheet" href="css/JFGrid.css" />
 <link type="text/css" rel="stylesheet" href="css/JFFormStyle-1.css" />
-<script type="text/javascript" src="js/JFCore.js"></script>
 <script type="text/javascript" src="js/JFForms.js"></script>
 <!-- Set here the key for your domain in order to hide the watermark on the web server -->
 <script type="text/javascript">
@@ -120,8 +115,6 @@
 										<div class="one_half last"><a href="#" class="btn btn_red">Connexion</a></div>
 									</div>
 								</form>
-				
-								<a href="#" class="forgot_password">Mot de passe oublié ?</a>
 							</div>
 				
 							<!-- Register Form -->
@@ -130,7 +123,11 @@
 									<label>Nom :</label>
 									<input type="text" />
 									<br />
-				
+									
+									<label>Prénom :</label>
+									<input type="text" />
+									<br />
+									
 									<label>Adresse e-mail :</label>
 									<input type="email" />
 									<br />
@@ -301,26 +298,25 @@
 			<div class="online_reservation">
 				<div class="b_room">
 					<div class="booking_room">
-						<h4>book a room online</h4>
-						<p>Lorem Ipsum is simply dummy text of the printing and
-							typesetting industry</p>
+						<h4>Réserver une chambre en ligne</h4>
+						<p>Programmer s
+						es vacances n'a jamais été aussi facile :D </p>
 					</div>
 					<div class="reservation">
 						<ul>
 							<li class="span1_of_1">
-								<h5>type of room:</h5> <!--start section_room-->
+								<h5>Type de chambre :</h5> <!--start section_room-->
 								<div class="section_room">
 									<select id="country" onchange="change_country(this.value)"
-										class="frm-field required">
-										<option value="null">Select a type of room</option>
-										<option value="null">Suite room</option>
-										<option value="AX">Single room</option>
-										<option value="AX">Double room</option>
+										class="frm-field required">è
+										<option value="null">Appartement</option>
+										<option value="AX">Chambre simple</option>
+										<option value="AX">Chambre double</option>
 									</select>
 								</div>
 							</li>
 							<li class="span1_of_1 left">
-								<h5>check-in-date:</h5>
+								<h5>Date d'arrivée :</h5>
 								<div class="book_date">
 									<form>
 										<input class="date" id="datepicker" type="text"
@@ -331,7 +327,7 @@
 								</div>
 							</li>
 							<li class="span1_of_1 left">
-								<h5>check-out-date:</h5>
+								<h5>Date de sortie :</h5>
 								<div class="book_date">
 									<form>
 										<input class="date" id="datepicker1" type="text"
@@ -341,7 +337,7 @@
 								</div>
 							</li>
 							<li class="span1_of_2 left">
-								<h5>Adults:</h5> <!--start section_room-->
+								<h5>Adultes :</h5> <!--start section_room-->
 								<div class="section_room">
 									<select id="country2" onchange="change_country(this.value)"
 										class="frm-field required">
@@ -354,8 +350,8 @@
 							</li>
 							<li class="span1_of_3">
 								<div class="date_btn">
-									<form>
-										<input type="submit" value="book now" />
+									<form action="SweetSearch">
+										<input type="submit" value="Cherchez" href="SweetResa"/>
 									</form>
 								</div>
 							</li>

@@ -9,8 +9,9 @@
 <script src="js/jquery.min.js"></script>
 <link type="text/css" rel="stylesheet" href="css/JFGrid.css" />
 <link type="text/css" rel="stylesheet" href="css/JFFormStyle-1.css" />
-		<script type="text/javascript" src="js/JFCore.js"></script>
-		<script type="text/javascript" src="js/JFForms.js"></script>
+<script type="text/javascript" src="js/JFForms.js"></script>
+<script type="text/javascript" src="js/jquery.leanModal.min.js"></script>
+<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" />
 		<!-- Set here the key for your domain in order to hide the watermark on the web server -->
 		<script type="text/javascript">
 			(function() {
@@ -59,18 +60,104 @@
 				<li><a href="SweetActivities">activities</a></li>
 				<li><a href="SweetContact">contact</a></li>
 			</ul>
-			<!-- start profile_details -->
-					<form class="style-1 drp_dwn">
-						<div class="row">
-							<div class="grid_3 columns">
-								<select class="custom-select" id="select-1">
-									<option selected="selected">EN</option>
-									<option>FR</option>
-									<option>DE</option>
-								</select>
-							</div>		
-						</div>		
-					</form>
+					<!-- start profile_details -->	
+					<div class="container">
+						<div class="co_btn">
+							<form>
+								<a id="modal_trigger" href="#modal" ><input type="button" value="Connexion" style="width: 280px;"/></a>
+							</form>
+						</div>
+						<div id="modal" class="popupContainer" style="display:none;">
+							<header class="popupHeader">
+								<span class="header_title">Connexion</span>
+								<span class="modal_close"><i class="fa fa-times"></i></span>
+							</header>
+		
+						<section class="popupBody">
+							<div class="social_login">
+								<div class="action_btns">
+									<div class="one_half"><a href="#" id="login_form" class="btn">Se connecter</a></div>
+									<div class="one_half last"><a href="#" id="register_form" class="btn">S'inscrire</a></div>
+								</div>
+							</div>
+				
+							<!-- Username & Password Login form -->
+							<div class="user_login">
+								<form>
+									<label>E-mail :</label>
+									<input type="text" />
+									<br />
+				
+									<label>Mot de passe :</label>
+									<input type="password" />
+									<br />
+				
+									<div class="action_btns">
+										<div class="one_half"><a href="#" class="btn back_btn">Retour</a></div>
+										<div class="one_half last"><a href="#" class="btn btn_red">Connexion</a></div>
+									</div>
+								</form>
+							</div>
+				
+							<!-- Register Form -->
+							<div class="user_register">
+								<form>
+									<label>Nom :</label>
+									<input type="text" />
+									<br />
+									
+									<label>Prénom :</label>
+									<input type="text" />
+									<br />
+				
+									<label>Adresse e-mail :</label>
+									<input type="email" />
+									<br />
+				
+									<label>Mot de passe :</label>
+									<input type="password" />
+									<br />
+								
+									<div class="action_btns">
+										<div class="one_half"><a href="#" class="btn back_btn">Retour</a></div>
+										<div class="one_half last"><a href="#" class="btn btn_red">S'inscrire</a></div>
+									</div>
+								</form>
+							</div>
+						</section>
+						</div>
+					</div>
+					<!-- Script pour la fenêtre de connexion -->
+					<script type="text/javascript">
+						$("#modal_trigger").leanModal({top : 200, overlay : 0.6, closeButton: ".modal_close" });
+					
+						$(function(){
+							// Calling Login Form
+							$("#login_form").click(function(){
+								$(".social_login").hide();
+								$(".user_login").show();
+								return false;
+							});
+					
+							// Calling Register Form
+							$("#register_form").click(function(){
+								$(".social_login").hide();
+								$(".user_register").show();
+								$(".header_title").text('S\'inscrire');
+								return false;
+							});
+					
+							// Going back to Social Forms
+							$(".back_btn").click(function(){
+								$(".user_login").hide();
+								$(".user_register").hide();
+								$(".social_login").show();
+								$(".header_title").text('Connexion');
+								return false;
+							});
+					
+						})
+					</script>						
 		</div>
 		<div class="clear"></div>
 		<div class="top-nav">
