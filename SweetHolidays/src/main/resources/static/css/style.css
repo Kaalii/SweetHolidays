@@ -826,7 +826,7 @@ p.para {
 	display: inline-block;
 	text-transform: capitalize;
 	width: 15% !important;
-	background: #32A2E3;
+	background: #DE8300;
 	font-family: 'Open Sans', sans-serif;
 	color: #FFF;
 	padding: 5px;
@@ -842,7 +842,7 @@ p.para {
 }
 
 .co_btn form input[type="button"]:hover {
-	background: #228AC6;
+	background: #DE8300;
 }
 
 /* start portfolio page */
