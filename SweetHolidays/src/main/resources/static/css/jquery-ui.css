@@ -127,7 +127,7 @@ font-weight: normal; }
 	font-family: 'Open Sans', sans-serif;
 	font-size: 1.2em;
 	text-transform: uppercase;
-}
+} 
 .ui-datepicker td { border: 0; padding: 1px; }
 .ui-datepicker td span, .ui-datepicker td a {
 	 display: block; padding: .3em; text-align: center; text-decoration: none;
