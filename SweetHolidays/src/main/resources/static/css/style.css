@@ -726,18 +726,18 @@ p.para {
 
 .grids_of_2 {
 	display: block;
-	margin: 8% 0;
+	margin: 7% 0;
 }
 
 .grids_of_img {
 	float: left;
-	width: 22.33333%;
+	width: 28%;
 }
 
 .grids_of_para {
 	float: left;
-	width: 73.333333%;
-	margin-left: 4.333333%;
+	width: 68%;
+	margin-left: 4%;
 }
 /* res_online */
 .res_online h4 {
