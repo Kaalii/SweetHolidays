@@ -92,66 +92,56 @@
 						</div>
 						<div id="modal" class="popupContainer" style="display:none;">
 							<header class="popupHeader">
-								<span class="header_title">Login</span>
+								<span class="header_title">Connexion</span>
 								<span class="modal_close"><i class="fa fa-times"></i></span>
 							</header>
 		
 						<section class="popupBody">
 							<div class="social_login">
 								<div class="action_btns">
-									<div class="one_half"><a href="#" id="login_form" class="btn">Login</a></div>
-									<div class="one_half last"><a href="#" id="register_form" class="btn">Sign up</a></div>
+									<div class="one_half"><a href="#" id="login_form" class="btn">Se connecter</a></div>
+									<div class="one_half last"><a href="#" id="register_form" class="btn">S'inscrire</a></div>
 								</div>
 							</div>
 				
 							<!-- Username & Password Login form -->
 							<div class="user_login">
 								<form>
-									<label>Email / Username</label>
+									<label>E-mail :</label>
 									<input type="text" />
 									<br />
 				
-									<label>Password</label>
+									<label>Mot de passe :</label>
 									<input type="password" />
 									<br />
 				
-									<div class="checkbox">
-										<input id="remember" type="checkbox" />
-										<label for="remember">Remember me on this computer</label>
-									</div>
-				
 									<div class="action_btns">
-										<div class="one_half"><a href="#" class="btn back_btn"><i class="fa fa-angle-double-left"></i> Back</a></div>
-										<div class="one_half last"><a href="#" class="btn btn_red">Login</a></div>
+										<div class="one_half"><a href="#" class="btn back_btn">Retour</a></div>
+										<div class="one_half last"><a href="#" class="btn btn_red">Connexion</a></div>
 									</div>
 								</form>
 				
-								<a href="#" class="forgot_password">Forgot password?</a>
+								<a href="#" class="forgot_password">Mot de passe oublié ?</a>
 							</div>
 				
 							<!-- Register Form -->
 							<div class="user_register">
 								<form>
-									<label>Full Name</label>
+									<label>Nom :</label>
 									<input type="text" />
 									<br />
 				
-									<label>Email Address</label>
+									<label>Adresse e-mail :</label>
 									<input type="email" />
 									<br />
 				
-									<label>Password</label>
+									<label>Mot de passe :</label>
 									<input type="password" />
 									<br />
-				
-									<div class="checkbox">
-										<input id="send_updates" type="checkbox" />
-										<label for="send_updates">Send me occasional email updates</label>
-									</div>
-				
+								
 									<div class="action_btns">
-										<div class="one_half"><a href="#" class="btn back_btn"><i class="fa fa-angle-double-left"></i> Back</a></div>
-										<div class="one_half last"><a href="#" class="btn btn_red">Register</a></div>
+										<div class="one_half"><a href="#" class="btn back_btn">Retour</a></div>
+										<div class="one_half last"><a href="#" class="btn btn_red">S'inscrire</a></div>
 									</div>
 								</form>
 							</div>
@@ -174,7 +164,7 @@
 							$("#register_form").click(function(){
 								$(".social_login").hide();
 								$(".user_register").show();
-								$(".header_title").text('Register');
+								$(".header_title").text('S\'inscrire');
 								return false;
 							});
 					
@@ -183,7 +173,7 @@
 								$(".user_login").hide();
 								$(".user_register").hide();
 								$(".social_login").show();
-								$(".header_title").text('Login');
+								$(".header_title").text('Connexion');
 								return false;
 							});
 					
