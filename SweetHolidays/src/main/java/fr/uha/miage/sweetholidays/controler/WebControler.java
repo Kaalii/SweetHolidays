@@ -58,18 +58,18 @@ import fr.uha.miage.sweetholidays.datas.Recherche;
 	        registry.addViewController("/SweetSearch").setViewName("resultat");
 	    }
 	     
-	     @RequestMapping(value="/SweetSearch", method=RequestMethod.GET)
+	     /*@RequestMapping(value="/SweetSearch", method=RequestMethod.GET)
 		    public String showSearch(Recherche rech) {
 		        return "resultat";
-		    }	
+		    }	*/
 	     
 	     @RequestMapping(value="/SweetSearch", method=RequestMethod.POST)
-	     public String checkSearchInfo(@ModelAttribute @Valid Recherche recherche,BindingResult bindingResult, Model model) {
+	     public String checkSearchInfo(@ModelAttribute @Valid Recherche recherche, BindingResult bindingResult, Model model) {
 		        if (bindingResult.hasErrors()) {
 		            return "index";
 		        }
 		        model.addAttribute("recherche", recherche);
-		        return "redirect:/SweetSearch";
+		        return "resultat";
 		    }	
 	   
 
