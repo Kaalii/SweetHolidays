@@ -186,10 +186,10 @@
 				  	<h1 align="center">Devenez hôte</h1><br/>
 				  	<p align="center"> Publiez votre annonce.<br/>
 				  	SweetHolidays vous permet de gagner de l'argent en louant votre logement.</p>
-					    <form method="post" action="contact-post.html">
+					    <form th:action="@{/SweetAddFlat}" method="post" th:object="${newflat}">
 					    	<div>
 					    	<span><label>Type de logement :</label></span>
-							  <select name="type_log" size="1">
+							  <select th:field="*{Type_Log}" name="type_log" size="1">
 							    <option value="1">Logement entier</option>
 							    <option value="2">Chambre privée</option>
 							    <option value="3">Chambre partagée</option>
@@ -197,7 +197,7 @@
 						    </div>
 						    <div>
 					    	<span><label>Capacité de logement :</label></span>
-							  <select name="type_log" size="1">
+							  <select th:field="*{Capa_Log}" name="capa_log" size="1">
 							    <option value="1" selected="selected">1</option>
 							    <option value="2">2</option>
 							    <option value="3">3</option>
@@ -213,23 +213,23 @@
 						    </div>
 						    <div>
 						     	<span><label>Nom du logement :</label></span>
-						    	<span><input name="nom_log" type="text" class="textbox"/></span>
+						    	<span><input th:field="*{Nom_Log}" name="nom_log" type="text" class="textbox"/></span>
 						    </div>
 						    <div>
 						     	<span><label>Adresse du logement :</label></span>
-						    	<span><input name="nom_log" type="text" class="textbox"/></span>
+						    	<span><input th:field="*{Adresse_Log}" name="adresse_log" type="text" class="textbox"/></span>
 						    </div>
 						    <div>
 						     	<span><label>Code postal :</label></span>
-						    	<span><input name="nom_log" type="text"/></span>
+						    	<span><input th:field="*{CP_Log}" name="cp_log" type="text"/></span>
 						    </div>
 						    <div>
 						     	<span><label>Ville :</label></span>
-						    	<span><input name="nom_log" type="text" class="textbox"/></span>
+						    	<span><input th:field="*{Ville_Log}" name="ville_log" type="text" class="textbox"/></span>
 						    </div>
 						    <div>
 						    	<span><label>Description :</label></span>
-						    	<span><textarea name="desc_log"> </textarea></span>
+						    	<span><textarea th:field="*{Desc_Log}" name="desc_log"> </textarea></span>
 						    </div>
 						    <div>
 						    <span><label>Equipements disponibles :</label></span>
@@ -243,7 +243,7 @@
 						    </div>
 						    <div>
 						    	<span><label>Règlement intérieur :</label></span>
-						    	<span><textarea name="reg_log"> </textarea></span>
+						    	<span><textarea th:field="*{Regle_Log}" name="reg_log"> </textarea></span>
 						    </div>
 						   <div>
 						   		<span><input type="submit" value="submit us"/></span>
