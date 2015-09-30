@@ -23,7 +23,13 @@
 <script src="js/jquery-ui.js"></script>
 <script>
 	$(function() {
-		$("#datepicker,#datepicker1").datepicker({ dateFormat: 'dd-mm-yy' }).val();
+		$("#datepicker").datepicker({ dateFormat: 'dd-mm-yy', onClose: function( selectedDate ) {
+	          $( "#datepicker1" ).datepicker( "option", "minDate", selectedDate );
+        }}).val();
+		$("#datepicker1").datepicker({ dateFormat: 'dd-mm-yy', onClose: function( selectedDate ) {
+	          $( "#datepicker" ).datepicker( "option", "maxDate", selectedDate );
+      }}).val();
+	   
 	});
 </script>
 <!--End-date-piker-->
