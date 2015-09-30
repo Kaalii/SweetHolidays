@@ -214,11 +214,11 @@ body {
 }
 
 .menu  li.active a {
-	color: #52ABDF;
+	color: #DE8300;
 }
 
 .menu  li a:hover {
-	color: #52ABDF;
+	color: #DE8300;
 }
 /*------start-top-nav------*/
 .top-nav {
@@ -433,7 +433,7 @@ select option {
 .date_btn form input[type="submit"] {
 	text-transform: capitalize;
 	width: 100% !important;
-	background: #32A2E3;
+	background: #DE8300;
 	font-family: 'Open Sans', sans-serif;
 	color: #FFF;
 	padding: 8px;
@@ -448,13 +448,13 @@ select option {
 }
 
 .date_btn form input[type="submit"]:hover {
-	background: #228AC6;
+	background: #818387;
 }
 
 .date_btn input[type="submit"] {
 	text-transform: capitalize;
 	width: 100% !important;
-	background: #32A2E3;
+	background: #DE8300;
 	font-family: 'Open Sans', sans-serif;
 	color: #FFF;
 	padding: 8px;
@@ -469,7 +469,7 @@ select option {
 }
 
 .date_btn input[type="submit"]:hover {
-	background: #228AC6;
+	background: #818387;
 }
 
 /* start grids_of_3 */
@@ -818,7 +818,7 @@ p.para {
 	display: inline-block;
 	text-transform: capitalize;
 	width: 25% !important;
-	background: #32A2E3;
+	background: #DE8300;
 	font-family: 'Open Sans', sans-serif;
 	color: #FFF;
 	padding: 15px;
@@ -834,7 +834,7 @@ p.para {
 }
 
 .res_btn form input[type="submit"]:hover {
-	background: #228AC6;
+	background: #818387;
 }
 
 /*Btn connexion*/
