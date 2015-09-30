@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
+import fr.uha.miage.sweetholidays.datas.Newflat;
 import fr.uha.miage.sweetholidays.datas.Recherche;
 
 
@@ -44,7 +45,7 @@ import fr.uha.miage.sweetholidays.datas.Recherche;
 	    }
 	    
 	    @RequestMapping(value="/SweetNew", method=RequestMethod.GET)
-	    public String showNew() {
+	    public String showNew(Newflat newflat) {
 	        return "new";
 	    }
 	    
@@ -55,7 +56,9 @@ import fr.uha.miage.sweetholidays.datas.Recherche;
 
 	    @Override
 	    public void addViewControllers(ViewControllerRegistry registry) {
-	        registry.addViewController("/SweetSearch").setViewName("resultat");
+	    	registry.addViewController("/SweetSearch").setViewName("resultat");
+	    	/****Ajout***/
+	    	 registry.addViewController("/SweetAddFlat").setViewName("addApart");
 	    }
 	     
 	     /*@RequestMapping(value="/SweetSearch", method=RequestMethod.GET)
@@ -70,7 +73,24 @@ import fr.uha.miage.sweetholidays.datas.Recherche;
 		        }
 		        model.addAttribute("recherche", recherche);
 		        return "resultat";
-		    }	
+		    }
+	     
+	     /******** Code Fahd ajout appart ******/
+	     /*@RequestMapping(value="/SweetAddFlat", method=RequestMethod.GET)
+	     public String showForm(Newflat newflat) {
+	         return "addApart";
+	     }*/
+	     
+	     @RequestMapping(value="/SweetAddFlat", method=RequestMethod.POST)
+	     public String checkFlatInfo(@ModelAttribute @Valid Newflat newflat, BindingResult bindingResult, Model model) {
+	         if (bindingResult.hasErrors()) {
+	             return "new";
+	         }
+	         model.addAttribute("newflat", newflat);
+	         return "addApart";
+	     }
+
+	     /**************************************/
 	   
 
 	}

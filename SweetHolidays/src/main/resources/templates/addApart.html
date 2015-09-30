@@ -1,0 +1,254 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<head>
+<title>Résultats de la recherche </title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, maximum-scale=1" />
+<link
+	href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700'
+	rel='stylesheet' type='text/css' />
+<link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
+<script src="js/jquery.min.js"></script>
+<!--start slider -->
+<link rel="stylesheet" href="css/fwslider.css" media="all" />
+<script src="js/jquery-ui.min.js"></script>
+<script src="js/css3-mediaqueries.js"></script>
+<script src="js/fwslider.js"></script>
+<!--end slider -->
+<script type="text/javascript" src="js/jquery.leanModal.min.js"></script>
+<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" />
+<!--start-date-piker-->
+<link rel="stylesheet" href="css/jquery-ui.css" />
+<script src="js/jquery-ui.js"></script>
+<script>
+	$(function() {
+		$("#datepicker,#datepicker1").datepicker();
+	});
+</script>
+<!--End-date-piker-->
+<link type="text/css" rel="stylesheet" href="css/JFGrid.css" />
+<link type="text/css" rel="stylesheet" href="css/JFFormStyle-1.css" />
+<script type="text/javascript" src="js/JFForms.js"></script>
+<!-- Set here the key for your domain in order to hide the watermark on the web server -->
+<script type="text/javascript">
+	(function() {
+		JC.init({
+			domainKey : ''
+		});
+	})();
+</script>
+<!--nav-->
+<script>
+	//<![CDATA[
+	$(function() {
+		var pull = $('#pull');
+		menu = $('nav ul');
+		menuHeight = menu.height();
+
+		$(pull).on('click', function(e) {
+			e.preventDefault();
+			menu.slideToggle();
+		});
+
+		$(window).resize(function() {
+			var w = $(window).width();
+			if (w > 320 && menu.is(':hidden')) {
+				menu.removeAttr('style');
+			}
+		});
+	});
+	//]]>
+</script>
+</head>
+</head>
+<body>
+	<!-- start header -->
+		<!--  MISE EN PLACE DU MENU EN HAUT DE PAGE   -->
+	<div class="header_bg">
+		<div class="wrap">
+			<div class="header">
+				<div class="logo">
+					<a href="SweetHolidays"><img src="images/logo.png" alt="" /></a>
+				</div>
+				<div class="h_right">
+					<!--start menu -->
+					<ul class="menu">
+						<li><a href="SweetNew">Devenez hôte</a></li>
+						<a href="SweetHolidays">hotel</a></li>
+						<li><a href="SweetPlace">rooms &amp; suits</a></li>
+						<li><a href="SweetResa">reservation</a></li>
+						<li><a href="SweetActivities">activities</a></li>
+						<li><a href="SweetContact">contact</a></li>
+					</ul>
+					<!-- start profile_details -->	
+					<div class="container">
+						<div class="co_btn">
+							<form>
+								<a id="modal_trigger" href="#modal" ><input type="button" value="Connexion" style="width: 280px;"/></a>
+							</form>
+						</div>
+						<div id="modal" class="popupContainer" style="display:none;">
+							<header class="popupHeader">
+								<span class="header_title">Connexion</span>
+								<span class="modal_close"><i class="fa fa-times"></i></span>
+							</header>
+		
+						<section class="popupBody">
+							<div class="social_login">
+								<div class="action_btns">
+									<div class="one_half"><a href="#" id="login_form" class="btn">Se connecter</a></div>
+									<div class="one_half last"><a href="#" id="register_form" class="btn">S'inscrire</a></div>
+								</div>
+							</div>
+				
+							<!-- Username & Password Login form -->
+							<div class="user_login">
+								<form>
+									<label>E-mail :</label>
+									<input type="text" />
+									<br />
+				
+									<label>Mot de passe :</label>
+									<input type="password" />
+									<br />
+				
+									<div class="action_btns">
+										<div class="one_half"><a href="#" class="btn back_btn">Retour</a></div>
+										<div class="one_half last"><a href="#" class="btn btn_red">Connexion</a></div>
+									</div>
+								</form>
+							</div>
+				
+							<!-- Register Form -->
+							<div class="user_register">
+								<form>
+									<label>Nom :</label>
+									<input type="text" />
+									<br />
+									
+									<label>Prénom :</label>
+									<input type="text" />
+									<br />
+				
+									<label>Adresse e-mail :</label>
+									<input type="email" />
+									<br />
+				
+									<label>Mot de passe :</label>
+									<input type="password" />
+									<br />
+								
+									<div class="action_btns">
+										<div class="one_half"><a href="#" class="btn back_btn">Retour</a></div>
+										<div class="one_half last"><a href="#" class="btn btn_red">S'inscrire</a></div>
+									</div>
+								</form>
+							</div>
+						</section>
+						</div>
+					</div>
+					<!-- Script pour la fenêtre de connexion -->
+					<script type="text/javascript">
+						$("#modal_trigger").leanModal({top : 200, overlay : 0.6, closeButton: ".modal_close" });
+					
+						$(function(){
+							// Calling Login Form
+							$("#login_form").click(function(){
+								$(".social_login").hide();
+								$(".user_login").show();
+								return false;
+							});
+					
+							// Calling Register Form
+							$("#register_form").click(function(){
+								$(".social_login").hide();
+								$(".user_register").show();
+								$(".header_title").text('S\'inscrire');
+								return false;
+							});
+					
+							// Going back to Social Forms
+							$(".back_btn").click(function(){
+								$(".user_login").hide();
+								$(".user_register").hide();
+								$(".social_login").show();
+								$(".header_title").text('Connexion');
+								return false;
+							});
+					
+						})
+					</script>						
+					
+				</div>
+				<div class="clear"></div>
+				<div class="top-nav">
+					<nav class="clearfix">
+						<ul>
+							<li class="active"><a href="SweetHolidays">hotel</a></li>
+							<li><a href="SweetPlace">rooms &amp; suits</a></li>
+							<li><a href="SweetResa">reservation</a></li>
+							<li><a href="SweetActivities">activities</a></li>
+							<li><a href="SweetContact">contact</a></li>
+						</ul>
+						<a href="#" id="pull">Menu</a>
+					</nav>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	
+	<!--  MISE EN PLACE DU CORPS DU DOCUMENT  -->
+<div class="main_bg">
+	<div class="wrap">
+	
+		Résultats de la recherche	
+		
+		
+		<p th:text="'Type de logement ' + ${newflat.Type_Log}" />
+		<p th:text="'Capacite de logement ' + ${newflat.Capa_Log}" />
+		<p th:text="'Nom du logement ' + ${newflat.Nom_Log}" />
+		<p th:text="'Adresse du logement ' + ${newflat.Adresse_Log}" />
+		<p th:text="'Code postal du logement ' + ${newflat.CP_Log}" />
+		<p th:text="'Ville du logement ' + ${newflat.Ville_Log}" />
+		<p th:text="'Description du logement ' + ${newflat.Desc_Log}" />
+		<p th:text="'Reglement du logement ' + ${newflat.Regle_Log}" />
+		
+		<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+		
+	</div>
+</div>
+	<!--  MISE EN PLACE DU FOOTER PRESENT EN BAS DU DOCUMENT -->
+	<div class="footer_bg">
+		<div class="wrap">
+			<div class="footer">
+				<div class="copy">
+					<p class="link">
+						<span>© All rights reserved Team BAZOOKA</span>
+					</p>
+				</div>
+				<div class="f_nav">
+					<ul>
+						<li><a href="SweetHolidays">home</a></li>
+						<li><a href="SweetPlace">rooms &amp; suits</a></li>
+						<li><a href="SweetResa">reservation</a></li>
+						<li><a href="SweetContact">Contact</a></li>
+					</ul>
+				</div>
+				<div class="soc_icons">
+					<ul>
+						<li><a class="icon1" href="#"></a></li>
+						<li><a class="icon2" href="#"></a></li>
+						<li><a class="icon3" href="#"></a></li>
+						<li><a class="icon4" href="#"></a></li>
+						<li><a class="icon5" href="#"></a></li>
+					</ul>
+				</div>
+				<div class="clear"></div>
+			</div>
+		</div>
+	</div>
+	</body>
+</html>
