@@ -1066,7 +1066,7 @@ span.next:hover {
 	margin-top: 10px;
 	display: inline-block;
 	text-transform: uppercase;
-	background: #32A2E3;
+	background: #DE8300;
 	font-family: 'Open Sans', sans-serif;
 	color: #FFF;
 	padding: 15px;
@@ -1084,7 +1084,7 @@ span.next:hover {
 }
 
 .contact-form input[type="submit"]:hover {
-	background: #228AC6;
+	background: #818387;
 }
 /* start details */
 .details h2 {
