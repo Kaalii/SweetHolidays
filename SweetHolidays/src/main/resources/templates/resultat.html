@@ -204,14 +204,24 @@
 <div class="main_bg">
 	<div class="wrap">
 	
-		Résultats de la recherche	
+		<div class="grids_of_3">
+				<div class="grid1_of_3">
+					<h4>
+						<a href="/SweetHolidays">Votre recherche :</a>
+					</h4>
+						<div th:switch="${recherche.Type_of_room}"> 
+							<p th:case="'1'">Appartement</p>
+						  	<p th:case="'2'">Chambre simple</p>
+						  	<p th:case="'3'">Chambre double</p> 
+						</div>
+						<p th:text="'Date d\'arrivée ' + ${recherche.ArrivalDate}" />
+						<p th:text="'Date de départ ' + ${recherche.DepartureDate}" />
+						<p th:text="'Nombre de personnes ' + ${recherche.Number_of_People}" />
+				</div>
+			</div>
 		
 		
-		<p th:text="'Nb people ' + ${recherche.Number_of_People}" />
-		<p th:text="'ArrivalDate ' + ${recherche.ArrivalDate}" />
-		<p th:text="'DepartureDate ' + ${recherche.DepartureDate}" />
 		
-		<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
 		
 	</div>
 </div>

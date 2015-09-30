@@ -12,11 +12,17 @@
 <!--strat-date-piker-->
 <link rel="stylesheet" href="css/jquery-ui.css" />
 <script src="js/jquery-ui.js"></script>
-		  <script>
-				  $(function() {
-				    $( "#datepicker,#datepicker1" ).datepicker();
-				  });
-		  </script>
+<script>
+	$(function() {
+		$("#datepicker").datepicker({ dateFormat: 'dd-mm-yy', onClose: function( selectedDate ) {
+	          $( "#datepicker1" ).datepicker( "option", "minDate", selectedDate );
+        }}).val();
+		$("#datepicker1").datepicker({ dateFormat: 'dd-mm-yy', onClose: function( selectedDate ) {
+	          $( "#datepicker" ).datepicker( "option", "maxDate", selectedDate );
+      }}).val();
+	   
+	});
+</script>
 <!--/End-date-piker-->
 <link type="text/css" rel="stylesheet" href="css/JFGrid.css" />
 <link type="text/css" rel="stylesheet" href="css/JFFormStyle-1.css" />
@@ -198,7 +204,7 @@
 					<h4>check-in:</h4>
 					<div class="book_date btm">
 						<form>
-							<input class="date" id="datepicker1" type="text" value="DD/MM/YY" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'DD/MM/YY';}"/>
+							<input class="date" id="datepicker" type="text" value="DD/MM/YY" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'DD/MM/YY';}"/>
 						</form>
 					</div>	
 					<div class="sel_room">
@@ -224,7 +230,7 @@
 					<h4>check-out:</h4>
 					<div class="book_date btm">
 						<form>
-							<input class="date" id="datepicker" type="text" value="DD/MM/YY" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'DD/MM/YY';}"/>
+							<input class="date" id="datepicker1" type="text" value="DD/MM/YY" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'DD/MM/YY';}"/>
 						</form>
 					</div>	
 					<div class="sel_room">

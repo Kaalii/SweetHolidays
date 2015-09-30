@@ -23,7 +23,13 @@
 <script src="js/jquery-ui.js"></script>
 <script>
 	$(function() {
-		$("#datepicker,#datepicker1").datepicker();
+		$("#datepicker").datepicker({ dateFormat: 'dd-mm-yy', onClose: function( selectedDate ) {
+	          $( "#datepicker1" ).datepicker( "option", "minDate", selectedDate );
+        }}).val();
+		$("#datepicker1").datepicker({ dateFormat: 'dd-mm-yy', onClose: function( selectedDate ) {
+	          $( "#datepicker" ).datepicker( "option", "maxDate", selectedDate );
+      }}).val();
+	   
 	});
 </script>
 <!--End-date-piker-->
@@ -300,8 +306,7 @@
 				<div class="b_room">
 					<div class="booking_room">
 						<h4>Réserver une chambre en ligne</h4>
-						<p>Programmer s
-						es vacances n'a jamais été aussi facile :D </p>
+						<p>Programmer ses vacances n'a jamais été aussi facile :D </p>
 					</div>
 					<div class="reservation">
 					<form th:action="@{/SweetSearch}" method="post" th:object="${recherche}">
@@ -309,11 +314,11 @@
 							<li class="span1_of_1">
 								<h5>Type de chambre :</h5> <!--start section_room-->
 								<div class="section_room">
-									<select id="country" onchange="change_country(this.value)"
+									<select  th:field="*{Type_of_room}" id="country" onchange="change_country(this.value)"
 										class="frm-field required">
-										<option value="null">Appartement</option>
-										<option value="AX">Chambre simple</option>
-										<option value="AX">Chambre double</option>
+										<option value="1">Appartement</option>
+										<option value="2">Chambre simple</option>
+										<option value="3">Chambre double</option>
 									</select>
 								</div>
 							</li>
