@@ -24,9 +24,6 @@ public class SweetHolidaysApplication implements CommandLineRunner
 {
 	private static final Logger log = LoggerFactory.getLogger(SweetHolidaysApplication.class);
 
-	@Autowired
-	JdbcTemplate jdbcTemplate ; 
-	
 
 	public static void main(String[] args)
 	{
