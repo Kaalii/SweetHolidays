@@ -80,12 +80,12 @@ import fr.uha.miage.sweetholidays.datas.Recherche;
 		        //Effectuer la requête SQl
 		        
 		        //Récupération des résultats
-		        Location loc1 =new Location("SweetHome", 125.0, 4,"8 StrauStrasse", 2, "Réglement intérieur", "Description visuelle de l'appart", "ser_pic3.jpg");
-		        Location loc2 =new Location("SweetHome1", 185.0, 4,"8 StrauStrasse", 1, "Réglement intérieur", "Description visuelle de l'appart", "ser_pic4.jpg");
-		        Location loc3 =new Location("SweetHome2", 225.0, 4,"8 StrauStrasse", 3, "Réglement intérieur", "Description visuelle de l'appart", "ser_pic7.jpg");
-		        Location loc4 =new Location("SweetHome3", 125.0, 4,"8 StrauStrasse", 2, "Réglement intérieur", "Description visuelle de l'appart", "ser_pic3.jpg");
-		        Location loc5 =new Location("SweetHome4", 185.0, 4,"8 StrauStrasse", 1, "Réglement intérieur", "Description visuelle de l'appart", "ser_pic4.jpg");
-		        Location loc6 =new Location("SweetHome5", 225.0, 4,"8 StrauStrasse", 3, "Réglement intérieur", "Description visuelle de l'appart", "ser_pic7.jpg");
+		        Location loc1 =new Location("SweetHome", 125.0, 4,"8 StrauStrasse", "F5", "Réglement intérieur", "Description visuelle de l'appart", "ser_pic3.jpg");
+		        Location loc2 =new Location("SweetHome1", 185.0, 4,"8 StrauStrasse", "F8", "Réglement intérieur", "Description visuelle de l'appart", "ser_pic4.jpg");
+		        Location loc3 =new Location("SweetHome2", 225.0, 4,"8 StrauStrasse", "Chambre simple", "Réglement intérieur", "Description visuelle de l'appart", "ser_pic7.jpg");
+		        Location loc4 =new Location("SweetHome3", 125.0, 4,"8 StrauStrasse", "Chambre double", "Réglement intérieur", "Description visuelle de l'appart", "ser_pic3.jpg");
+		        Location loc5 =new Location("SweetHome4", 185.0, 4,"8 StrauStrasse", "F2", "Réglement intérieur", "Description visuelle de l'appart", "ser_pic4.jpg");
+		        Location loc6 =new Location("SweetHome5", 225.0, 4,"8 StrauStrasse", "F6", "Réglement intérieur", "Description visuelle de l'appart", "ser_pic7.jpg");
 
 		       		Loc.add(loc1);
 		       		Loc.add(loc2);

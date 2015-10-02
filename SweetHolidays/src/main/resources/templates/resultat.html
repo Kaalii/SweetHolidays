@@ -236,11 +236,8 @@
 						<span th:text="${location.Name}"></span>
 						<span th:text="${location.Price}"></span><span>€</span></a>
 					</h4>
-					<span th:switch="${location.Accomodation_type}">
-						<p th:case="'1'">Type de location : Appartement</p>
-						<p th:case="'2'">Type de location : Chambre simple</p>
-						<p th:case="'3'">Type de location : Chambre double</p> 
-					</span>
+
+					<p th:text="'Type de location : ' + ${location.Accomodation_type}"></p>
 					<p th:text="'Capacité d\'accueil : ' + ${location.capacity_location}"></p>
 					<div class="resa_btn">
 						<form>
@@ -249,7 +246,7 @@
 					</div>
 				</div>
 				<div  class="grid1_of_3">
-					<p th:text="'Description : ' + ${location.Accomadation_Descript}"></p>
+					<p th:text="'Description : ' + ${location.Accomodation_Description}"></p>
 					<p th:text="'Réglement : ' + ${location.Accomadation_Rules}"></p>
 				</div>
 				<div class="clear"></div>

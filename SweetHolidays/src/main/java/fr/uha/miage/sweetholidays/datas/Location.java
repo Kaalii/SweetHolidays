@@ -4,23 +4,18 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
-import javax.validation.constraints.NotNull;
-
 
 
 public class Location {
 	
-	@NotNull
 	private Long id; 
-	@NotNull
 	private String Name ; 
 	private Double Price ;
 	private Integer capacity_location; 
-	@NotNull
 	private String Address ;
-	private int Accomodation_type ;
-	private String Accomadation_Rules;
-	private String Accomadation_Descript;
+	private String Accomodation_type ;
+	private String Accomadation_Rules ;
+	private String Accomodation_Description;
 	private String Img_Location;
 	
 	
@@ -39,7 +34,7 @@ public class Location {
 	}
 	
 	public Location(String name, Double price, Integer capacity_location,
-			String address, int accomodation_type, String accomadation_Rules,String accomadation_descript, String img_location) {
+			String address, String accomodation_type, String accomadation_Rules, String accomodation_description, String img_location) {
 		super();
 		Name = name;
 		Price = price;
@@ -48,9 +43,10 @@ public class Location {
 		Accomodation_type = accomodation_type;
 		Accomadation_Rules = accomadation_Rules;
 		Img_Location = img_location;
-		Accomadation_Descript = accomadation_descript;
+		Accomodation_Description = 	accomodation_description;	
 	}
-
+	
+	
 	public Long getId() {
 		return id;
 	}
@@ -93,10 +89,10 @@ public class Location {
 	public void setAddress(String address) {
 		Address = address;
 	}
-	public int getAccomodation_type() {
+	public String getAccomodation_type() {
 		return Accomodation_type;
 	}
-	public void setAccomodation_type(int accomodation_type) {
+	public void setAccomodation_type(String accomodation_type) {
 		Accomodation_type = accomodation_type;
 	}
 	public String getAccomadation_Rules() {
@@ -105,19 +101,18 @@ public class Location {
 	public void setAccomadation_Rules(String accomadation_Rules) {
 		Accomadation_Rules = accomadation_Rules;
 	}
+	public String getAccomodation_Description() {
+		return Accomodation_Description;
+	}
+	public void setAccomodation_Description(String accomodation_Description) {
+		Accomodation_Description = accomodation_Description;
+	}
 	public String getImg_Location() {
 		return Img_Location;
 	}
 	public void setImg_Location(String img_Location) {
 		Img_Location = img_Location;
 	}
-	public String getAccomadation_Descript() {
-		return Accomadation_Descript;
-	}
-	public void setAccomadation_Descript(String accomadation_Descript) {
-		Accomadation_Descript = accomadation_Descript;
-	}
-
 
 	
 	
