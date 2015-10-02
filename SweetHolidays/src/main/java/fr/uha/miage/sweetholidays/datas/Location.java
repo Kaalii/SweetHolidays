@@ -4,17 +4,24 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
+import javax.validation.constraints.NotNull;
+
 
 
 public class Location {
 	
+	@NotNull
 	private Long id; 
+	@NotNull
 	private String Name ; 
 	private Double Price ;
 	private Integer capacity_location; 
+	@NotNull
 	private String Address ;
 	private int Accomodation_type ;
-	private String Accomadation_Rules ;
+	private String Accomadation_Rules;
+	private String Accomadation_Descript;
+	private String Img_Location;
 	
 	
 
@@ -32,7 +39,7 @@ public class Location {
 	}
 	
 	public Location(String name, Double price, Integer capacity_location,
-			String address, int accomodation_type, String accomadation_Rules) {
+			String address, int accomodation_type, String accomadation_Rules,String accomadation_descript, String img_location) {
 		super();
 		Name = name;
 		Price = price;
@@ -40,9 +47,10 @@ public class Location {
 		Address = address;
 		Accomodation_type = accomodation_type;
 		Accomadation_Rules = accomadation_Rules;
+		Img_Location = img_location;
+		Accomadation_Descript = accomadation_descript;
 	}
-	
-	
+
 	public Long getId() {
 		return id;
 	}
@@ -97,7 +105,19 @@ public class Location {
 	public void setAccomadation_Rules(String accomadation_Rules) {
 		Accomadation_Rules = accomadation_Rules;
 	}
-	
+	public String getImg_Location() {
+		return Img_Location;
+	}
+	public void setImg_Location(String img_Location) {
+		Img_Location = img_Location;
+	}
+	public String getAccomadation_Descript() {
+		return Accomadation_Descript;
+	}
+	public void setAccomadation_Descript(String accomadation_Descript) {
+		Accomadation_Descript = accomadation_Descript;
+	}
+
 
 	
 	

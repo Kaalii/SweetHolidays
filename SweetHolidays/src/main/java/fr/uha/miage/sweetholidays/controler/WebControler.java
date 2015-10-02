@@ -1,7 +1,10 @@
 package fr.uha.miage.sweetholidays.controler;
 
 
-	import javax.validation.Valid;
+	import java.util.ArrayList;
+import java.util.List;
+
+import javax.validation.Valid;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
+import fr.uha.miage.sweetholidays.datas.Location;
 import fr.uha.miage.sweetholidays.datas.Newflat;
 import fr.uha.miage.sweetholidays.datas.Recherche;
 
@@ -71,7 +75,32 @@ import fr.uha.miage.sweetholidays.datas.Recherche;
 		        if (bindingResult.hasErrors()) {
 		            return "index";
 		        }
+		        List<Location> Loc = new ArrayList<Location>();
+		       
+		        //Effectuer la requête SQl
+		        
+		        //Récupération des résultats
+		        Location loc1 =new Location("SweetHome", 125.0, 4,"8 StrauStrasse", 2, "Réglement intérieur", "Description visuelle de l'appart", "ser_pic3.jpg");
+		        Location loc2 =new Location("SweetHome1", 185.0, 4,"8 StrauStrasse", 1, "Réglement intérieur", "Description visuelle de l'appart", "ser_pic4.jpg");
+		        Location loc3 =new Location("SweetHome2", 225.0, 4,"8 StrauStrasse", 3, "Réglement intérieur", "Description visuelle de l'appart", "ser_pic7.jpg");
+		        Location loc4 =new Location("SweetHome3", 125.0, 4,"8 StrauStrasse", 2, "Réglement intérieur", "Description visuelle de l'appart", "ser_pic3.jpg");
+		        Location loc5 =new Location("SweetHome4", 185.0, 4,"8 StrauStrasse", 1, "Réglement intérieur", "Description visuelle de l'appart", "ser_pic4.jpg");
+		        Location loc6 =new Location("SweetHome5", 225.0, 4,"8 StrauStrasse", 3, "Réglement intérieur", "Description visuelle de l'appart", "ser_pic7.jpg");
+
+		       		Loc.add(loc1);
+		       		Loc.add(loc2);
+		       		Loc.add(loc3);
+		       		Loc.add(loc4);
+		       		Loc.add(loc5);
+		       		Loc.add(loc6);
+		        
+		        
+		        //Créer un list a envoyer pour récupérer les résultat de recherche
+		        
 		        model.addAttribute("recherche", recherche);
+		        model.addAttribute("Loc_result", Loc);
+		        
+		        
 		        return "resultat";
 		    }
 	     

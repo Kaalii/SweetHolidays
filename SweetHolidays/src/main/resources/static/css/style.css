@@ -838,6 +838,33 @@ p.para {
 }
 
 /*Btn connexion*/
+.resa_btn {
+	display: block;
+	margin-top: 28.5%;
+}
+
+.resa_btn form input[type="button"] {
+	display: inline-block;
+	text-transform: capitalize;
+	width: 30% !important;
+	background: #DE8300;
+	font-family: 'Open Sans', sans-serif;
+	color: #FFF;
+	padding: 5px;
+	border: none;
+	font-size: 1em;
+	transition: 0.5s all;
+	-webkit-transition: 0.5s all;
+	-moz-transition: 0.5s all;
+	-o-transition: 0.5s all;
+	outline: none;
+	cursor: pointer;
+	-webkit-appearance: none;
+}
+
+.resa_btn form input[type="button"]:hover {
+	background: #818387;
+}
 
 .co_btn {
 	text-align: center;
