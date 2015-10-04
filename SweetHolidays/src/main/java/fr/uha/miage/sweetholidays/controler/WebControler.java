@@ -1,11 +1,12 @@
 package fr.uha.miage.sweetholidays.controler;
 
 
-	import java.util.ArrayList;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.validation.Valid;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -20,9 +21,14 @@ import fr.uha.miage.sweetholidays.datas.Newflat;
 import fr.uha.miage.sweetholidays.datas.Recherche;
 
 
+import fr.uha.miage.sweetholidays.datas.LocationRepositoryImpl;
+
 	@Controller
 	public class WebControler extends WebMvcConfigurerAdapter {
 
+		@Autowired
+		private LocationRepositoryImpl locate ;
+		
 	    @RequestMapping(value="/SweetHolidays", method=RequestMethod.GET)
 	    public String showIndex(Recherche rech) {
 	        return "index";
@@ -93,6 +99,27 @@ import fr.uha.miage.sweetholidays.datas.Recherche;
 		       		Loc.add(loc4);
 		       		Loc.add(loc5);
 		       		Loc.add(loc6);
+		       		
+		        
+		       /* Partie Base de données */
+		     
+		       // locate.effaceRep();
+		       // System.out.println("REP EFFACE ");
+		        
+		        locate.saveLoc("SweetHome", 125.0, 4,"8 StrauStrasse", "F5", "Réglement intérieur", "Description visuelle de l'appart", "ser_pic3.jpg"); 
+		        locate.saveLoc("SweetHome1", 185.0, 4,"8 StrauStrasse", "F8", "Réglement intérieur", "Description visuelle de l'appart", "ser_pic4.jpg");
+		        locate.saveLoc("SweetHome2", 225.0, 4,"8 StrauStrasse", "Chambre simple", "Réglement intérieur", "Description visuelle de l'appart", "ser_pic7.jpg");
+		        locate.saveLoc("SweetHome3", 125.0, 4,"8 StrauStrasse", "Chambre double", "Réglement intérieur", "Description visuelle de l'appart", "ser_pic3.jpg");
+		        
+		        List<Location> listLocate = new ArrayList() ; 
+		        
+		       listLocate  = locate.printRep()  ; 
+		       System.out.println("Taille de listLocate : "+listLocate.size());
+		        for(Location l : listLocate)
+		        {
+		        	System.out.println("boucle affichage location");
+		        	System.out.println(l.toString());
+		        }
 		        
 		        
 		        //Créer un list a envoyer pour récupérer les résultat de recherche

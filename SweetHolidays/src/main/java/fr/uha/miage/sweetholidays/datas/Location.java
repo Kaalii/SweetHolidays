@@ -1,24 +1,42 @@
 package fr.uha.miage.sweetholidays.datas;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.List;
+import java.io.Serializable;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
-
-public class Location {
+@Entity
+@Table(name="Location")
+public class Location implements Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	@Id
+	@GeneratedValue
 	private Long id; 
+	
 	private String Name ; 
+	
 	private Double Price ;
+	
 	private Integer capacity_location; 
+	
 	private String Address ;
+	
 	private String Accomodation_type ;
+	
 	private String Accomadation_Rules ;
+	
 	private String Accomodation_Description;
+	
 	private String Img_Location;
 	
-	
+
 
 	public Location(Long id, String name, String address) {
 		super();
