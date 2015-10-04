@@ -3,6 +3,7 @@ package fr.uha.miage.sweetholidays.datas;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -52,7 +53,18 @@ public class LocationRepositoryImpl {
 		
 	}
 	
-
+	public Location findById(long id)
+	{
+		return locRep.findById(id);
+		
+	}
+	
+	public Location findByName(String name)
+	{
+		Location location = null ;
+		return location; 
+			
+	}
 	public List<Location> printRep()
 	{
 		System.out.println("Essai de récupération de la liste des locations sauvegardé");
@@ -70,6 +82,11 @@ public class LocationRepositoryImpl {
 		else
 			return "La location n'existe pas"; 
 	}
+	
+	@Query("SELECT l FROM Location l WHERE l.Address=:Address")
+	public Location findByAddress(String Adress) {
+		return null;
+	}  
 
 
 }

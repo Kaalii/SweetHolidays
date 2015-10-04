@@ -121,6 +121,12 @@ import fr.uha.miage.sweetholidays.datas.LocationRepositoryImpl;
 		        	System.out.println(l.toString());
 		        }
 		        
+		        Location LocationByQuery = locate.findLocationById(3);
+		        System.out.println("Le troisième appartement est : "+LocationByQuery.toString());
+		        
+	
+		        Location LocationByQuery2 = locate.findByName("SweetHome3");
+		        //System.out.println("Le troisième appartement est : "+LocationByQuery2.toString());
 		        
 		        //Créer un list a envoyer pour récupérer les résultat de recherche
 		        
