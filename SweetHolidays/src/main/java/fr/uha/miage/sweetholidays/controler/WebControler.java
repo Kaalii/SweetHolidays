@@ -4,8 +4,6 @@ package fr.uha.miage.sweetholidays.controler;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
-
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -92,9 +90,10 @@ import fr.uha.miage.sweetholidays.datas.LocationRepositoryImpl;
 	       		System.out.println("Les clients ont étés sauvées");
 	       		
 	       		client.printRepClient(); 
+	       		List<Client> list_cli = new ArrayList();
 	       		
-	       		Client clName = cli.findByName("AMPS"); 
-	       		System.out.println("Find by name donne : "+clName.toString());
+	       		list_cli = cli.findByName("AMPS"); 
+	       		System.out.println("Find by name donne : "+list_cli.toString());
 	       		
 	    	/**Récupération des location dans la BDD pour remplir les listes déroulantes**/
 	    	List<Location> list_loc = new ArrayList<Location>();
@@ -175,20 +174,14 @@ import fr.uha.miage.sweetholidays.datas.LocationRepositoryImpl;
 		        if (bindingResult.hasErrors()) {
 		            return "index";
 		        }
-		       
-		       
+
 		        /* Partie Base de données : locate gert le repository et loc s'occupe d'effectuer les findByX *
 		         * 
 		         */
 
 		        //Effectuer la requête SQl
-		        /***A décommenter pour tester provoque une erreur si on refresh la page index 
-		         * c'est normal tant que la partie de Fahd n'est pas faite et qu'on déclare les location en statique**/
-		        /*List<Location> result = new ArrayList<Location>();
-		        result = loc.findByAccomodation_TypeAndCapacity_LocationAndCity(recherche.getType_of_room(), recherche.getNumber_of_People(), recherche.getCity());
-
-		        model.addAttribute("Loc_result", result);*/
 		        
+		        model.addAttribute("Loc_result", loc.findByAccomodation_TypeAndCapacity_LocationAndCity(recherche.getType_of_room(), recherche.getNumber_of_People(), recherche.getCity()));
 		        model.addAttribute("recherche", recherche);
 		        
 		        return "resultat";

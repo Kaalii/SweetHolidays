@@ -1,14 +1,16 @@
 package fr.uha.miage.sweetholidays.datas;
 
+import java.util.List;
+
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ClientRepository extends CrudRepository<Client, Long> {
 
-	Client findByName(String name); 
+	List<Client> findByName(String name); 
 	
-	Client findByPrenom(String prenom);
+	List<Client> findByPrenom(String prenom);
 	
-	Client findByEmail(String email); 
+	List<Client> findByEmail(String email); 
 }

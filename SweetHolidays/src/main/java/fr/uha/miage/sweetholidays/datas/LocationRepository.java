@@ -13,7 +13,7 @@ public interface LocationRepository extends CrudRepository<Location, Long> {
 	
 	/*Recherche par le nom*/
 	
-	Location findByName(String name);
+	//Location findByName(String name);
 	
 	/*Gestion de la recherche dans la page d'index*/
 	@Query("select l from Location l where l.accomodation_type = :accomodation_type and l.capacity_location = :capacity_location and l.city = :city")
