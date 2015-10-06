@@ -10,15 +10,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface LocationRepository extends PagingAndSortingRepository<Location, Long> {
 	
-	@Async
-	@Query("SELECT l FROM Location l WHERE l.id=:id")
-	public Location findById(Long id);
-	
-	@Async
-	@Query("SELECT l FROM Location l WHERE l.Name=:Name")
-	public Location findByName(String Name);
-    
-	@Async
-	@Query("SELECT l FROM Location l WHERE l.Address=:Address")
-	public Location findByAddress(String Adress);    
+
 }

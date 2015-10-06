@@ -98,37 +98,7 @@ import fr.uha.miage.sweetholidays.datas.LocationRepositoryImpl;
 		       		Loc.add(loc3);
 		       		Loc.add(loc4);
 		       		Loc.add(loc5);
-		       		Loc.add(loc6);
-		       		
-		        
-		       /* Partie Base de données */
-		     
-		       // locate.effaceRep();
-		       // System.out.println("REP EFFACE ");
-		        
-		        locate.saveLoc("SweetHome", 125.0, 4,"8 StrauStrasse", "F5", "Réglement intérieur", "Description visuelle de l'appart", "ser_pic3.jpg"); 
-		        locate.saveLoc("SweetHome1", 185.0, 4,"8 StrauStrasse", "F8", "Réglement intérieur", "Description visuelle de l'appart", "ser_pic4.jpg");
-		        locate.saveLoc("SweetHome2", 225.0, 4,"8 StrauStrasse", "Chambre simple", "Réglement intérieur", "Description visuelle de l'appart", "ser_pic7.jpg");
-		        locate.saveLoc("SweetHome3", 125.0, 4,"8 StrauStrasse", "Chambre double", "Réglement intérieur", "Description visuelle de l'appart", "ser_pic3.jpg");
-		        
-		        List<Location> listLocate = new ArrayList() ; 
-		        
-		       listLocate  = locate.printRep()  ; 
-		       System.out.println("Taille de listLocate : "+listLocate.size());
-		        for(Location l : listLocate)
-		        {
-		        	System.out.println("boucle affichage location");
-		        	System.out.println(l.toString());
-		        }
-		        
-		        Location LocationByQuery = locate.findLocationById(3);
-		        System.out.println("Le troisième appartement est : "+LocationByQuery.toString());
-		        
-	
-		        Location LocationByQuery2 = locate.findByName("SweetHome3");
-		        //System.out.println("Le troisième appartement est : "+LocationByQuery2.toString());
-		        
-		        //Créer un list a envoyer pour récupérer les résultat de recherche
+		       		Loc.add(loc6);	      
 		        
 		        model.addAttribute("recherche", recherche);
 		        model.addAttribute("Loc_result", Loc);

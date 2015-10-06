@@ -53,18 +53,6 @@ public class LocationRepositoryImpl {
 		
 	}
 	
-	public Location findById(long id)
-	{
-		return locRep.findById(id);
-		
-	}
-	
-	public Location findByName(String name)
-	{
-		Location location = null ;
-		return location; 
-			
-	}
 	public List<Location> printRep()
 	{
 		System.out.println("Essai de récupération de la liste des locations sauvegardé");
@@ -82,12 +70,6 @@ public class LocationRepositoryImpl {
 		else
 			return "La location n'existe pas"; 
 	}
-	
-	@Query("SELECT l FROM Location l WHERE l.Address=:Address")
-	public Location findByAddress(String Adress) {
-		return null;
-	}  
-
 
 }
 
