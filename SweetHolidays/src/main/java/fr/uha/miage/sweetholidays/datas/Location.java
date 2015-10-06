@@ -39,11 +39,12 @@ public class Location implements Serializable {
 	
 	private String img_Location;
 	
-
+	private static int numLoc = 0 ; 
 
 	public Location(Long id, String name, String address, String city) {
 		super();
-		this.id = id;
+		this.id = (long) numLoc; 
+		numLoc ++ ;
 		this.name = name;
 		this.address = address;
 		this.city = city;

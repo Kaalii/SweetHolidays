@@ -27,6 +27,8 @@ public class Client implements Serializable {
 	
 	@Column private String email ; 
 	
+	private static int numClient = 0 ; 
+	
 	private String mdp ;
 
 	/**
@@ -38,6 +40,8 @@ public class Client implements Serializable {
 	 */
 	public Client(String name, String prenom, String email, String mdp) {
 		super();
+		this.id = numClient ;
+		numClient = numClient ++ ;
 		this.name = name;
 		this.prenom = prenom;
 		this.email = email;
@@ -119,7 +123,17 @@ public class Client implements Serializable {
 	 */
 	public void setMdp(String mdp) {
 		this.mdp = mdp;
+	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "Client [id=" + id + ", name=" + name + ", prenom=" + prenom + ", email=" + email + ", mdp=" + mdp + "]";
 	} 
+	
+	
 	
 	
 	

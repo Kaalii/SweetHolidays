@@ -87,6 +87,8 @@ import fr.uha.miage.sweetholidays.datas.LocationRepositoryImpl;
 	       		client.saveClient(c3);
 	       		client.saveClient(c4);
 	       		
+	       		System.out.println("c1 : "+c1.toString());
+	       		System.out.println("c2 : "+c2.toString()); 
 	       		System.out.println("Les clients ont étés sauvées");
 	       		
 	       		client.printRepClient(); 
