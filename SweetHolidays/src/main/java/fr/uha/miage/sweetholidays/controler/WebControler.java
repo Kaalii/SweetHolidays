@@ -43,7 +43,7 @@ import fr.uha.miage.sweetholidays.datas.LocationRepositoryImpl;
 	    	/******Création fictive pour test****/
 	    	 List<Location> Loc = new ArrayList<Location>();
 	    	//Récupération des résultats
-	        /*Location loc1 =new Location("Sweet", 125.0, 4,"8 StrauStrasse", "F5", "Réglement intérieur", "Description visuelle de l'appart", "ser_pic3.jpg", "Bern");
+	        Location loc1 =new Location("Sweet", 125.0, 4,"8 StrauStrasse", "F5", "Réglement intérieur", "Description visuelle de l'appart", "ser_pic3.jpg", "Bern");
 	        Location loc2 =new Location("SweetHome1", 185.0, 4,"8 StrauStrasse", "F8", "Réglement intérieur", "Description visuelle de l'appart", "ser_pic4.jpg", "Berlin");
 	        Location loc3 =new Location("SweetHome2", 225.0, 4,"8 StrauStrasse", "Chambre simple", "Réglement intérieur", "Description visuelle de l'appart", "ser_pic7.jpg", "Hamburg");
 	        Location loc4 =new Location("SweetHome3", 125.0, 4,"8 StrauStrasse", "Chambre double", "Réglement intérieur", "Description visuelle de l'appart", "ser_pic3.jpg", "Paris");
@@ -62,7 +62,7 @@ import fr.uha.miage.sweetholidays.datas.LocationRepositoryImpl;
 	       		locate.saveLoc(loc3);
 	       		locate.saveLoc(loc4);
 	       		locate.saveLoc(loc5);
-	       		locate.saveLoc(loc6);*/
+	       		locate.saveLoc(loc6);
 	    	
 	    	
 	    	/**Récupération des location dans la BDD pour remplir les listes déroulantes**/
