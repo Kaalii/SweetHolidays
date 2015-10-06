@@ -57,7 +57,7 @@ import fr.uha.miage.sweetholidays.datas.LocationRepositoryImpl;
 	        Location loc3 =new Location("SweetHome2", 225.0, 4,"8 StrauStrasse", "Chambre simple", "Réglement intérieur", "Description visuelle de l'appart", "ser_pic7.jpg", "Hamburg");
 	        Location loc4 =new Location("SweetHome3", 125.0, 4,"8 StrauStrasse", "Chambre double", "Réglement intérieur", "Description visuelle de l'appart", "ser_pic3.jpg", "Paris");
 	        Location loc5 =new Location("SweetHome4", 185.0, 4,"8 StrauStrasse", "F2", "Réglement intérieur", "Description visuelle de l'appart", "ser_pic4.jpg", "Cologne");
-	        Location loc6 =new Location("SweetHome5", 225.0, 4,"8 StrauStrasse", "F6", "Réglement intérieur", "Description visuelle de l'appart", "ser_pic7.jpg", "Marseille");
+	        Location loc6 =new Location("SweetHome5", 225.0, 4,"50 rue des fleurs", "F5", "Réglement intérieur", "Description visuelle de l'appart", "ser_pic7.jpg", "Bern");
 
 	       		Loc.add(loc1);
 	       		Loc.add(loc2);
@@ -178,15 +178,16 @@ import fr.uha.miage.sweetholidays.datas.LocationRepositoryImpl;
 		        /* Partie Base de données : locate gert le repository et loc s'occupe d'effectuer les findByX *
 		         * 
 		         */
-		        
-		       		
-		       	Location result = loc.findByName("Sweet");
+
+		        //Effectuer la requête SQl
+		        /***A décommenter pour tester provoque une erreur si on refresh la page index 
+		         * c'est normal tant que la partie de Fahd n'est pas faite et qu'on déclare les location en statique**/
+		        /*List<Location> result = new ArrayList<Location>();
+		        result = loc.findByAccomodation_TypeAndCapacity_LocationAndCity(recherche.getType_of_room(), recherche.getNumber_of_People(), recherche.getCity());
+
+		        model.addAttribute("Loc_result", result);*/
 		        
 		        model.addAttribute("recherche", recherche);
-		        //model.addAttribute("Loc_result", Loc);
-		        
-		        System.out.println(result.toString());
-		        
 		        
 		        return "resultat";
 		    }
