@@ -18,6 +18,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
+import fr.uha.miage.sweetholidays.datas.Client;
+import fr.uha.miage.sweetholidays.datas.ClientRepository;
+import fr.uha.miage.sweetholidays.datas.ClientRepositoryImpl;
 import fr.uha.miage.sweetholidays.datas.Location;
 import fr.uha.miage.sweetholidays.datas.LocationRepository;
 import fr.uha.miage.sweetholidays.datas.Newflat;
@@ -33,7 +36,13 @@ import fr.uha.miage.sweetholidays.datas.LocationRepositoryImpl;
 		LocationRepositoryImpl locate ;
 		
 		@Autowired
+		ClientRepositoryImpl client ; 
+		
+		@Autowired
 		LocationRepository loc;
+		
+		@Autowired
+		ClientRepository cli ; 
 		
 		
 	    @RequestMapping(value="/SweetHolidays", method=RequestMethod.GET)
@@ -43,7 +52,7 @@ import fr.uha.miage.sweetholidays.datas.LocationRepositoryImpl;
 	    	/******Création fictive pour test****/
 	    	 List<Location> Loc = new ArrayList<Location>();
 	    	//Récupération des résultats
-	        /*Location loc1 =new Location("Sweet", 125.0, 4,"8 StrauStrasse", "F5", "Réglement intérieur", "Description visuelle de l'appart", "ser_pic3.jpg", "Bern");
+	        Location loc1 =new Location("Sweet", 125.0, 4,"8 StrauStrasse", "F5", "Réglement intérieur", "Description visuelle de l'appart", "ser_pic3.jpg", "Bern");
 	        Location loc2 =new Location("SweetHome1", 185.0, 4,"8 StrauStrasse", "F8", "Réglement intérieur", "Description visuelle de l'appart", "ser_pic4.jpg", "Berlin");
 	        Location loc3 =new Location("SweetHome2", 225.0, 4,"8 StrauStrasse", "Chambre simple", "Réglement intérieur", "Description visuelle de l'appart", "ser_pic7.jpg", "Hamburg");
 	        Location loc4 =new Location("SweetHome3", 125.0, 4,"8 StrauStrasse", "Chambre double", "Réglement intérieur", "Description visuelle de l'appart", "ser_pic3.jpg", "Paris");
@@ -62,9 +71,29 @@ import fr.uha.miage.sweetholidays.datas.LocationRepositoryImpl;
 	       		locate.saveLoc(loc3);
 	       		locate.saveLoc(loc4);
 	       		locate.saveLoc(loc5);
-	       		locate.saveLoc(loc6);*/
+	       		locate.saveLoc(loc6);
 	    	
-	    	
+	       		
+	       		/* partie client 
+	       		 * 
+	       		 */
+	       		Client c1 = new Client("AMPS", "Sevan", "sevan.amps@outlook.com","sevan1010") ;
+	       		Client c2 = new Client("GRANDSIRE", "Alexandre", "zizi@outlook.com","j'aimelesvoitures") ;	       		
+	       		Client c3 = new Client("KABAB", "Fahd", "fahd.kabab@uha.fr","fk") ;
+	       		Client c4 = new Client("Muller", "Lagaffe", "gaston.lagaffe@uha.fr","jesuismaladedunez") ;
+	       		
+	       		client.saveClient(c1);
+	       		client.saveClient(c2);
+	       		client.saveClient(c3);
+	       		client.saveClient(c4);
+	       		
+	       		System.out.println("Les clients ont étés sauvées");
+	       		
+	       		client.printRepClient(); 
+	       		
+	       		Client clName = cli.findByName("AMPS"); 
+	       		System.out.println("Find by name donne : "+clName.toString());
+	       		
 	    	/**Récupération des location dans la BDD pour remplir les listes déroulantes**/
 	    	List<Location> list_loc = new ArrayList<Location>();
 	    	//Toutes les location dans la BDD
@@ -146,11 +175,12 @@ import fr.uha.miage.sweetholidays.datas.LocationRepositoryImpl;
 		        }
 		       
 		       
-		        //Effectuer la requête SQl
-		        
+		        /* Partie Base de données : locate gert le repository et loc s'occupe d'effectuer les findByX *
+		         * 
+		         */
 		        
 		       		
-		       		Location result = loc.findByName("Sweet");
+		       	Location result = loc.findByName("Sweet");
 		        
 		        model.addAttribute("recherche", recherche);
 		        //model.addAttribute("Loc_result", Loc);
