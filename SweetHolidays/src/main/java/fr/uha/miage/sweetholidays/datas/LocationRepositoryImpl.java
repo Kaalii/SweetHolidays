@@ -25,27 +25,13 @@ public class LocationRepositoryImpl {
 
 	public void saveLoc(Location l)
 	{
-		System.out.println("Essai de sauvegardé une location");
 		locRep.save(l);
 	}
-	
-	
-	public void saveLoc(String string, double d, int i, String string2, String string3, String string4, String string5,String string6, String string7)
-	{
-		System.out.println("Essai de sauvegardé une location");
-		System.out.println("Affichage des paramètres "+string+" "+d+" "+i+" "+string2+" "+string3+" "+string4+" "+string5+" "+string6+" "+string7);
-		Location l = new Location(string,d,i,string2,string3,string4,string5,string6,string7);
-		l.toString();
-		locRep.save(l);
-		System.out.println("La location à été sauvegardé");
-	}
-	
 	
 	public long countLocations()
 	{
 		return locRep.count() ;
 	}
-	
 
 	public Location findLocationById(long id)
 	{
@@ -55,10 +41,7 @@ public class LocationRepositoryImpl {
 	
 	public List<Location> printRep()
 	{
-		System.out.println("Essai de récupération de la liste des locations sauvegardé");
-		List<Location> l = (List<Location>) locRep.findAll() ; 
-		l.toString();
-		return l;
+		return (List<Location>) locRep.findAll();
 	}
 	
 	
