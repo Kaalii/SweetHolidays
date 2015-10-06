@@ -2,6 +2,7 @@ package fr.uha.miage.sweetholidays.datas;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -20,7 +21,7 @@ public class Location implements Serializable {
 	@GeneratedValue
 	private Long id; 
 	
-	private String name ; 
+	@Column private String name ; 
 	
 	private Double price ;
 	

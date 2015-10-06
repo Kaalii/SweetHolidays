@@ -17,6 +17,7 @@ import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 import fr.uha.miage.sweetholidays.datas.Location;
+import fr.uha.miage.sweetholidays.datas.LocationRepository;
 import fr.uha.miage.sweetholidays.datas.Newflat;
 import fr.uha.miage.sweetholidays.datas.Recherche;
 
@@ -27,7 +28,11 @@ import fr.uha.miage.sweetholidays.datas.LocationRepositoryImpl;
 	public class WebControler extends WebMvcConfigurerAdapter {
 
 		@Autowired
-		private LocationRepositoryImpl locate ;
+		LocationRepositoryImpl locate ;
+		
+		@Autowired
+		LocationRepository loc;
+		
 		
 	    @RequestMapping(value="/SweetHolidays", method=RequestMethod.GET)
 	    public String showIndex(Recherche rech) {
@@ -86,7 +91,7 @@ import fr.uha.miage.sweetholidays.datas.LocationRepositoryImpl;
 		        //Effectuer la requête SQl
 		        
 		        //Récupération des résultats
-		        Location loc1 =new Location("SweetHome", 125.0, 4,"8 StrauStrasse", "F5", "Réglement intérieur", "Description visuelle de l'appart", "ser_pic3.jpg");
+		        Location loc1 =new Location("Sweet", 125.0, 4,"8 StrauStrasse", "F5", "Réglement intérieur", "Description visuelle de l'appart", "ser_pic3.jpg");
 		        Location loc2 =new Location("SweetHome1", 185.0, 4,"8 StrauStrasse", "F8", "Réglement intérieur", "Description visuelle de l'appart", "ser_pic4.jpg");
 		        Location loc3 =new Location("SweetHome2", 225.0, 4,"8 StrauStrasse", "Chambre simple", "Réglement intérieur", "Description visuelle de l'appart", "ser_pic7.jpg");
 		        Location loc4 =new Location("SweetHome3", 125.0, 4,"8 StrauStrasse", "Chambre double", "Réglement intérieur", "Description visuelle de l'appart", "ser_pic3.jpg");
@@ -98,10 +103,19 @@ import fr.uha.miage.sweetholidays.datas.LocationRepositoryImpl;
 		       		Loc.add(loc3);
 		       		Loc.add(loc4);
 		       		Loc.add(loc5);
-		       		Loc.add(loc6);	      
+		       		Loc.add(loc6);	  
+		       		
+		       		locate.saveLoc(loc1);
+		       		locate.saveLoc(loc2);
+		       		locate.saveLoc(loc3);
+		       		locate.saveLoc(loc4);
+		       		
+		       		Location result = loc.findByName("Sweet");
 		        
 		        model.addAttribute("recherche", recherche);
 		        model.addAttribute("Loc_result", Loc);
+		        
+		        System.out.println(result.toString());
 		        
 		        
 		        return "resultat";
