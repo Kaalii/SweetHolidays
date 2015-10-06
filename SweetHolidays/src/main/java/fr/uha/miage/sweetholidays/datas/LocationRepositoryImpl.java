@@ -30,11 +30,11 @@ public class LocationRepositoryImpl {
 	}
 	
 	
-	public void saveLoc(String string, double d, int i, String string2, String string3, String string4, String string5,String string6)
+	public void saveLoc(String string, double d, int i, String string2, String string3, String string4, String string5,String string6, String string7)
 	{
 		System.out.println("Essai de sauvegardé une location");
-		System.out.println("Affichage des paramètres "+string+" "+d+" "+i+" "+string2+" "+string3+" "+string4+" "+string5+" "+string6);
-		Location l = new Location(string,d,i,string2,string3,string4,string5,string6);
+		System.out.println("Affichage des paramètres "+string+" "+d+" "+i+" "+string2+" "+string3+" "+string4+" "+string5+" "+string6+" "+string7);
+		Location l = new Location(string,d,i,string2,string3,string4,string5,string6,string7);
 		l.toString();
 		locRep.save(l);
 		System.out.println("La location à été sauvegardé");

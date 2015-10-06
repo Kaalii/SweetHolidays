@@ -25,13 +25,13 @@ public class Location implements Serializable {
 	
 	private Double price ;
 	
-	private Integer capacity_location; 
+	@Column private Integer capacity_location; 
 	
 	private String address ;
 	
-	private String city ;
+	@Column private String city ;
 	
-	private String accomodation_type ;
+	@Column private String accomodation_type ;
 	
 	private String accomadation_rules ;
 	
@@ -41,11 +41,12 @@ public class Location implements Serializable {
 	
 
 
-	public Location(Long id, String name, String address) {
+	public Location(Long id, String name, String address, String city) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.address = address;
+		this.city = city;
 	}
 
 	/* Constructor */
@@ -55,7 +56,7 @@ public class Location implements Serializable {
 	}
 	
 	public Location(String name, Double price, Integer capacity_location,
-			String address, String accomodation_type, String accomadation_Rules, String accomodation_description, String img_location) {
+			String address, String accomodation_type, String accomadation_Rules, String accomodation_description, String img_location, String city) {
 		super();
 		this.name = name;
 		this.price = price;
@@ -64,7 +65,8 @@ public class Location implements Serializable {
 		this.accomodation_type = accomodation_type;
 		this.accomadation_rules = accomadation_Rules;
 		this.img_Location = img_location;
-		this.accomodation_description = 	accomodation_description;	
+		this.accomodation_description = accomodation_description;
+		this.city = city;
 	}
 	
 	
@@ -81,7 +83,7 @@ public class Location implements Serializable {
 	public String toString() {
 		return "Location [Name=" + name + ", Price=" + price
 				+ ", capacity_location=" + capacity_location + ", Address="
-				+ address + ", Accomodation_type=" + accomodation_type
+				+ address + "City=" + city + ", Accomodation_type=" + accomodation_type
 				+ ", Accomadation_Rules=" + accomadation_rules + "]";
 	}
 

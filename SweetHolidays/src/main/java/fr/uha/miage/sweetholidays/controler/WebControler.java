@@ -2,7 +2,9 @@ package fr.uha.miage.sweetholidays.controler;
 
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.validation.Valid;
 
@@ -35,7 +37,63 @@ import fr.uha.miage.sweetholidays.datas.LocationRepositoryImpl;
 		
 		
 	    @RequestMapping(value="/SweetHolidays", method=RequestMethod.GET)
-	    public String showIndex(Recherche rech) {
+	    public String showIndex(Recherche rech, Model model) {
+	    	
+	    	
+	    	/******Création fictive pour test****/
+	    	 List<Location> Loc = new ArrayList<Location>();
+	    	//Récupération des résultats
+	        /*Location loc1 =new Location("Sweet", 125.0, 4,"8 StrauStrasse", "F5", "Réglement intérieur", "Description visuelle de l'appart", "ser_pic3.jpg", "Bern");
+	        Location loc2 =new Location("SweetHome1", 185.0, 4,"8 StrauStrasse", "F8", "Réglement intérieur", "Description visuelle de l'appart", "ser_pic4.jpg", "Berlin");
+	        Location loc3 =new Location("SweetHome2", 225.0, 4,"8 StrauStrasse", "Chambre simple", "Réglement intérieur", "Description visuelle de l'appart", "ser_pic7.jpg", "Hamburg");
+	        Location loc4 =new Location("SweetHome3", 125.0, 4,"8 StrauStrasse", "Chambre double", "Réglement intérieur", "Description visuelle de l'appart", "ser_pic3.jpg", "Paris");
+	        Location loc5 =new Location("SweetHome4", 185.0, 4,"8 StrauStrasse", "F2", "Réglement intérieur", "Description visuelle de l'appart", "ser_pic4.jpg", "Cologne");
+	        Location loc6 =new Location("SweetHome5", 225.0, 4,"8 StrauStrasse", "F6", "Réglement intérieur", "Description visuelle de l'appart", "ser_pic7.jpg", "Marseille");
+
+	       		Loc.add(loc1);
+	       		Loc.add(loc2);
+	       		Loc.add(loc3);
+	       		Loc.add(loc4);
+	       		Loc.add(loc5);
+	       		Loc.add(loc6);	  
+	       		
+	       		locate.saveLoc(loc1);
+	       		locate.saveLoc(loc2);
+	       		locate.saveLoc(loc3);
+	       		locate.saveLoc(loc4);
+	       		locate.saveLoc(loc5);
+	       		locate.saveLoc(loc6);*/
+	    	
+	    	
+	    	/**Récupération des location dans la BDD pour remplir les listes déroulantes**/
+	    	List<Location> list_loc = new ArrayList<Location>();
+	    	//Toutes les location dans la BDD
+	    	list_loc = locate.printRep();
+	    	
+	    	//On extrait les type de location (appart chambre ...)
+	    	HashSet<String> AccoSet = new HashSet<String>();
+	    	for (int i = 0; i < list_loc.size(); i++) {
+	    		AccoSet.add(list_loc.get(i).getAccomodation_type());
+	    	}
+	    	List<String> accomodation_type = new ArrayList<String>(AccoSet);
+	    	//On extrait les city
+	    	HashSet<String> citySet = new HashSet<String>();
+	    	for (int i = 0; i < list_loc.size(); i++) {
+	    		citySet.add(list_loc.get(i).getCity());
+	    	}
+	    	List<String> City = new ArrayList<String>(citySet);
+	    	//On extrait les capacités
+	    	HashSet<Integer> CapacitySet = new HashSet<Integer>();
+	    	for (int i = 0; i < list_loc.size(); i++) {
+	    		CapacitySet.add(list_loc.get(i).getCapacity_location());
+	    	}
+	    	List<Integer> Loca_number = new ArrayList<Integer>(CapacitySet);
+	    	
+	    	
+	    	model.addAttribute("list_acco_load", accomodation_type);
+	    	model.addAttribute("list_city_load", City);
+	    	model.addAttribute("list_capacity_load", Loca_number);
+	    	
 	        return "index";
 	    }
 	    
@@ -86,34 +144,16 @@ import fr.uha.miage.sweetholidays.datas.LocationRepositoryImpl;
 		        if (bindingResult.hasErrors()) {
 		            return "index";
 		        }
-		        List<Location> Loc = new ArrayList<Location>();
+		       
 		       
 		        //Effectuer la requête SQl
 		        
-		        //Récupération des résultats
-		        Location loc1 =new Location("Sweet", 125.0, 4,"8 StrauStrasse", "F5", "Réglement intérieur", "Description visuelle de l'appart", "ser_pic3.jpg");
-		        Location loc2 =new Location("SweetHome1", 185.0, 4,"8 StrauStrasse", "F8", "Réglement intérieur", "Description visuelle de l'appart", "ser_pic4.jpg");
-		        Location loc3 =new Location("SweetHome2", 225.0, 4,"8 StrauStrasse", "Chambre simple", "Réglement intérieur", "Description visuelle de l'appart", "ser_pic7.jpg");
-		        Location loc4 =new Location("SweetHome3", 125.0, 4,"8 StrauStrasse", "Chambre double", "Réglement intérieur", "Description visuelle de l'appart", "ser_pic3.jpg");
-		        Location loc5 =new Location("SweetHome4", 185.0, 4,"8 StrauStrasse", "F2", "Réglement intérieur", "Description visuelle de l'appart", "ser_pic4.jpg");
-		        Location loc6 =new Location("SweetHome5", 225.0, 4,"8 StrauStrasse", "F6", "Réglement intérieur", "Description visuelle de l'appart", "ser_pic7.jpg");
-
-		       		Loc.add(loc1);
-		       		Loc.add(loc2);
-		       		Loc.add(loc3);
-		       		Loc.add(loc4);
-		       		Loc.add(loc5);
-		       		Loc.add(loc6);	  
-		       		
-		       		locate.saveLoc(loc1);
-		       		locate.saveLoc(loc2);
-		       		locate.saveLoc(loc3);
-		       		locate.saveLoc(loc4);
+		        
 		       		
 		       		Location result = loc.findByName("Sweet");
 		        
 		        model.addAttribute("recherche", recherche);
-		        model.addAttribute("Loc_result", Loc);
+		        //model.addAttribute("Loc_result", Loc);
 		        
 		        System.out.println(result.toString());
 		        

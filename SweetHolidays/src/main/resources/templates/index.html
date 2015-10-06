@@ -315,11 +315,8 @@
 							<li class="span1_of_1">
 								<h5>Type de chambre :</h5> <!--start section_room-->
 								<div class="section_room">
-									<select  th:field="*{Type_of_room}" id="country" onchange="change_country(this.value)"
-										class="frm-field required">
-										<option value="1">Appartement</option>
-										<option value="2">Chambre simple</option>
-										<option value="3">Chambre double</option>
+									<select  th:field="*{Type_of_room}" id="country" class="frm-field required">
+										<option th:each="acco : ${list_acco_load}"  th:text="${acco}" th:value="${acco}"></option>
 									</select>
 								</div>
 							</li>
@@ -342,10 +339,15 @@
 								<div class="section_room">
 									<select th:field="*{Number_of_People}" id="country2" onchange="change_country(this.value)"
 										class="frm-field required">
-										<option value="1">1</option>
-										<option value="2">2</option>
-										<option value="3">3</option>
-										<option value="4">4</option>
+										<option th:each="capa : ${list_capacity_load}"  th:text="${capa}" th:value="${capa}"></option>
+									</select>
+								</div>
+							</li>
+							<li class="span1_of_2 left">
+								<h5>Ville :</h5> <!--start section_room-->
+								<div class="section_room">
+									<select th:field="*{City}" id="city" class="frm-field required">
+										<option th:each="city : ${list_city_load}"  th:text="${city}" th:value="${city}"></option>
 									</select>
 								</div>
 							</li>
