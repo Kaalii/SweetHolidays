@@ -204,19 +204,18 @@
 	<!--  MISE EN PLACE DU CORPS DU DOCUMENT  -->
 <div class="main_bg">
 	<div class="wrap">
-	
-		Résultats de la recherche	
-		
-		
-		<p th:text="'Type de logement ' + ${newflat.Type_Log}" />
-		<p th:text="'Prix du logement ' + ${newflat.Prix_Log}" />
-		<p th:text="'Capacite de logement ' + ${newflat.Capa_Log}" />
-		<p th:text="'Nom du logement ' + ${newflat.Nom_Log}" />
-		<p th:text="'Adresse du logement ' + ${newflat.Adresse_Log}" />
-		<p th:text="'Code postal du logement ' + ${newflat.CP_Log}" />
-		<p th:text="'Ville du logement ' + ${newflat.Ville_Log}" />
-		<p th:text="'Description du logement ' + ${newflat.Desc_Log}" />
-		<p th:text="'Reglement du logement ' + ${newflat.Regle_Log}" />
+		<br/>
+		<h1 align="center">Votre logement a bien été ajouté.</h1><br/>
+		<p align="center"> Voici le récapitulatif des informations que vous avez entré.<br/></p>
+		<p th:text="'Type de logement : ' + ${newflat.Type_Log}" />
+		<p th:text="'Prix du logement : ' + ${newflat.Prix_Log} +'€ par nuit'" />
+		<p th:text="'Capacite de logement : ' + ${newflat.Capa_Log}" />
+		<p th:text="'Nom du logement : ' + ${newflat.Nom_Log}" />
+		<p th:text="'Adresse du logement : ' + ${newflat.Adresse_Log}" />
+		<p th:text="'Code postal du logement : ' + ${newflat.CP_Log}" />
+		<p th:text="'Ville du logement : ' + ${newflat.Ville_Log}" />
+		<p th:text="'Description du logement : ' + ${newflat.Desc_Log}" />
+		<p th:text="'Reglement du logement : ' + ${newflat.Regle_Log}" />
 		
 		<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
 		
