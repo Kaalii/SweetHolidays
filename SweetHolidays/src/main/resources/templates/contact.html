@@ -54,7 +54,7 @@
 			<div class="h_right">
 				<!--start menu -->
 				<ul class="menu">
-					<li><a href="SweetNew">Devenez hôte</a></li>
+					<li th:if="${session.AUTH != null}" ><a href="SweetNew">Devenez hôte</a></li>
 					<li><a href="SweetHolidays">hôtel</a></li>
 					<li><a href="SweetPlace">chambres &amp; appartements</a></li>
 					<li><a href="SweetResa">réservation</a></li>
@@ -64,8 +64,12 @@
 				<!-- start profile_details -->	
 				<div class="container">
 					<div class="co_btn">
-						<form>
+						<form th:if="${session.AUTH == null}" >
 							<a id="modal_trigger" href="#modal" ><input type="button" value="Connexion" style="width: 280px;"/></a>
+						</form>
+						<form th:if="${session.AUTH != null}" >
+							<p style="color:white; margin-top:-0.9%;">Bonjour</p>
+							<p style="color:white;" th:text="${session.AUTH.name} + ' ' + ${session.AUTH.prenom}"></p>
 						</form>
 					</div>
 					<div id="modal" class="popupContainer" style="display:none;">
@@ -78,24 +82,24 @@
 						<div class="social_login">
 							<div class="action_btns">
 								<div class="one_half"><a href="#" id="login_form" class="btn">Se connecter</a></div>
-								<div class="one_half last"><div class="insc_btn"><input type="submit" value="Connexion"/></div></div>
+								<div class="one_half last"><a href="#" id="register_form" class="btn">S'inscrire</a></div>
 							</div>
 						</div>
 			
 						<!-- Username & Password Login form -->
 						<div class="user_login">
-							<form>
+							<form th:action="@{/SweetContact}" method="post" th:object="${client}">
 								<label>E-mail :</label>
-								<input type="text" />
+								<input th:field="*{email}"  type="text" />
 								<br />
 			
 								<label>Mot de passe :</label>
-								<input type="password" />
+								<input th:field="*{mdp}" type="password" />
 								<br />
 			
 								<div class="action_btns">
 									<div class="one_half"><a href="#" class="btn back_btn">Retour</a></div>
-									<div class="one_half last"><a href="#" class="btn btn_red">Connexion</a></div>
+									<div class="one_half last"><div class="insc_btn"><input type="submit" value="Connexion"/></div></div>
 								</div>
 							</form>
 						</div>

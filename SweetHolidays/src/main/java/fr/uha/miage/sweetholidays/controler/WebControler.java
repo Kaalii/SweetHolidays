@@ -4,6 +4,9 @@ package fr.uha.miage.sweetholidays.controler;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -209,13 +212,30 @@ import fr.uha.miage.sweetholidays.datas.LocationRepositoryImpl;
 	        return "contact";
 	    }
 	    @RequestMapping(value="/SweetContact", method=RequestMethod.POST)
-	    public String showContactPost(@Valid Client client_insc, BindingResult bindingResult) {
+	    public String showContactPost(@Valid Client client_insc, BindingResult bindingResult, HttpServletRequest request) {
 	    	 if (bindingResult.hasErrors()) {
 		            return "contact";
 		        }
-	    	/*On récupère l'inscription du client sur la page et on l'enregistre dans la base*/
-	    	client.saveClient(client_insc);
-	    	
+			/* Création ou récupération de la session */
+	    	 HttpSession session = request.getSession();
+	    	 List<Client> liste_resultat = new ArrayList();
+	    	 
+	    	 //Si l'utilisateur effectue une connexion au lieu d'une inscription
+	    	 if(client_insc.getName() == null) {
+	    		 //On récupère les utilisateur ayant ce mail dans la bdd
+	    		 liste_resultat = cli.findByEmail(client_insc.getEmail());
+	    		 //On regarde si la liste contient qqun et si les mdp correpsondent
+	    		 if(liste_resultat.size() > 0 && liste_resultat.get(0).getMdp().equals(client_insc.getMdp())) {
+	    			 //Mise en session de l'utilisateur
+	    			 session.setAttribute("AUTH", liste_resultat.get(0));
+	    		 }
+	    	 }
+	    	 else {
+		    	/*On récupère l'inscription du client sur la page et on l'enregistre dans la base*/
+		    	client.saveClient(client_insc);
+		    	//On le met en session c'est considéré comme une connexion
+		    	session.setAttribute("AUTH", client_insc);
+	    	 }
 	    	return "contact";
 	    }
 	    
