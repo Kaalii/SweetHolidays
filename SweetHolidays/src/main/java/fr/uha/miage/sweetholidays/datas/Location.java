@@ -79,13 +79,14 @@ public class Location implements Serializable {
 		this.id = id;
 	}
 
-	/* ToString redefiniton */
 	@Override
 	public String toString() {
-		return "Location [Name=" + name + ", Price=" + price
-				+ ", capacity_location=" + capacity_location + ", Address="
-				+ address + "City=" + city + ", Accomodation_type=" + accomodation_type
-				+ ", Accomadation_Rules=" + accomadation_rules + "]";
+		return "Location [name=" + name + ", price=" + price
+				+ ", capacity_location=" + capacity_location + ", address="
+				+ address + ", city=" + city + ", accomodation_type="
+				+ accomodation_type + ", accomadation_rules="
+				+ accomadation_rules + ", accomodation_description="
+				+ accomodation_description + "]";
 	}
 
 	/* Getter & Setter */

@@ -192,9 +192,9 @@
 					    	<div>
 					    	<span><label>Type de logement :</label></span>
 							  <select th:field="*{Type_Log}" name="type_log" size="1">
-							    <option value="1">Logement entier</option>
-							    <option value="2">Chambre privée</option>
-							    <option value="3">Chambre partagée</option>
+							    <option value="Logement entier">Logement entier</option>
+							    <option value="Chambre privée">Chambre privée</option>
+							    <option value="Chambre partagée">Chambre partagée</option>
 							  </select>
 						    </div>
 						    <div>
@@ -216,6 +216,10 @@
 						    <div>
 						     	<span><label>Nom du logement :</label></span>
 						    	<span><input th:field="*{Nom_Log}" name="nom_log" type="text" class="textbox"/></span>
+						    </div>
+						    <div>
+						     	<span><label>Prix d'une nuit du logement :</label></span>
+						    	<span><input th:field="*{Prix_Log}" name="prix_log" type="text" class="textbox"/></span>
 						    </div>
 						    <div>
 						     	<span><label>Adresse du logement :</label></span>

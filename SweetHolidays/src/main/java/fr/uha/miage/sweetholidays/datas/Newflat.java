@@ -7,6 +7,8 @@ public class Newflat {
 	@NotNull
 	private String Type_Log;
 	@NotNull
+	private Double Prix_Log;
+	@NotNull
 	private int Capa_Log; 
 	@NotNull
 	private String Nom_Log;
@@ -22,8 +24,9 @@ public class Newflat {
 	private String Regle_Log;
 	
 
-	public Newflat(String type_Log, int capa_Log, String nom_Log,String adresse_Log, int cP_Log, String ville_Log, String desc_Log,String regle_Log) {
+	public Newflat(String type_Log, Double prix_Log, int capa_Log, String nom_Log,String adresse_Log, int cP_Log, String ville_Log, String desc_Log,String regle_Log) {
 		Type_Log = type_Log;
+		Prix_Log = prix_Log;
 		Capa_Log = capa_Log;
 		Nom_Log = nom_Log;
 		Adresse_Log = adresse_Log;
@@ -44,6 +47,13 @@ public class Newflat {
 	public void setType_Log(String type_Log) {
 		Type_Log = type_Log;
 	}
+	public Double getPrix_Log() {
+		return Prix_Log;
+	}
+	public void setPrix_Log(Double prix_Log) {
+		Prix_Log = prix_Log;
+	}
+
 	public int getCapa_Log() {
 		return Capa_Log;
 	}

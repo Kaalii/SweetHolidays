@@ -229,6 +229,20 @@ import fr.uha.miage.sweetholidays.datas.LocationRepositoryImpl;
 	             return "new";
 	         }
 	         model.addAttribute("newflat", newflat);
+	         String name = newflat.getNom_Log();
+	         Double price = newflat.getPrix_Log();
+	         Integer capacity_location = newflat.getCapa_Log();
+	         String address = newflat.getAdresse_Log();
+	         String accomodation_type = newflat.getType_Log();
+	         String accomadation_Rules = newflat.getRegle_Log();
+	         String accomodation_description = newflat.getDesc_Log();
+	         String img_location = "";
+	         String city = newflat.getVille_Log();
+	         
+	         Location loc1 = new Location(name,price,capacity_location,address,accomodation_type,accomadation_Rules,accomodation_description,img_location,city);
+	         locate.saveLoc(loc1);
+
+	         System.out.println("loc1 : "+loc1.toString());
 	         return "addApart";
 	     }
 
