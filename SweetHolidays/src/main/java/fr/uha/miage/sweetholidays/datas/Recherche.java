@@ -12,26 +12,15 @@ public class Recherche {
 	@NotNull
 	private int Number_of_People ;
 	@NotNull
-	private String Type_of_room;
-	@NotNull
 	private String City;
 
 	public Recherche(String arrivalDate, String departureDate,
-			int number_of_People, String type_of_room, String city) {
+			int number_of_People, String city) {
 		
 		ArrivalDate = arrivalDate;
 		DepartureDate = departureDate;
 		Number_of_People = number_of_People;
-		City = city;
-		Type_of_room = type_of_room;	
-	}
-
-	public String getType_of_room() {
-		return Type_of_room;
-	}
-
-	public void setType_of_room(String type_of_room) {
-		Type_of_room = type_of_room;
+		City = city;	
 	}
 
 	public Recherche() {

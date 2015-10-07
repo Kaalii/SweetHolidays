@@ -18,5 +18,9 @@ public interface LocationRepository extends CrudRepository<Location, Long> {
 	/*Gestion de la recherche dans la page d'index*/
 	@Query("select l from Location l where l.accomodation_type = :accomodation_type and l.capacity_location = :capacity_location and l.city = :city")
 	 List<Location> findByAccomodation_TypeAndCapacity_LocationAndCity(@Param("accomodation_type")String accomodation_type, @Param("capacity_location")int capacity_location, @Param("city")String city);
+	
+	/*Gestion de la recherche dans la page d'index*/
+	@Query("select l from Location l where l.capacity_location = :capacity_location and l.city = :city")
+	 List<Location> findByCapacity_LocationAndCity(@Param("capacity_location")int capacity_location, @Param("city")String city);
 
 }

@@ -7,6 +7,7 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -187,6 +188,7 @@ import fr.uha.miage.sweetholidays.datas.LocationRepositoryImpl;
 	     @RequestMapping(value="/SweetSearch", method=RequestMethod.POST)
 	     public String checkSearchInfo(@ModelAttribute @Valid Recherche recherche, BindingResult bindingResult, Model model) {
 		        if (bindingResult.hasErrors()) {
+		        	System.out.println(bindingResult.toString());
 		            return "index";
 		        }
 		       /*
@@ -199,11 +201,12 @@ import fr.uha.miage.sweetholidays.datas.LocationRepositoryImpl;
 		        String date_arrivee = recherche.getArrivalDate() ; 
 		        String date_debut = recherche.getDepartureDate() ; 
 		        int nombre_de_personnes = recherche.getNumber_of_People() ;
-		        String type_de_chambre = recherche.getType_of_room(); 
+		        //String type_de_chambre = recherche.getType_of_room(); 
 		        String city = recherche.getCity() ; 
 		        
 		        //Récupération de la liste 
-		        List<Location> liste_resultat = loc.findByAccomodation_TypeAndCapacity_LocationAndCity(type_de_chambre, nombre_de_personnes, city);
+		       // List<Location> liste_resultat = loc.findByAccomodation_TypeAndCapacity_LocationAndCity(type_de_chambre, nombre_de_personnes, city);
+		        List<Location> liste_resultat = loc.findByCapacity_LocationAndCity(nombre_de_personnes,city);
 		        System.out.println("La liste résultat est : " + loc.toString());
 		        
 		        
