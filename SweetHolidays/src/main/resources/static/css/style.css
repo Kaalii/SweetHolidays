@@ -29,8 +29,8 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p,
 	width:330px;
 	height: auto;
 	left:45%;
-	top:80px;
 	background: #FFF;
+	
 }
 
 .btn {padding:10px 20px; background: #F4F4F2;}
@@ -469,6 +469,48 @@ select option {
 }
 
 .date_btn input[type="submit"]:hover {
+	background: #818387;
+}
+
+.insc_btn form input[type="submit"] {
+	text-transform: capitalize;
+	width: 100% !important;
+	background: #DE8300;
+	font-family: 'Open Sans', sans-serif;
+	color: #FFF;
+	padding: 8px;
+	border: none;
+	font-size: 1em;
+	transition: 0.5s all;
+	-webkit-transition: 0.5s all;
+	-moz-transition: 0.5s all;
+	-o-transition: 0.5s all;
+	outline: none;
+	cursor: pointer;
+}
+
+.insc_btn form input[type="submit"]:hover {
+	background: #818387;
+}
+
+.insc_btn input[type="submit"] {
+	text-transform: capitalize;
+	width: 100% !important;
+	background: #DE8300;
+	font-family: 'Open Sans', sans-serif;
+	color: #FFF;
+	padding: 8px;
+	border: none;
+	font-size: 1em;
+	transition: 0.5s all;
+	-webkit-transition: 0.5s all;
+	-moz-transition: 0.5s all;
+	-o-transition: 0.5s all;
+	outline: none;
+	cursor: pointer;
+}
+
+.insc_btn input[type="submit"]:hover {
 	background: #818387;
 }
 

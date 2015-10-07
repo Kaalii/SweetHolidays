@@ -150,8 +150,16 @@ import fr.uha.miage.sweetholidays.datas.LocationRepositoryImpl;
 	    }
 	    
 	    @RequestMapping(value="/SweetContact", method=RequestMethod.GET)
-	    public String showContact() {
+	    public String showContactGet(Client cli) {
 	        return "contact";
+	    }
+	    @RequestMapping(value="/SweetContact", method=RequestMethod.POST)
+	    public String showContactPost(@Valid Client cli, BindingResult bindingResult) {
+	       
+	    	/*On récupère l'inscription du client sur la page contact et on l'enregistre dans la base*/
+	    	client.saveClient(cli);
+	    	
+	    	return "contact";
 	    }
 	    
 	    @RequestMapping(value="/SweetNew", method=RequestMethod.GET)
