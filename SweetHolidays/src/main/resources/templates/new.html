@@ -7,7 +7,7 @@
 <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700' rel='stylesheet' type='text/css'/>
 <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
 <script src="js/jquery.min.js"></script>
-<link type="text/css" rel="stylesheet" href="css/JFGrid.css" />
+<script type="text/javascript" src="js/validation_form.js"></script>
 <link type="text/css" rel="stylesheet" href="css/JFFormStyle-1.css" />
 <script type="text/javascript" src="js/jquery.leanModal.min.js"></script>
 <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" />
@@ -95,33 +95,37 @@
 			
 								<div class="action_btns">
 									<div class="one_half"><a href="#" class="btn back_btn">Retour</a></div>
-									<div class="one_half last"><a href="#" class="btn btn_red">Connexion</a></div>
+									<div class="one_half last"><div class="insc_btn"><input type="submit" value="Connexion"/></div></div>
 								</div>
 							</form>
 						</div>
 			
 						<!-- Register Form -->
 						<div class="user_register">
-							<form>
+							<form onSubmit="return validation(this)" th:action="@{/SweetNew}" method="post" th:object="${client}">
 								<label>Nom :</label>
-								<input type="text" />
+								<input th:field="*{name}" id="name" type="text" />
 								<br />
 								
 								<label>Prénom :</label>
-								<input type="text" />
+								<input th:field="*{prenom}" id="prenom" type="text" />
 								<br />
 								
 								<label>Adresse e-mail :</label>
-								<input type="email" />
+								<input th:field="*{email}" id="email" type="email" />
 								<br />
 			
 								<label>Mot de passe :</label>
-								<input type="password" />
+								<input th:field="*{mdp}" id="mdp" type="password" />
+								<br />
+								
+								<label>Confirmation de mot de passe :</label>
+								<input id="mdp1" type="password" />
 								<br />
 							
 								<div class="action_btns">
 									<div class="one_half"><a href="#" class="btn back_btn">Retour</a></div>
-									<div class="one_half last"><a href="#" class="btn btn_red">S'inscrire</a></div>
+									<div class="one_half last"><div class="insc_btn"><input type="submit" value="S'inscrire"/></div></div>
 								</div>
 							</form>
 						</div>

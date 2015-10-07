@@ -43,9 +43,19 @@ import fr.uha.miage.sweetholidays.datas.LocationRepositoryImpl;
 		@Autowired
 		ClientRepository cli ; 
 		
+		//Variable qui permet de mémoriser les info POST en cas d'inscription
+		Recherche rech;
+		
+	    @Override
+	    public void addViewControllers(ViewControllerRegistry registry) {
+	    	registry.addViewController("/SweetSearch").setViewName("resultat");
+	    	/****Ajout***/
+	    	 registry.addViewController("/SweetAddFlat").setViewName("addApart");
+	    }
+	    
 		
 	    @RequestMapping(value="/SweetHolidays", method=RequestMethod.GET)
-	    public String showIndex(Recherche rech, Model model) {
+	    public String showIndexGet(Client client_insc, Recherche rech, Model model) {
 	    	
 	    	// Effacement des répertoires pour des multiples recherches.
 	    	locate.effaceRep();
@@ -134,64 +144,138 @@ import fr.uha.miage.sweetholidays.datas.LocationRepositoryImpl;
 	    	
 	        return "index";
 	    }
+	    @RequestMapping(value="/SweetHolidays", method=RequestMethod.POST)
+	    public String showIndexPost(Recherche rech, @Valid Client client_insc, BindingResult bindingResult) {
+	    	 if (bindingResult.hasErrors()) {
+		            return "index";
+		        }
+	    	/*On récupère l'inscription du client sur la page et on l'enregistre dans la base*/
+	    	client.saveClient(client_insc);
+	    	
+	        return "index";
+	    }
+	    
 	    
 	    @RequestMapping(value="/SweetPlace", method=RequestMethod.GET)
-	    public String showPlaces() {
+	    public String showPlacesGet(Client client_insc) {
+	        return "rooms";
+	    }
+	    @RequestMapping(value="/SweetPlace", method=RequestMethod.POST)
+	    public String showPlacesPost(@Valid Client client_insc, BindingResult bindingResult) {
+	    	 if (bindingResult.hasErrors()) {
+		            return "rooms";
+		        }
+	    	/*On récupère l'inscription du client sur la page et on l'enregistre dans la base*/
+	    	client.saveClient(client_insc);
+	    	
 	        return "rooms";
 	    }
 	    
-	    @RequestMapping(value="/SweetResa", method=RequestMethod.GET)
-	    public String showResa() {
-	        return "reservation";
-	    }    
 	    
+	    @RequestMapping(value="/SweetResa", method=RequestMethod.GET)
+	    public String showResaGet(Client client_insc) {
+	        return "reservation";
+	    }  
+	    @RequestMapping(value="/SweetResa", method=RequestMethod.POST)
+	    public String showResaPost(@Valid Client client_insc, BindingResult bindingResult) {
+	    	 if (bindingResult.hasErrors()) {
+		            return "reservation";
+		        }
+	    	/*On récupère l'inscription du client sur la page et on l'enregistre dans la base*/
+	    	client.saveClient(client_insc);
+	    	
+	        return "reservation";
+	    }
+	    
+	    	    
 	    @RequestMapping(value="/SweetActivities", method=RequestMethod.GET)
-	    public String showActi() {
+	    public String showActiGet(Client client_insc) {
+	        return "activities";
+	    }
+	    @RequestMapping(value="/SweetActivities", method=RequestMethod.POST)
+	    public String showActiPost(@Valid Client client_insc, BindingResult bindingResult) {
+	    	 if (bindingResult.hasErrors()) {
+		            return "activities";
+		        }
+	    	/*On récupère l'inscription du client sur la page et on l'enregistre dans la base*/
+	    	client.saveClient(client_insc);
+	    	
 	        return "activities";
 	    }
 	    
+	    
 	    @RequestMapping(value="/SweetContact", method=RequestMethod.GET)
-	    public String showContactGet(Client cli) {
+	    public String showContactGet(@Valid Client client_insc) {
 	        return "contact";
 	    }
 	    @RequestMapping(value="/SweetContact", method=RequestMethod.POST)
-	    public String showContactPost(@Valid Client cli, BindingResult bindingResult) {
-	       
-	    	/*On récupère l'inscription du client sur la page contact et on l'enregistre dans la base*/
-	    	client.saveClient(cli);
+	    public String showContactPost(@Valid Client client_insc, BindingResult bindingResult) {
+	    	 if (bindingResult.hasErrors()) {
+		            return "contact";
+		        }
+	    	/*On récupère l'inscription du client sur la page et on l'enregistre dans la base*/
+	    	client.saveClient(client_insc);
 	    	
 	    	return "contact";
 	    }
 	    
+	    
 	    @RequestMapping(value="/SweetNew", method=RequestMethod.GET)
-	    public String showNew(Newflat newflat) {
+	    public String showNewGet(Client client_insc, Newflat newflat) {
+	        return "new";
+	    }
+	    @RequestMapping(value="/SweetNew", method=RequestMethod.POST)
+	    public String showNewPost(@Valid Client client_insc, BindingResult bindingResult) {
+	    	 if (bindingResult.hasErrors()) {
+		            return "new";
+		        }
+	    	/*On récupère l'inscription du client sur la page et on l'enregistre dans la base*/
+	    	client.saveClient(client_insc);
+	    	
 	        return "new";
 	    }
 	    
+	    
 	    @RequestMapping(value="/SweetDetails", method=RequestMethod.GET)
-	    public String showDetail() {
+	    public String showDetailGet(@Valid Client client_insc) {
 	        return "details";
 	    }
-
-	    @Override
-	    public void addViewControllers(ViewControllerRegistry registry) {
-	    	registry.addViewController("/SweetSearch").setViewName("resultat");
-	    	/****Ajout***/
-	    	 registry.addViewController("/SweetAddFlat").setViewName("addApart");
+	    @RequestMapping(value="/SweetDetails", method=RequestMethod.POST)
+	    public String showDetailPost(@Valid Client client_insc, BindingResult bindingResult) {
+	    	 if (bindingResult.hasErrors()) {
+		            return "details";
+		        }
+	    	/*On récupère l'inscription du client sur la page et on l'enregistre dans la base*/
+	    	client.saveClient(client_insc);
+	    	
+	        return "details";
 	    }
 	     
+	    
 	     /*@RequestMapping(value="/SweetSearch", method=RequestMethod.GET)
-		    public String showSearch(Recherche rech) {
+		    public String showSearch(Client client_insc, Recherche rech) {
 		        return "resultat";
-		    }	*/
-	     
+		    }*/
 	     @RequestMapping(value="/SweetSearch", method=RequestMethod.POST)
-	     public String checkSearchInfo(@ModelAttribute @Valid Recherche recherche, BindingResult bindingResult, Model model) {
+	     public String checkSearchInfo(@ModelAttribute Recherche recherche, @Valid Client client_insc, BindingResult bindingResult, Model model) {
 		        if (bindingResult.hasErrors()) {
 		        	System.out.println(bindingResult.toString());
 		            return "index";
 		        }
-		       /*
+		        
+		        //Si la recherche est null c'est qu'il y a une inscription
+		        if(recherche.getArrivalDate() == null) {
+		        	//On réaffiche la recherche préinscription
+		        	recherche = rech;
+		        	 /*On récupère l'inscription du client sur la page et on l'enregistre dans la base*/
+			    	  client.saveClient(client_insc);
+		        }
+		        else {
+		        	//Sinon on garde en mémoire la recherche actuel au cas ou il y a une inscri
+		        	rech = recherche;
+		        }
+
+	       		/*
 		        * 1.Récupérer les informations de la recherche 
 		        * 2.Récupérer une liste de Location disponible selon les différentes paramètres de la recherche
 		        * 3.Envoyez la liste résultat vers la page résultat
@@ -213,7 +297,7 @@ import fr.uha.miage.sweetholidays.datas.LocationRepositoryImpl;
 		        //Envoyez la liste vers la page résultat
 		        model.addAttribute("Loc_result", liste_resultat);
 		        model.addAttribute("recherche", recherche);
-		        
+
 		        return "resultat";
 		    }
 	     

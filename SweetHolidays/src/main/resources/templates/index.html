@@ -33,7 +33,7 @@
 	});
 </script>
 <!--End-date-piker-->
-<link type="text/css" rel="stylesheet" href="css/JFGrid.css" />
+<script type="text/javascript" src="js/validation_form.js"></script>
 <link type="text/css" rel="stylesheet" href="css/JFFormStyle-1.css" />
 <script type="text/javascript" src="js/JFForms.js"></script>
 <!-- Set here the key for your domain in order to hide the watermark on the web server -->
@@ -119,35 +119,39 @@
 				
 									<div class="action_btns">
 										<div class="one_half"><a href="#" class="btn back_btn">Retour</a></div>
-										<div class="one_half last"><a href="#" class="btn btn_red">Connexion</a></div>
+										<div class="one_half last"><div class="insc_btn"><input type="submit" value="Connexion"/></div></div>
 									</div>
 								</form>
 							</div>
 				
 							<!-- Register Form -->
-							<div class="user_register">
-								<form>
-									<label>Nom :</label>
-									<input type="text" />
-									<br />
-									
-									<label>Prénom :</label>
-									<input type="text" />
-									<br />
-									
-									<label>Adresse e-mail :</label>
-									<input type="email" />
-									<br />
-				
-									<label>Mot de passe :</label>
-									<input type="password" />
-									<br />
+						<div class="user_register">
+							<form onSubmit="return validation(this)" th:action="@{/SweetHolidays}" method="post" th:object="${client}">
+								<label>Nom :</label>
+								<input th:field="*{name}" id="name" type="text" />
+								<br />
 								
-									<div class="action_btns">
-										<div class="one_half"><a href="#" class="btn back_btn">Retour</a></div>
-										<div class="one_half last"><a href="#" class="btn btn_red">S'inscrire</a></div>
-									</div>
-								</form>
+								<label>Prénom :</label>
+								<input th:field="*{prenom}" id="prenom" type="text" />
+								<br />
+								
+								<label>Adresse e-mail :</label>
+								<input th:field="*{email}" id="email" type="email" />
+								<br />
+			
+								<label>Mot de passe :</label>
+								<input th:field="*{mdp}" id="mdp" type="password" />
+								<br />
+								
+								<label>Confirmation de mot de passe :</label>
+								<input id="mdp1" type="password" />
+								<br />
+							
+								<div class="action_btns">
+									<div class="one_half"><a href="#" class="btn back_btn">Retour</a></div>
+									<div class="one_half last"><div class="insc_btn"><input type="submit" value="S'inscrire"/></div></div>
+								</div>
+							</form>
 							</div>
 						</section>
 						</div>
