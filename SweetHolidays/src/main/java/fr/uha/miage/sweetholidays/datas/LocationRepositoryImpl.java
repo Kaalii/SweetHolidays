@@ -22,6 +22,7 @@ public class LocationRepositoryImpl {
 	}
 	
 
+
 	public void saveLoc(Location l)
 	{
 		locRep.save(l);

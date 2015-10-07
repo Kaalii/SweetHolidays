@@ -46,6 +46,9 @@ import fr.uha.miage.sweetholidays.datas.LocationRepositoryImpl;
 	    @RequestMapping(value="/SweetHolidays", method=RequestMethod.GET)
 	    public String showIndex(Recherche rech, Model model) {
 	    	
+	    	// Effacement des répertoires pour des multiples recherches.
+	    	locate.effaceRep();
+	    	client.effaceRepClient();
 	    	
 	    	/******Création fictive pour test****/
 	    	 List<Location> Loc = new ArrayList<Location>();
@@ -56,13 +59,15 @@ import fr.uha.miage.sweetholidays.datas.LocationRepositoryImpl;
 	        Location loc4 =new Location("SweetHome3", 125.0, 4,"8 StrauStrasse", "Chambre double", "Réglement intérieur", "Description visuelle de l'appart", "ser_pic3.jpg", "Paris");
 	        Location loc5 =new Location("SweetHome4", 185.0, 4,"8 StrauStrasse", "F2", "Réglement intérieur", "Description visuelle de l'appart", "ser_pic4.jpg", "Cologne");
 	        Location loc6 =new Location("SweetHome5", 225.0, 4,"50 rue des fleurs", "F5", "Réglement intérieur", "Description visuelle de l'appart", "ser_pic7.jpg", "Bern");
-
+	        Location loc7 =new Location("SweetHome6", 225.0, 4,"Blablabla", "F8", "Réglement intérieur", "Description visuelle de l'appart", "ser_pic4.jpg", "Berlin");
+	        
 	       		Loc.add(loc1);
 	       		Loc.add(loc2);
 	       		Loc.add(loc3);
 	       		Loc.add(loc4);
 	       		Loc.add(loc5);
 	       		Loc.add(loc6);	  
+	       		Loc.add(loc7);
 	       		
 	       		locate.saveLoc(loc1);
 	       		locate.saveLoc(loc2);
@@ -70,6 +75,8 @@ import fr.uha.miage.sweetholidays.datas.LocationRepositoryImpl;
 	       		locate.saveLoc(loc4);
 	       		locate.saveLoc(loc5);
 	       		locate.saveLoc(loc6);
+	       		locate.saveLoc(loc7);
+	       		
 	    	
 	       		
 	       		/* partie client 
@@ -174,14 +181,26 @@ import fr.uha.miage.sweetholidays.datas.LocationRepositoryImpl;
 		        if (bindingResult.hasErrors()) {
 		            return "index";
 		        }
-
-		        /* Partie Base de données : locate gert le repository et loc s'occupe d'effectuer les findByX *
-		         * 
-		         */
-
-		        //Effectuer la requête SQl
+		       /*
+		        * 1.Récupérer les informations de la recherche 
+		        * 2.Récupérer une liste de Location disponible selon les différentes paramètres de la recherche
+		        * 3.Envoyez la liste résultat vers la page résultat
+		        */
 		        
-		        model.addAttribute("Loc_result", loc.findByAccomodation_TypeAndCapacity_LocationAndCity(recherche.getType_of_room(), recherche.getNumber_of_People(), recherche.getCity()));
+		        //Récupération des paramètres de recherche
+		        String date_arrivee = recherche.getArrivalDate() ; 
+		        String date_debut = recherche.getDepartureDate() ; 
+		        int nombre_de_personnes = recherche.getNumber_of_People() ;
+		        String type_de_chambre = recherche.getType_of_room(); 
+		        String city = recherche.getCity() ; 
+		        
+		        //Récupération de la liste 
+		        List<Location> liste_resultat = loc.findByAccomodation_TypeAndCapacity_LocationAndCity(type_de_chambre, nombre_de_personnes, city);
+		        System.out.println("La liste résultat est : " + loc.toString());
+		        
+		        
+		        //Envoyez la liste vers la page résultat
+		        model.addAttribute("Loc_result", liste_resultat);
 		        model.addAttribute("recherche", recherche);
 		        
 		        return "resultat";
