@@ -148,12 +148,30 @@ import fr.uha.miage.sweetholidays.datas.LocationRepositoryImpl;
 	        return "index";
 	    }
 	    @RequestMapping(value="/SweetHolidays", method=RequestMethod.POST)
-	    public String showIndexPost(Recherche rech, @Valid Client client_insc, BindingResult bindingResult) {
+	    public String showIndexPost(Recherche rech, @Valid Client client_insc, BindingResult bindingResult, HttpServletRequest request) {
 	    	 if (bindingResult.hasErrors()) {
 		            return "index";
 		        }
-	    	/*On récupère l'inscription du client sur la page et on l'enregistre dans la base*/
-	    	client.saveClient(client_insc);
+	    	 /* Création ou récupération de la session */
+	    	 HttpSession session = request.getSession();
+	    	 List<Client> liste_resultat = new ArrayList();
+	    	 
+	    	 //Si l'utilisateur effectue une connexion au lieu d'une inscription
+	    	 if(client_insc.getName() == null) {
+	    		 //On récupère les utilisateur ayant ce mail dans la bdd
+	    		 liste_resultat = cli.findByEmail(client_insc.getEmail());
+	    		 //On regarde si la liste contient qqun et si les mdp correpsondent
+	    		 if(liste_resultat.size() > 0 && liste_resultat.get(0).getMdp().equals(client_insc.getMdp())) {
+	    			 //Mise en session de l'utilisateur
+	    			 session.setAttribute("AUTH", liste_resultat.get(0));
+	    		 }
+	    	 }
+	    	 else {
+		    	/*On récupère l'inscription du client sur la page et on l'enregistre dans la base*/
+		    	client.saveClient(client_insc);
+		    	//On le met en session c'est considéré comme une connexion
+		    	session.setAttribute("AUTH", client_insc);
+	    	 }
 	    	
 	        return "index";
 	    }
@@ -164,12 +182,30 @@ import fr.uha.miage.sweetholidays.datas.LocationRepositoryImpl;
 	        return "rooms";
 	    }
 	    @RequestMapping(value="/SweetPlace", method=RequestMethod.POST)
-	    public String showPlacesPost(@Valid Client client_insc, BindingResult bindingResult) {
+	    public String showPlacesPost(@Valid Client client_insc, BindingResult bindingResult,  HttpServletRequest request) {
 	    	 if (bindingResult.hasErrors()) {
 		            return "rooms";
 		        }
-	    	/*On récupère l'inscription du client sur la page et on l'enregistre dans la base*/
-	    	client.saveClient(client_insc);
+	    	 /* Création ou récupération de la session */
+	    	 HttpSession session = request.getSession();
+	    	 List<Client> liste_resultat = new ArrayList();
+	    	 
+	    	 //Si l'utilisateur effectue une connexion au lieu d'une inscription
+	    	 if(client_insc.getName() == null) {
+	    		 //On récupère les utilisateur ayant ce mail dans la bdd
+	    		 liste_resultat = cli.findByEmail(client_insc.getEmail());
+	    		 //On regarde si la liste contient qqun et si les mdp correpsondent
+	    		 if(liste_resultat.size() > 0 && liste_resultat.get(0).getMdp().equals(client_insc.getMdp())) {
+	    			 //Mise en session de l'utilisateur
+	    			 session.setAttribute("AUTH", liste_resultat.get(0));
+	    		 }
+	    	 }
+	    	 else {
+		    	/*On récupère l'inscription du client sur la page et on l'enregistre dans la base*/
+		    	client.saveClient(client_insc);
+		    	//On le met en session c'est considéré comme une connexion
+		    	session.setAttribute("AUTH", client_insc);
+	    	 }
 	    	
 	        return "rooms";
 	    }
@@ -196,12 +232,30 @@ import fr.uha.miage.sweetholidays.datas.LocationRepositoryImpl;
 	        return "activities";
 	    }
 	    @RequestMapping(value="/SweetActivities", method=RequestMethod.POST)
-	    public String showActiPost(@Valid Client client_insc, BindingResult bindingResult) {
+	    public String showActiPost(@Valid Client client_insc, BindingResult bindingResult, HttpServletRequest request) {
 	    	 if (bindingResult.hasErrors()) {
 		            return "activities";
 		        }
-	    	/*On récupère l'inscription du client sur la page et on l'enregistre dans la base*/
-	    	client.saveClient(client_insc);
+	    	 /* Création ou récupération de la session */
+	    	 HttpSession session = request.getSession();
+	    	 List<Client> liste_resultat = new ArrayList();
+	    	 
+	    	 //Si l'utilisateur effectue une connexion au lieu d'une inscription
+	    	 if(client_insc.getName() == null) {
+	    		 //On récupère les utilisateur ayant ce mail dans la bdd
+	    		 liste_resultat = cli.findByEmail(client_insc.getEmail());
+	    		 //On regarde si la liste contient qqun et si les mdp correpsondent
+	    		 if(liste_resultat.size() > 0 && liste_resultat.get(0).getMdp().equals(client_insc.getMdp())) {
+	    			 //Mise en session de l'utilisateur
+	    			 session.setAttribute("AUTH", liste_resultat.get(0));
+	    		 }
+	    	 }
+	    	 else {
+		    	/*On récupère l'inscription du client sur la page et on l'enregistre dans la base*/
+		    	client.saveClient(client_insc);
+		    	//On le met en session c'est considéré comme une connexion
+		    	session.setAttribute("AUTH", client_insc);
+	    	 }
 	    	
 	        return "activities";
 	    }
@@ -236,6 +290,7 @@ import fr.uha.miage.sweetholidays.datas.LocationRepositoryImpl;
 		    	//On le met en session c'est considéré comme une connexion
 		    	session.setAttribute("AUTH", client_insc);
 	    	 }
+	    	 
 	    	return "contact";
 	    }
 	    
@@ -261,13 +316,31 @@ import fr.uha.miage.sweetholidays.datas.LocationRepositoryImpl;
 	        return "details";
 	    }
 	    @RequestMapping(value="/SweetDetails", method=RequestMethod.POST)
-	    public String showDetailPost(@Valid Client client_insc, BindingResult bindingResult) {
+	    public String showDetailPost(@Valid Client client_insc, BindingResult bindingResult,  HttpServletRequest request) {
 	    	 if (bindingResult.hasErrors()) {
 		            return "details";
 		        }
-	    	/*On récupère l'inscription du client sur la page et on l'enregistre dans la base*/
-	    	client.saveClient(client_insc);
-	    	
+	    	 /* Création ou récupération de la session */
+	    	 HttpSession session = request.getSession();
+	    	 List<Client> liste_resultat = new ArrayList();
+	    	 
+	    	 //Si l'utilisateur effectue une connexion au lieu d'une inscription
+	    	 if(client_insc.getName() == null) {
+	    		 //On récupère les utilisateur ayant ce mail dans la bdd
+	    		 liste_resultat = cli.findByEmail(client_insc.getEmail());
+	    		 //On regarde si la liste contient qqun et si les mdp correpsondent
+	    		 if(liste_resultat.size() > 0 && liste_resultat.get(0).getMdp().equals(client_insc.getMdp())) {
+	    			 //Mise en session de l'utilisateur
+	    			 session.setAttribute("AUTH", liste_resultat.get(0));
+	    		 }
+	    	 }
+	    	 else {
+		    	/*On récupère l'inscription du client sur la page et on l'enregistre dans la base*/
+		    	client.saveClient(client_insc);
+		    	//On le met en session c'est considéré comme une connexion
+		    	session.setAttribute("AUTH", client_insc);
+	    	 }
+	    	 
 	        return "details";
 	    }
 	     
@@ -277,11 +350,27 @@ import fr.uha.miage.sweetholidays.datas.LocationRepositoryImpl;
 		        return "resultat";
 		    }*/
 	     @RequestMapping(value="/SweetSearch", method=RequestMethod.POST)
-	     public String checkSearchInfo(@ModelAttribute Recherche recherche, @Valid Client client_insc, BindingResult bindingResult, Model model) {
+	     public String checkSearchInfo(@ModelAttribute Recherche recherche, @Valid Client client_insc, BindingResult bindingResult, Model model, HttpServletRequest request) {
 		        if (bindingResult.hasErrors()) {
 		        	System.out.println(bindingResult.toString());
 		            return "index";
 		        }
+		        
+		        
+		        /* Création ou récupération de la session */
+		    	 HttpSession session = request.getSession();
+		    	 List<Client> liste_resultat1 = new ArrayList();
+		    	 
+		    	 //Si l'utilisateur effectue une connexion au lieu d'une inscription
+		    	 if(client_insc.getName() == null) {
+		    		 //On récupère les utilisateur ayant ce mail dans la bdd
+		    		 liste_resultat1 = cli.findByEmail(client_insc.getEmail());
+		    		 //On regarde si la liste contient qqun et si les mdp correpsondent
+		    		 if(liste_resultat1.size() > 0 && liste_resultat1.get(0).getMdp().equals(client_insc.getMdp())) {
+		    			 //Mise en session de l'utilisateur
+		    			 session.setAttribute("AUTH", liste_resultat1.get(0));
+		    		 }
+		    	 }
 		        
 		        //Si la recherche est null c'est qu'il y a une inscription
 		        if(recherche.getArrivalDate() == null) {
@@ -289,6 +378,8 @@ import fr.uha.miage.sweetholidays.datas.LocationRepositoryImpl;
 		        	recherche = rech;
 		        	 /*On récupère l'inscription du client sur la page et on l'enregistre dans la base*/
 			    	  client.saveClient(client_insc);
+			    	//On le met en session c'est considéré comme une connexion
+			    	  session.setAttribute("AUTH", client_insc);
 		        }
 		        else {
 		        	//Sinon on garde en mémoire la recherche actuel au cas ou il y a une inscri
