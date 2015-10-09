@@ -27,8 +27,9 @@ import fr.uha.miage.sweetholidays.datas.Location;
 import fr.uha.miage.sweetholidays.datas.LocationRepository;
 import fr.uha.miage.sweetholidays.datas.Newflat;
 import fr.uha.miage.sweetholidays.datas.Recherche;
-
-
+import fr.uha.miage.sweetholidays.datas.Reservation;
+import fr.uha.miage.sweetholidays.datas.ReservationRepository;
+import fr.uha.miage.sweetholidays.datas.ReservationRepositoryImpl;
 import fr.uha.miage.sweetholidays.datas.LocationRepositoryImpl;
 
 	@Controller
@@ -45,6 +46,12 @@ import fr.uha.miage.sweetholidays.datas.LocationRepositoryImpl;
 		
 		@Autowired
 		ClientRepository cli ; 
+		
+		@Autowired
+		ReservationRepository res ; 
+		
+		@Autowired
+		ReservationRepositoryImpl reserv ; 
 		
 		//Variable qui permet de mémoriser les info POST en cas d'inscription
 		Recherche rech;
@@ -63,6 +70,7 @@ import fr.uha.miage.sweetholidays.datas.LocationRepositoryImpl;
 	    	// Effacement des répertoires pour des multiples recherches.
 	    	locate.effaceRep();
 	    	client.effaceRepClient();
+	    	//reserv.effaceRep();
 	    	
 	    	/******Création fictive pour test****/
 	    	 List<Location> Loc = new ArrayList<Location>();
@@ -235,7 +243,7 @@ import fr.uha.miage.sweetholidays.datas.LocationRepositoryImpl;
 	    	
 	    	model.addAttribute("list_city_load", City);
 	    	model.addAttribute("list_capacity_load", Loca_number);
-	    	
+	    	model.addAttribute("recherche",rech);
 	    	
 	    	
 	    	
@@ -435,7 +443,7 @@ import fr.uha.miage.sweetholidays.datas.LocationRepositoryImpl;
 		        //Envoyez la liste vers la page résultat
 		        model.addAttribute("Loc_result", liste_resultat);
 		        model.addAttribute("recherche", recherche);
-
+	
 		        return "resultat";
 		    }
 	     
@@ -479,7 +487,7 @@ import fr.uha.miage.sweetholidays.datas.LocationRepositoryImpl;
 		        return "reservation_validation";
 		    }
 		    @RequestMapping(value="/SweetValidation", method=RequestMethod.POST)
-		    public String showResaValidPost(@Valid Client client_insc, Location loc_result, BindingResult bindingResult, HttpServletRequest request) {
+		    public String showResaValidPost(@Valid Client client_insc, Location loc_result,@ModelAttribute Recherche recherche, BindingResult bindingResult, HttpServletRequest request) {
 		    	 if (bindingResult.hasErrors()) {
 		    		 	System.out.println("Erreur : "+bindingResult.toString());
 			            return "reservation_validation";
@@ -490,7 +498,13 @@ import fr.uha.miage.sweetholidays.datas.LocationRepositoryImpl;
 		    	 //Récupération de l'id de la location
 		    	 System.out.println(loc_result.getId());
 		    	
-		    	
+		    	 //Enregistrement de la réservation
+		    	 long id_Loc_Loue = loc_result.getId(); 
+		    	 long id_client_reserve = lio.getId() ; 
+		    	System.out.println("Votre recherche : "+recherche.toString());
+		    	Reservation reservation_enregistre = new Reservation(id_client_reserve, id_Loc_Loue,recherche.getArrivalDate(), recherche.getDepartureDate(), recherche.getNumber_of_People()); 
+		    	reserv.saveResa(reservation_enregistre);
+		    	System.out.println("Liste de réservation : "+reserv.printRep());
 		        return "reservation_validation";
 		    }
 

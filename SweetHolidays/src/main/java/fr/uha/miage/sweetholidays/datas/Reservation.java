@@ -42,7 +42,7 @@ public class Reservation implements Serializable {
 	 * @param departure_date
 	 * @param number_of_people
 	 */
-	public Reservation(long id, long id_client, long id_logement, String arrival_date, String departure_date,
+	public Reservation( long id_client, long id_logement, String arrival_date, String departure_date,
 			int number_of_people) {
 		super();
 		this.id = number_of_reservation;
