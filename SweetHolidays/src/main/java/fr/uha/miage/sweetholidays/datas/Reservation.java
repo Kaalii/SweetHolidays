@@ -137,6 +137,15 @@ public class Reservation implements Serializable {
 	public void setNumber_of_people(int number_of_people) {
 		this.number_of_people = number_of_people;
 	}
+	
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "Reservation [id=" + id + ", id_client=" + id_client + ", id_logement=" + id_logement + ", arrival_date="
+				+ arrival_date + ", departure_date=" + departure_date + ", number_of_people=" + number_of_people + "]";
+	}
 
 	/**
 	 * @return the serialversionuid

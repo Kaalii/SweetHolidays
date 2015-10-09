@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
 <title>SweetHolidays</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -202,9 +202,27 @@
 <div class="wrap">
 		
 		<!-- Validation et confirmation de la réservation -->
+		<form th:action="@{/SweetSearch}" method="post" th:object="${reservation}">
+			<div>
+			<br /><br /><br /><br />
+		<div class="grids_of_3">
+				<div class="grid1_of_3">
+					<h4>
+						<a href="/SweetHolidays">Votre reservation :</a>
+					</h4>
+						<p th:text="'Id : ' + ${reservation.id}" />
+						<p th:text="'Id client : ' + ${reservation.id_client}" />
+						<p th:text="'Id logement : ' + ${reservation.id_logement}" />
+						<p th:text="'Date d\'arrivée : ' + ${reservation.arrival_date}" />
+						<p th:text="'Date de départ : ' + ${reservation.departure_date}" />
+						<p th:text="'Nombre de personnes : ' + ${reservation.number_of_people}" />
+				</div>
+		</div>
 		
-		
-		
+			</div>
+		</form>
+			
+		<br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
 </div>
 </div>		
 <!--start main -->

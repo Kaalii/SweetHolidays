@@ -43,6 +43,15 @@ public class Recherche {
 		DepartureDate = departureDate;
 	}
 
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "Recherche [ArrivalDate=" + ArrivalDate + ", DepartureDate=" + DepartureDate + ", Number_of_People="
+				+ Number_of_People + ", City=" + City + "]";
+	}
+
 	public int getNumber_of_People() {
 		return Number_of_People;
 	}

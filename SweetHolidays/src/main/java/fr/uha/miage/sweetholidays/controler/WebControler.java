@@ -442,7 +442,7 @@ import fr.uha.miage.sweetholidays.datas.LocationRepositoryImpl;
 		        
 		        //Envoyez la liste vers la page résultat
 		        model.addAttribute("Loc_result", liste_resultat);
-		        model.addAttribute("recherche", recherche);
+		        model.addAttribute("recherche", rech);
 	
 		        return "resultat";
 		    }
@@ -487,7 +487,7 @@ import fr.uha.miage.sweetholidays.datas.LocationRepositoryImpl;
 		        return "reservation_validation";
 		    }
 		    @RequestMapping(value="/SweetValidation", method=RequestMethod.POST)
-		    public String showResaValidPost(@Valid Client client_insc, Location loc_result,@ModelAttribute Recherche recherche, BindingResult bindingResult, HttpServletRequest request) {
+		    public String showResaValidPost(@Valid Client client_insc, Location loc_result, Recherche rech, Model model, BindingResult bindingResult, HttpServletRequest request) {
 		    	 if (bindingResult.hasErrors()) {
 		    		 	System.out.println("Erreur : "+bindingResult.toString());
 			            return "reservation_validation";
@@ -501,10 +501,16 @@ import fr.uha.miage.sweetholidays.datas.LocationRepositoryImpl;
 		    	 //Enregistrement de la réservation
 		    	 long id_Loc_Loue = loc_result.getId(); 
 		    	 long id_client_reserve = lio.getId() ; 
-		    	System.out.println("Votre recherche : "+recherche.toString());
-		    	Reservation reservation_enregistre = new Reservation(id_client_reserve, id_Loc_Loue,recherche.getArrivalDate(), recherche.getDepartureDate(), recherche.getNumber_of_People()); 
+		    	
+		    	 System.out.println("Votre recherche : "+rech.toString());
+		    	
+		    	Reservation reservation_enregistre = new Reservation(id_client_reserve, id_Loc_Loue,rech.getArrivalDate(), rech.getDepartureDate(), rech.getNumber_of_People()); 
+		    	System.out.println("Reservation enregistré : "+reservation_enregistre);
+		    	
 		    	reserv.saveResa(reservation_enregistre);
 		    	System.out.println("Liste de réservation : "+reserv.printRep());
+		    	
+		    	model.addAttribute("reservation", reservation_enregistre );
 		        return "reservation_validation";
 		    }
 
