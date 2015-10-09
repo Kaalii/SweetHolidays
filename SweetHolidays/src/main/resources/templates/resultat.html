@@ -243,8 +243,9 @@
 					<p th:text="'Type de location : ' + ${location.Accomodation_type}"></p>
 					<p th:text="'Capacité d\'accueil : ' + ${location.capacity_location}"></p>
 					<div class="resa_btn">
-						<form>
-							<a id="${location.id}" href="" ><input type="button" value="Choisir"/></a>
+						<form th:action="@{/SweetValidation}" method="post" th:object="${location}">
+							<input id="id" name="id" type="hidden" th:value="${location.id}"/>
+							<div class="insc_btn"><input type="submit" value="Choisir"/></div>
 						</form>
 					</div>
 				</div>

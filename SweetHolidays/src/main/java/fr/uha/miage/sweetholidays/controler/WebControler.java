@@ -377,7 +377,7 @@ import fr.uha.miage.sweetholidays.datas.LocationRepositoryImpl;
 		        return "resultat";
 		    }*/
 	     @RequestMapping(value="/SweetSearch", method=RequestMethod.POST)
-	     public String checkSearchInfo(@ModelAttribute Recherche recherche, @Valid Client client_insc, BindingResult bindingResult, Model model, HttpServletRequest request) {
+	     public String checkSearchInfo(@ModelAttribute Recherche recherche, @Valid Client client_insc, Location loc_result, BindingResult bindingResult, Model model, HttpServletRequest request) {
 		        if (bindingResult.hasErrors()) {
 		        	System.out.println(bindingResult.toString());
 		            return "index";
@@ -470,5 +470,28 @@ import fr.uha.miage.sweetholidays.datas.LocationRepositoryImpl;
 
 	     /**************************************/
 	   
+	     
+	     /*
+	      * Partie validation de la réservation + résumé
+	      */
+	     @RequestMapping(value="/SweetValidation", method=RequestMethod.GET)
+		    public String showResaValidGet(Client client_insc) {
+		        return "reservation_validation";
+		    }
+		    @RequestMapping(value="/SweetValidation", method=RequestMethod.POST)
+		    public String showResaValidPost(@Valid Client client_insc, Location loc_result, BindingResult bindingResult, HttpServletRequest request) {
+		    	 if (bindingResult.hasErrors()) {
+		    		 	System.out.println("Erreur : "+bindingResult.toString());
+			            return "reservation_validation";
+			        }
+		    	 HttpSession session = request.getSession();
+		    	 Client lio = (Client) session.getAttribute("AUTH");
+		    	 System.out.println(lio.getId());
+		    	 //Récupération de l'id de la location
+		    	 System.out.println(loc_result.getId());
+		    	
+		    	
+		        return "reservation_validation";
+		    }
 
 	}
