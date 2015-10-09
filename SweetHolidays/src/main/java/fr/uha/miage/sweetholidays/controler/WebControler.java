@@ -121,12 +121,6 @@ import fr.uha.miage.sweetholidays.datas.LocationRepositoryImpl;
 	    	//Toutes les location dans la BDD
 	    	list_loc = locate.printRep();
 	    	
-	    	//On extrait les type de location (appart chambre ...)
-	    	HashSet<String> AccoSet = new HashSet<String>();
-	    	for (int i = 0; i < list_loc.size(); i++) {
-	    		AccoSet.add(list_loc.get(i).getAccomodation_type());
-	    	}
-	    	List<String> accomodation_type = new ArrayList<String>(AccoSet);
 	    	//On extrait les city
 	    	HashSet<String> citySet = new HashSet<String>();
 	    	for (int i = 0; i < list_loc.size(); i++) {
@@ -141,7 +135,6 @@ import fr.uha.miage.sweetholidays.datas.LocationRepositoryImpl;
 	    	List<Integer> Loca_number = new ArrayList<Integer>(CapacitySet);
 	    	
 	    	
-	    	model.addAttribute("list_acco_load", accomodation_type);
 	    	model.addAttribute("list_city_load", City);
 	    	model.addAttribute("list_capacity_load", Loca_number);
 	    	
@@ -212,7 +205,11 @@ import fr.uha.miage.sweetholidays.datas.LocationRepositoryImpl;
 	    
 	    
 	    @RequestMapping(value="/SweetResa", method=RequestMethod.GET)
-	    public String showResaGet(Client client_insc, Recherche rech, Model model) {
+	    public String showResaGet(Client client_insc, Recherche rech,BindingResult bindingResult, Model model) {
+	    	 if (bindingResult.hasErrors()) {
+	    		 System.out.println(bindingResult.toString());
+		            return "reservation";
+		        }
 	    	
 	    	System.out.println("Récupération des informations et chargement par un GET De la page SweetResa");
 	    	/**Récupération des location dans la BDD pour remplir les listes déroulantes**/
@@ -247,6 +244,7 @@ import fr.uha.miage.sweetholidays.datas.LocationRepositoryImpl;
 	    @RequestMapping(value="/SweetResa", method=RequestMethod.POST)
 	    public String showResaPost(@Valid Client client_insc, BindingResult bindingResult) {
 	    	 if (bindingResult.hasErrors()) {
+	    		 System.out.println(bindingResult.toString());
 		            return "reservation";
 		        }
 	    	/*On récupère l'inscription du client sur la page et on l'enregistre dans la base*/

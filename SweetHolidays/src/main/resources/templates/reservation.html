@@ -212,24 +212,24 @@
 					<h4>Date d'arrivée :</h4>
 					<div class="book_date btm">
 						
-							<input class="date" id="datepicker" type="text" value="DD/MM/YY" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'DD/MM/YY';}"/>
+							<input th:field="*{DepartureDate}" class="date" id="datepicker" type="text" value="DD/MM/YY" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'DD/MM/YY';}"/>
 						
 					</div>	
 					<div class="sel_room left">
-						<h4>adults per room:</h4>
-						<select id="country2" onchange="change_country(this.value)" class="frm-field required">
-							<option value="null">1</option>
-				            <option value="null">2</option>         
-				            <option value="AX">3</option>
-							<option value="AX">4</option>
-		        		</select>
+							<h5>Adultes :</h5> <!--start section_room-->
+								<div class="section_room">
+									<select th:field="*{Number_of_People}" id="country2" onchange="change_country(this.value)"
+										class="frm-field required">
+										<option th:each="capa : ${list_capacity_load}"  th:text="${capa}" th:value="${capa}"></option>
+									</select>
+								</div>
 					</div>	
 				</div>
 				<div class="span2_of_1">
 					<h4>Date de départ : </h4>
 					<div class="book_date btm">
 			
-							<input class="date" id="datepicker1" type="text" value="DD/MM/YY" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'DD/MM/YY';}"/>
+							<input th:field="*{ArrivalDate}" class="date" id="datepicker1" type="text" value="DD/MM/YY" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'DD/MM/YY';}"/>
 			
 					</div>	
 					<div class="sel_room">
