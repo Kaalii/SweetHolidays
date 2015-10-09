@@ -203,16 +203,15 @@
 <form th:action="@{/SweetSearch}" method="post" th:object="${recherche}">
 	<div class="main">
 		<div class="res_online">
-			<h4>basic information</h4>
-			<p class="para">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+			<h4>Formulaire de réservation</h4>
+			<p class="para">Passer une réservation pour des vacances de rêve n'aura jamais été aussi facile !! <br /> Remplissez simplement ce formulaire, et ensuite PROFITEZ !</p>
 		</div>			
-		  	
 			<div class="span_of_2">
 				<div class="span2_of_1">
-					<h4>Date d'arrivée :</h4>
+					<h4>date d'arrivée</h4>
 					<div class="book_date btm">
 						
-							<input th:field="*{DepartureDate}" class="date" id="datepicker" type="text" value="DD/MM/YY" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'DD/MM/YY';}"/>
+							<input th:field="*{DepartureDate}" class="date" id="datepicker" type="text" value="JJ-MM-AAAA" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'JJ-MM-AAAA';}"/>
 						
 					</div>	
 					<div class="sel_room left">
@@ -229,7 +228,7 @@
 					<h4>Date de départ : </h4>
 					<div class="book_date btm">
 			
-							<input th:field="*{ArrivalDate}" class="date" id="datepicker1" type="text" value="DD/MM/YY" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'DD/MM/YY';}"/>
+							<input th:field="*{ArrivalDate}" class="date" id="datepicker1" type="text" value="JJ-MM-AAAA onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'JJ-MM-AAAA';}"/>
 			
 					</div>	
 					<div class="sel_room">
@@ -249,7 +248,7 @@
 			
 			</div>
 	</div>
-	</form>
+</form>
 </div>
 </div>		
 <!--start main -->

@@ -30,14 +30,13 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p,
 	height: auto;
 	left:45%;
 	background: #FFF;
-	
 }
 
 .btn {padding:10px 20px; background: #F4F4F2;}
-.btn_red {background: #ED6347; color: #FFF;}
+.btn_red {background: #DE8300; color: #FFF;}
 
 .btn:hover {background: #E4E4E2;}
-.btn_red:hover {background: #C12B05;}
+.btn_red:hover {background: #BE6300;}
 
 a.btn {color:#666; text-align: center; text-decoration: none;}
 a.btn_red {color: #FFF;}
@@ -214,7 +213,7 @@ body {
 }
 
 .menu  li.active a {
-	color: #DE8300;
+	color: #818387;
 }
 
 .menu  li a:hover {
@@ -279,7 +278,7 @@ body {
 
 .clearfix a:hover, .clearfix a:active {
 	background: #202227;
-	color: #ffffff;
+	color: #DE8300;
 }
 
 .clearfix a#pull {
@@ -404,6 +403,22 @@ select option {
 	-moz-transition: all 0.3s ease-in-out;
 	-o-transition: all 0.3s ease-in-out;
 	transition: all 0.3s ease-in-out;
+}
+
+input[type="number"] {
+	width: 76%;
+	color: #858585;
+	font-size: 0.8725em;
+	padding: 8px;
+	outline: none;
+	margin: 5px 0;
+	font-family: 'Open Sans', sans-serif;
+	background: #ffffff;
+	border: 1px solid #DFDFDF;
+	box-shadow: inset 0 0 2px rgb(236, 236, 236);
+	-webkit-box-shadow: inset 0 0 2px rgb(236, 236, 236);
+	-moz-box-shadow: inset 0 0 2px rgb(236, 236, 236);
+	-o-box-shadow: inset 0 0 2px rgb(236, 236, 236);
 }
 
 .book_date input[type="text"] {
@@ -579,7 +594,7 @@ select option {
 }
 
 .copy p a {
-	color: #52ABDF;
+	color: #DE8300;
 	-webkit-transition: all 0.3s ease-in-out;
 	-moz-transition: all 0.3s ease-in-out;
 	-o-transition: all 0.3s ease-in-out;
@@ -680,7 +695,7 @@ select option {
 }
 
 .f_nav li a:hover {
-	color: #52ABDF;
+	color: #DE8300;
 }
 /* start rooms and suits */
 .main {
@@ -742,7 +757,7 @@ p.para {
 }
 
 .s_nav li a:hover {
-	color: #228AC6;
+	color: #BE6300;
 }
 
 .s_nav1 li {
@@ -982,7 +997,7 @@ p.para {
 }
 
 .service_list li h3:hover {
-	color: #52ABDF;
+	color: #DE8300;
 }
 
 .service_list li h4 a {
@@ -992,7 +1007,7 @@ p.para {
 	line-height: 1.5em;
 	font-size: 0.8725em;
 	font-weight: 400;
-	color: #52ABDF;
+	color: #DE8300;
 	-webkit-transition: all 0.3s ease-in-out;
 	-moz-transition: all 0.3s ease-in-out;
 	-o-transition: all 0.3s ease-in-out;
@@ -1070,7 +1085,7 @@ span.next:hover {
 }
 
 .company_address p a {
-	color: #52ABDF;
+	color: #DE8300;
 	cursor: pointer;
 	-webkit-transition: all 0.3s ease-in-out;
 	-moz-transition: all 0.3s ease-in-out;
@@ -1112,7 +1127,7 @@ span.next:hover {
 	font-size: 0.7825em;
 }
 
-.contact-form input[type="text"], .contact-form textarea {
+.contact-form input[type="text"], .contact-form textarea, .contact-form input[type="email"], .contact-form input[type="tel"]{
 	font-family: 'Open Sans', sans-serif;
 	margin-top: 5px;
 	padding: 10px;
@@ -1174,7 +1189,7 @@ span.next:hover {
 .read_more a {
 	display: inline-block;
 	text-transform: capitalize;
-	background: #32A2E3;
+	background: #DE8300;
 	font-family: 'Open Sans', sans-serif;
 	color: #FFF;
 	padding: 12px 36px;
@@ -1188,7 +1203,7 @@ span.next:hover {
 }
 
 .read_more a:hover {
-	background: #228AC6;
+	background: #818387;
 }
 /***** Media Quries *****/
 @media only screen and (max-width: 1366px) {
