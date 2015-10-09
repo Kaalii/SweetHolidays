@@ -212,7 +212,36 @@ import fr.uha.miage.sweetholidays.datas.LocationRepositoryImpl;
 	    
 	    
 	    @RequestMapping(value="/SweetResa", method=RequestMethod.GET)
-	    public String showResaGet(Client client_insc) {
+	    public String showResaGet(Client client_insc, Recherche rech, Model model) {
+	    	
+	    	System.out.println("Récupération des informations et chargement par un GET De la page SweetResa");
+	    	/**Récupération des location dans la BDD pour remplir les listes déroulantes**/
+	    	List<Location> list_loc = new ArrayList<Location>();
+	    	//Toutes les location dans la BDD
+	    	list_loc = locate.printRep();
+	    	System.out.println("List_loc : "+list_loc.toString());
+	    	System.out.println("locate : "+locate.printRep());
+	    	//On extrait les city
+	    	HashSet<String> citySet = new HashSet<String>();
+	    	for (int i = 0; i < list_loc.size(); i++) {
+	    		citySet.add(list_loc.get(i).getCity());
+	    	}
+	    	List<String> City = new ArrayList<String>(citySet);
+	    	//On extrait les capacités
+	    	HashSet<Integer> CapacitySet = new HashSet<Integer>();
+	    	for (int i = 0; i < list_loc.size(); i++) {
+	    		CapacitySet.add(list_loc.get(i).getCapacity_location());
+	    	}
+	    	List<Integer> Loca_number = new ArrayList<Integer>(CapacitySet);
+	    	
+	    	
+	    	
+	    	model.addAttribute("list_city_load", City);
+	    	model.addAttribute("list_capacity_load", Loca_number);
+	    	
+	    	
+	    	
+	    	
 	        return "reservation";
 	    }  
 	    @RequestMapping(value="/SweetResa", method=RequestMethod.POST)
