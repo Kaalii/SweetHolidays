@@ -1,10 +1,13 @@
 package fr.uha.miage.sweetholidays.controler;
 
 
+import java.security.Key;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 
+import javax.crypto.Cipher;
+import javax.crypto.spec.SecretKeySpec;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
@@ -62,8 +65,22 @@ import fr.uha.miage.sweetholidays.datas.LocationRepositoryImpl;
 	    	/****Ajout***/
 	    	 registry.addViewController("/SweetAddFlat").setViewName("addApart");
 	    }
+	    /*Fonction d'encryptage du mot de passe */
+	    public String encrypt(String password,String key){
+	    	try
+	    	{
+		    	Key clef = new SecretKeySpec(key.getBytes("ISO-8859-2"),"Blowfish");
+		    	Cipher cipher=Cipher.getInstance("Blowfish");
+		    	cipher.init(Cipher.ENCRYPT_MODE,clef);
+		    	return new String(cipher.doFinal(password.getBytes()));
+	    	}
+	    	catch (Exception e)
+	    	{
+	    		System.out.println(e);
+	    		return null;
+	    	}
+    	}
 	    
-		
 	    @RequestMapping(value="/SweetHolidays", method=RequestMethod.GET)
 	    public String showIndexGet(Client client_insc, Recherche rech, Model model) {
 	    	
@@ -149,13 +166,22 @@ import fr.uha.miage.sweetholidays.datas.LocationRepositoryImpl;
 	        return "index";
 	    }
 	    @RequestMapping(value="/SweetHolidays", method=RequestMethod.POST)
-	    public String showIndexPost(Recherche rech, @Valid Client client_insc, BindingResult bindingResult, HttpServletRequest request) {
+	    public String showIndexPost(Recherche rech, @Valid Client client_insc, BindingResult bindingResult, HttpServletRequest request, Model model) {
 	    	 if (bindingResult.hasErrors()) {
 		            return "index";
 		        }
 	    	 /* Création ou récupération de la session */
 	    	 HttpSession session = request.getSession();
 	    	 List<Client> liste_resultat = new ArrayList();
+	    	 /*Encryption du mot de passe client */
+	    	 if(client_insc.getEmail() != null) { 
+		    	 if(client_insc.getEmail().length()>16){
+		    		 client_insc.setMdp(encrypt(client_insc.getMdp(), client_insc.getEmail().substring(0,16)));
+		    	 }
+		    	 else {
+		    		 client_insc.setMdp(encrypt(client_insc.getMdp(), client_insc.getEmail()));
+		    	 }
+	    	 }
 	    	 
 	    	 //Si l'utilisateur effectue une connexion au lieu d'une inscription
 	    	 if(client_insc.getName() == null) {
@@ -173,6 +199,29 @@ import fr.uha.miage.sweetholidays.datas.LocationRepositoryImpl;
 		    	//On le met en session c'est considéré comme une connexion
 		    	session.setAttribute("AUTH", client_insc);
 	    	 }
+	    	 
+	    	 /**Récupération des location dans la BDD pour remplir les listes déroulantes**/
+		    	List<Location> list_loc = new ArrayList<Location>();
+		    	//Toutes les location dans la BDD
+		    	list_loc = locate.printRep();
+		    	
+		    	//On extrait les city
+		    	HashSet<String> citySet = new HashSet<String>();
+		    	for (int i = 0; i < list_loc.size(); i++) {
+		    		citySet.add(list_loc.get(i).getCity());
+		    	}
+		    	List<String> City = new ArrayList<String>(citySet);
+		    	//On extrait les capacités
+		    	HashSet<Integer> CapacitySet = new HashSet<Integer>();
+		    	for (int i = 0; i < list_loc.size(); i++) {
+		    		CapacitySet.add(list_loc.get(i).getCapacity_location());
+		    	}
+		    	List<Integer> Loca_number = new ArrayList<Integer>(CapacitySet);
+		    	
+		    	
+		    	model.addAttribute("list_city_load", City);
+		    	model.addAttribute("list_capacity_load", Loca_number);
+	    	
 	    	
 	        return "index";
 	    }
@@ -250,14 +299,68 @@ import fr.uha.miage.sweetholidays.datas.LocationRepositoryImpl;
 	        return "reservation";
 	    }  
 	    @RequestMapping(value="/SweetResa", method=RequestMethod.POST)
-	    public String showResaPost(@Valid Client client_insc, BindingResult bindingResult) {
+	    public String showResaPost(@Valid Client client_insc, BindingResult bindingResult, HttpServletRequest request, Model model) {
 	    	 if (bindingResult.hasErrors()) {
 	    		 System.out.println(bindingResult.toString());
 		            return "reservation";
 		        }
-	    	/*On récupère l'inscription du client sur la page et on l'enregistre dans la base*/
-	    	client.saveClient(client_insc);
+	    	 
+	    	 /* Création ou récupération de la session */
+	    	 HttpSession session = request.getSession();
+	    	 List<Client> liste_resultat = new ArrayList();
+	    	 /*Encryption du mot de passe client */
+	    	 if(client_insc.getEmail() != null) { 
+		    	 if(client_insc.getEmail().length()>16){
+		    		 client_insc.setMdp(encrypt(client_insc.getMdp(), client_insc.getEmail().substring(0,16)));
+		    	 }
+		    	 else {
+		    		 client_insc.setMdp(encrypt(client_insc.getMdp(), client_insc.getEmail()));
+		    	 }
+	    	 }
+	    	 
+	    	 //Si l'utilisateur effectue une connexion au lieu d'une inscription
+	    	 if(client_insc.getName() == null) {
+	    		 //On récupère les utilisateur ayant ce mail dans la bdd
+	    		 liste_resultat = cli.findByEmail(client_insc.getEmail());
+	    		 //On regarde si la liste contient qqun et si les mdp correpsondent
+	    		 if(liste_resultat.size() > 0 && liste_resultat.get(0).getMdp().equals(client_insc.getMdp())) {
+	    			 //Mise en session de l'utilisateur
+	    			 session.setAttribute("AUTH", liste_resultat.get(0));
+	    		 }
+	    	 }
+	    	 else {
+		    	/*On récupère l'inscription du client sur la page et on l'enregistre dans la base*/
+		    	client.saveClient(client_insc);
+		    	//On le met en session c'est considéré comme une connexion
+		    	session.setAttribute("AUTH", client_insc);
+	    	 }
 	    	
+	    	 System.out.println("Récupération des informations et chargement par un GET De la page SweetResa");
+		    	/**Récupération des location dans la BDD pour remplir les listes déroulantes**/
+		    	List<Location> list_loc = new ArrayList<Location>();
+		    	//Toutes les location dans la BDD
+		    	list_loc = locate.printRep();
+		    	System.out.println("List_loc : "+list_loc.toString());
+		    	System.out.println("locate : "+locate.printRep());
+		    	//On extrait les city
+		    	HashSet<String> citySet = new HashSet<String>();
+		    	for (int i = 0; i < list_loc.size(); i++) {
+		    		citySet.add(list_loc.get(i).getCity());
+		    	}
+		    	List<String> City = new ArrayList<String>(citySet);
+		    	//On extrait les capacités
+		    	HashSet<Integer> CapacitySet = new HashSet<Integer>();
+		    	for (int i = 0; i < list_loc.size(); i++) {
+		    		CapacitySet.add(list_loc.get(i).getCapacity_location());
+		    	}
+		    	List<Integer> Loca_number = new ArrayList<Integer>(CapacitySet);
+		    	
+		    	
+		    	
+		    	model.addAttribute("list_city_load", City);
+		    	model.addAttribute("list_capacity_load", Loca_number);
+
+	    	 
 	        return "reservation";
 	    }
 	    
@@ -274,6 +377,15 @@ import fr.uha.miage.sweetholidays.datas.LocationRepositoryImpl;
 	    	 /* Création ou récupération de la session */
 	    	 HttpSession session = request.getSession();
 	    	 List<Client> liste_resultat = new ArrayList();
+	    	 /*Encryption du mot de passe client */
+	    	 if(client_insc.getEmail() != null) { 
+		    	 if(client_insc.getEmail().length()>16){
+		    		 client_insc.setMdp(encrypt(client_insc.getMdp(), client_insc.getEmail().substring(0,16)));
+		    	 }
+		    	 else {
+		    		 client_insc.setMdp(encrypt(client_insc.getMdp(), client_insc.getEmail()));
+		    	 }
+	    	 }
 	    	 
 	    	 //Si l'utilisateur effectue une connexion au lieu d'une inscription
 	    	 if(client_insc.getName() == null) {
@@ -308,6 +420,15 @@ import fr.uha.miage.sweetholidays.datas.LocationRepositoryImpl;
 			/* Création ou récupération de la session */
 	    	 HttpSession session = request.getSession();
 	    	 List<Client> liste_resultat = new ArrayList();
+	    	 /*Encryption du mot de passe client */
+	    	 if(client_insc.getEmail() != null) {
+		    	 if(client_insc.getEmail().length()>16){
+		    		 client_insc.setMdp(encrypt(client_insc.getMdp(), client_insc.getEmail().substring(0,16)));
+		    	 }
+		    	 else {
+		    		 client_insc.setMdp(encrypt(client_insc.getMdp(), client_insc.getEmail()));
+		    	 }
+	    	 }
 	    	 
 	    	 //Si l'utilisateur effectue une connexion au lieu d'une inscription
 	    	 if(client_insc.getName() == null) {
@@ -331,19 +452,23 @@ import fr.uha.miage.sweetholidays.datas.LocationRepositoryImpl;
 	    
 	    
 	    @RequestMapping(value="/SweetNew", method=RequestMethod.GET)
-	    public String showNewGet(Client client_insc, Newflat newflat) {
+	    public String showNewGet(Newflat newflat, HttpServletRequest request) {
+	    	/* Création ou récupération de la session */
+	    	 HttpSession session = request.getSession();
+	    	 if(session.getAttribute("AUTH") == null)
+			 {
+	    		 return "index";
+			 }
+
 	        return "new";
 	    }
-	    @RequestMapping(value="/SweetNew", method=RequestMethod.POST)
-	    public String showNewPost(@Valid Client client_insc, BindingResult bindingResult) {
+	    /*@RequestMapping(value="/SweetNew", method=RequestMethod.POST)
+	    public String showNewPost(BindingResult bindingResult) {
 	    	 if (bindingResult.hasErrors()) {
 		            return "new";
-		        }
-	    	/*On récupère l'inscription du client sur la page et on l'enregistre dans la base*/
-	    	client.saveClient(client_insc);
-	    	
+		        }	    	
 	        return "new";
-	    }
+	    }*/
 	    
 	    
 	    @RequestMapping(value="/SweetDetails", method=RequestMethod.GET)
@@ -358,6 +483,15 @@ import fr.uha.miage.sweetholidays.datas.LocationRepositoryImpl;
 	    	 /* Création ou récupération de la session */
 	    	 HttpSession session = request.getSession();
 	    	 List<Client> liste_resultat = new ArrayList();
+	    	 /*Encryption du mot de passe client */
+	    	 if(client_insc.getEmail() != null) {
+		    	 if(client_insc.getEmail().length()>16){
+		    		 client_insc.setMdp(encrypt(client_insc.getMdp(), client_insc.getEmail().substring(0,16)));
+		    	 }
+		    	 else {
+		    		 client_insc.setMdp(encrypt(client_insc.getMdp(), client_insc.getEmail()));
+		    	 }
+	    	 }
 	    	 
 	    	 //Si l'utilisateur effectue une connexion au lieu d'une inscription
 	    	 if(client_insc.getName() == null) {
@@ -390,43 +524,53 @@ import fr.uha.miage.sweetholidays.datas.LocationRepositoryImpl;
 		        	System.out.println(bindingResult.toString());
 		            return "index";
 		        }
-		        
-		        
+
 		        /* Création ou récupération de la session */
 		    	 HttpSession session = request.getSession();
 		    	 List<Client> liste_resultat1 = new ArrayList();
-		    	 
-		    	 //Si l'utilisateur effectue une connexion au lieu d'une inscription
-		    	 if(client_insc.getName() == null) {
-		    		 //On récupère les utilisateur ayant ce mail dans la bdd
-		    		 liste_resultat1 = cli.findByEmail(client_insc.getEmail());
-		    		 //On regarde si la liste contient qqun et si les mdp correpsondent
-		    		 if(liste_resultat1.size() > 0 && liste_resultat1.get(0).getMdp().equals(client_insc.getMdp())) {
-		    			 //Mise en session de l'utilisateur
-		    			 session.setAttribute("AUTH", liste_resultat1.get(0));
+		    	 /*Encryption du mot de passe client */
+		    	 if(session.getAttribute("AUTH") == null) {
+		    		 
+		    		 if(client_insc.getEmail() != null) {
+				    	 if(client_insc.getEmail().length()>16){
+				    		 client_insc.setMdp(encrypt(client_insc.getMdp(), client_insc.getEmail().substring(0,16)));
+				    	 }
+				    	 else {
+				    		 client_insc.setMdp(encrypt(client_insc.getMdp(), client_insc.getEmail()));
+				    	 }
 		    		 }
-		    	 }
+		    	 
+			    	 //Si l'utilisateur effectue une connexion au lieu d'une inscription
+			    	 if(client_insc.getName() == null) {
+			    		 //On récupère les utilisateur ayant ce mail dans la bdd
+			    		 liste_resultat1 = cli.findByEmail(client_insc.getEmail());
+			    		 //On regarde si la liste contient qqun et si les mdp correpsondent
+			    		 if(liste_resultat1.size() > 0 && liste_resultat1.get(0).getMdp().equals(client_insc.getMdp())) {
+			    			 //Mise en session de l'utilisateur
+			    			 session.setAttribute("AUTH", liste_resultat1.get(0));
+			    		 }
+			    	 }
 		        
-		        //Si la recherche est null c'est qu'il y a une inscription
-		        if(recherche.getArrivalDate() == null) {
-		        	//On réaffiche la recherche préinscription
-		        	recherche = rech;
-		        	 /*On récupère l'inscription du client sur la page et on l'enregistre dans la base*/
-			    	  client.saveClient(client_insc);
-			    	//On le met en session c'est considéré comme une connexion
-			    	  session.setAttribute("AUTH", client_insc);
-		        }
-		        else {
-		        	//Sinon on garde en mémoire la recherche actuel au cas ou il y a une inscri
-		        	rech = recherche;
-		        }
-
+			        //Si la recherche est null c'est qu'il y a une inscription
+			        if(recherche.getArrivalDate() == null) {
+			        	//On réaffiche la recherche préinscription
+			        	recherche = rech;
+			        	 /*On récupère l'inscription du client sur la page et on l'enregistre dans la base*/
+				    	  client.saveClient(client_insc);
+				    	//On le met en session c'est considéré comme une connexion
+				    	  session.setAttribute("AUTH", client_insc);
+			        }
+			        else {
+			        	//Sinon on garde en mémoire la recherche actuel au cas ou il y a une inscri
+			        	rech = recherche;
+			        }
+		    	 }
 	       		/*
 		        * 1.Récupérer les informations de la recherche 
 		        * 2.Récupérer une liste de Location disponible selon les différentes paramètres de la recherche
 		        * 3.Envoyez la liste résultat vers la page résultat
 		        */
-		        
+		       
 		        //Récupération des paramètres de recherche
 		        String date_arrivee = recherche.getArrivalDate() ; 
 		        String date_debut = recherche.getDepartureDate() ; 
@@ -443,7 +587,7 @@ import fr.uha.miage.sweetholidays.datas.LocationRepositoryImpl;
 		        //Envoyez la liste vers la page résultat
 		        model.addAttribute("Loc_result", liste_resultat);
 		        model.addAttribute("recherche", rech);
-	
+		        
 		        return "resultat";
 		    }
 	     
@@ -487,7 +631,7 @@ import fr.uha.miage.sweetholidays.datas.LocationRepositoryImpl;
 		        return "reservation_validation";
 		    }
 		    @RequestMapping(value="/SweetValidation", method=RequestMethod.POST)
-		    public String showResaValidPost(@Valid Client client_insc, Location loc_result, Recherche rech, Model model, BindingResult bindingResult, HttpServletRequest request) {
+		    public String showResaValidPost(@Valid Client client_insc, Location loc_result, Model model, BindingResult bindingResult, HttpServletRequest request) {
 		    	 if (bindingResult.hasErrors()) {
 		    		 	System.out.println("Erreur : "+bindingResult.toString());
 			            return "reservation_validation";

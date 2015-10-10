@@ -173,7 +173,7 @@
 			<div class="top-nav">
 				<nav class="clearfix">
 					<ul>
-						<li><a href="SweetNew">Devenez hôte</a></li>
+						<li th:if="${session.AUTH != null}"><a href="SweetNew">Devenez hôte</a></li>
 						<li><a href="SweetHolidays">hôtel</a></li>
 						<li><a href="SweetPlace">chambres &amp; appartements</a></li>
 						<li><a href="SweetResa">réservation</a></li>
@@ -301,7 +301,7 @@
 			</div>
 			<div class="f_nav">
 				<ul>
-					<li><a href="SweetNew">Devenez hôte</a></li>
+					<li th:if="${session.AUTH != null}"><a href="SweetNew">Devenez hôte</a></li>
 					<li><a href="SweetHolidays">hôtel</a></li>
 					<li><a href="SweetPlace">chambres &amp; appartements</a></li>
 					<li><a href="SweetResa">réservation</a></li>

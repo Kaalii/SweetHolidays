@@ -76,109 +76,12 @@
 					<li><a href="SweetActivities">activités</a></li>
 					<li><a href="SweetContact">contact</a></li>
 				</ul>
-				<!-- start profile_details -->	
-				<div class="container">
 					<div class="co_btn">
-						<form>
-							<a id="modal_trigger" href="#modal" ><input type="button" value="Connexion" style="width: 280px;"/></a>
+						<form th:if="${session.AUTH != null}" >
+							<p style="color:white; margin-top:-0.9%;">Bonjour</p>
+							<p style="color:white;" th:text="${session.AUTH.name} + ' ' + ${session.AUTH.prenom}"></p>
 						</form>
-					</div>
-					<div id="modal" class="popupContainer" style="display:none;">
-						<header class="popupHeader">
-							<span class="header_title">Connexion</span>
-							<span class="modal_close"><i class="fa fa-times"></i></span>
-						</header>
-	
-					<section class="popupBody">
-						<div class="social_login">
-							<div class="action_btns">
-								<div class="one_half"><a href="#" id="login_form" class="btn">Se connecter</a></div>
-								<div class="one_half last"><a href="#" id="register_form" class="btn">S'inscrire</a></div>
-							</div>
-						</div>
-			
-						<!-- Username & Password Login form -->
-						<div class="user_login">
-							<form>
-								<label>E-mail :</label>
-								<input type="text" />
-								<br />
-			
-								<label>Mot de passe :</label>
-								<input type="password" />
-								<br />
-			
-								<div class="action_btns">
-									<div class="one_half"><a href="#" class="btn back_btn">Retour</a></div>
-									<div class="one_half last"><div class="insc_btn"><input type="submit" value="Connexion"/></div></div>
-								</div>
-							</form>
-						</div>
-			
-						<!-- Register Form -->
-						<div class="user_register">
-							<form onSubmit="return validation(this)" th:action="@{/SweetResa}" method="post" th:object="${client}">
-								<label>Nom :</label>
-								<input th:field="*{name}" id="name" type="text" />
-								<br />
-								
-								<label>Prénom :</label>
-								<input th:field="*{prenom}" id="prenom" type="text" />
-								<br />
-								
-								<label>Adresse e-mail :</label>
-								<input th:field="*{email}" id="email" type="email" />
-								<br />
-			
-								<label>Mot de passe :</label>
-								<input th:field="*{mdp}" id="mdp" type="password" />
-								<br />
-								
-								<label>Confirmation de mot de passe :</label>
-								<input id="mdp1" type="password" />
-								<br />
-							
-								<div class="action_btns">
-									<div class="one_half"><a href="#" class="btn back_btn">Retour</a></div>
-									<div class="one_half last"><div class="insc_btn"><input type="submit" value="S'inscrire"/></div></div>
-								</div>
-							</form>
-						</div>
-					</section>
-					</div>
-				</div>
-				<!-- Script pour la fenêtre de connexion -->
-				<script type="text/javascript">
-					$("#modal_trigger").leanModal({top : 200, overlay : 0.6, closeButton: ".modal_close" });
-				
-					$(function(){
-						// Calling Login Form
-						$("#login_form").click(function(){
-							$(".social_login").hide();
-							$(".user_login").show();
-							return false;
-						});
-				
-						// Calling Register Form
-						$("#register_form").click(function(){
-							$(".social_login").hide();
-							$(".user_register").show();
-							$(".header_title").text('S\'inscrire');
-							return false;
-						});
-				
-						// Going back to Social Forms
-						$(".back_btn").click(function(){
-							$(".user_login").hide();
-							$(".user_register").hide();
-							$(".social_login").show();
-							$(".header_title").text('Connexion');
-							return false;
-						});
-				
-					})
-				</script>						
-				
+					</div>	
 			</div>
 			<div class="clear"></div>
 			<div class="top-nav">

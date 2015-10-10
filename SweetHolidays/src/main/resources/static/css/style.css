@@ -529,6 +529,48 @@ input[type="number"] {
 	background: #818387;
 }
 
+.choose_btn form input[type="submit"] {
+	text-transform: capitalize;
+	width: 50% !important;
+	background: #DE8300;
+	font-family: 'Open Sans', sans-serif;
+	color: #FFF;
+	padding: 8px;
+	border: none;
+	font-size: 1em;
+	transition: 0.5s all;
+	-webkit-transition: 0.5s all;
+	-moz-transition: 0.5s all;
+	-o-transition: 0.5s all;
+	outline: none;
+	cursor: pointer;
+}
+
+.choose_btn form input[type="submit"]:hover {
+	background: #818387;
+}
+
+.choose_btn input[type="submit"] {
+	text-transform: capitalize;
+	width: 50% !important;
+	background: #DE8300;
+	font-family: 'Open Sans', sans-serif;
+	color: #FFF;
+	padding: 8px;
+	border: none;
+	font-size: 1em;
+	transition: 0.5s all;
+	-webkit-transition: 0.5s all;
+	-moz-transition: 0.5s all;
+	-o-transition: 0.5s all;
+	outline: none;
+	cursor: pointer;
+}
+
+.choose_btn input[type="submit"]:hover {
+	background: #818387;
+}
+
 /* start grids_of_3 */
 .grids_of_3 {
 	display: block;

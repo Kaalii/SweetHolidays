@@ -69,7 +69,7 @@
 			<div class="h_right">
 				<!--start menu -->
 				<ul class="menu">
-					<li><a href="SweetNew">Devenez hôte</a></li>
+					<li th:if="${session.AUTH != null}"><a href="SweetNew">Devenez hôte</a></li>
 					<li><a href="SweetHolidays">hôtel</a></li>
 					<li><a href="SweetPlace">chambres &amp; appartements</a></li>
 					<li class="active"><a href="SweetResa">réservation</a></li>
@@ -79,8 +79,12 @@
 				<!-- start profile_details -->	
 				<div class="container">
 					<div class="co_btn">
-						<form>
+						<form th:if="${session.AUTH == null}">
 							<a id="modal_trigger" href="#modal" ><input type="button" value="Connexion" style="width: 280px;"/></a>
+						</form>
+						<form th:if="${session.AUTH != null}" >
+							<p style="color:white; margin-top:-0.9%;">Bonjour</p>
+							<p style="color:white;" th:text="${session.AUTH.name} + ' ' + ${session.AUTH.prenom}"></p>
 						</form>
 					</div>
 					<div id="modal" class="popupContainer" style="display:none;">
@@ -99,13 +103,13 @@
 			
 						<!-- Username & Password Login form -->
 						<div class="user_login">
-							<form>
+							<form th:action="@{/SweetResa}" method="post" th:object="${client}">
 								<label>E-mail :</label>
-								<input type="text" />
+								<input th:field="*{email}"  type="text" />
 								<br />
 			
 								<label>Mot de passe :</label>
-								<input type="password" />
+								<input th:field="*{mdp}" type="password" />
 								<br />
 			
 								<div class="action_btns">
@@ -184,7 +188,7 @@
 			<div class="top-nav">
 				<nav class="clearfix">
 					<ul>
-						<li><a href="SweetNew">Devenez hôte</a></li>
+						<li th:if="${session.AUTH != null}"><a href="SweetNew">Devenez hôte</a></li>
 						<li><a href="SweetHolidays">hôtel</a></li>
 						<li><a href="SweetPlace">chambres &amp; appartements</a></li>
 						<li class="active"><a href="SweetResa">réservation</a></li>
@@ -244,7 +248,7 @@
 			</div>
 			<div class="res_btn">
 			
-					<input type="submit" value="Réserver maintenant" style="width: 280px;"/>
+					<div class="choose_btn"><input type="submit" value="Réserver maintenant" /></div>
 			
 			</div>
 	</div>
@@ -262,7 +266,7 @@
 			</div>
 			<div class="f_nav">
 				<ul>
-					<li><a href="SweetNew">Devenez hôte</a></li>
+					<li th:if="${session.AUTH != null}"><a href="SweetNew">Devenez hôte</a></li>
 					<li><a href="SweetHolidays">hôtel</a></li>
 					<li><a href="SweetPlace">chambres &amp; appartements</a></li>
 					<li class="active"><a href="SweetResa">réservation</a></li>

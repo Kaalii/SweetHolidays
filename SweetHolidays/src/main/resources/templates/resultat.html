@@ -194,7 +194,7 @@
 				<div class="top-nav">
 					<nav class="clearfix">
 						<ul>
-							<li><a href="SweetNew">Devenez hôte</a></li>
+							<li th:if="${session.AUTH != null}"><a href="SweetNew">Devenez hôte</a></li>
 							<li><a href="SweetHolidays">hôtel</a></li>
 							<li><a href="SweetPlace">chambres &amp; appartements</a></li>
 							<li><a href="SweetResa">réservation</a></li>
@@ -233,7 +233,8 @@
 					<div class="resa_btn">
 						<form th:action="@{/SweetValidation}" method="post" th:object="${location}">
 							<input id="id" name="id" type="hidden" th:value="${location.id}"/>
-							<div class="insc_btn"><input type="submit" value="Choisir"/></div>
+							<div th:if="${session.AUTH != null}" class="choose_btn"><input type="submit" value="Choisir"/></div>
+							<p th:if="${session.AUTH == null}">Connectez-vous dès maintenant </p> <p th:if="${session.AUTH == null}">pour réserver cette location</p>
 						</form>
 					</div>
 				</div>
@@ -258,7 +259,7 @@
 				</div>
 				<div class="f_nav">
 					<ul>
-						<li><a href="SweetNew">Devenez hôte</a></li>
+						<li th:if="${session.AUTH != null}"><a href="SweetNew">Devenez hôte</a></li>
 						<li><a href="SweetHolidays">hôtel</a></li>
 						<li><a href="SweetPlace">chambres &amp; appartements</a></li>
 						<li><a href="SweetResa">réservation</a></li>
