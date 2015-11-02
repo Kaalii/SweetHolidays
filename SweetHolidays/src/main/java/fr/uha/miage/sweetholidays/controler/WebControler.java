@@ -189,6 +189,12 @@ import fr.uha.miage.sweetholidays.datas.LocationRepositoryImpl;
 		    	//On le met en session c'est considéré comme une connexion
 		    	session.setAttribute("AUTH", client_insc);
 	    	 }
+	    	 //Suppression de la session lors de la déco
+	    	 if(client_insc.getEmail() == null)
+	    	 {
+	    		 session.setAttribute("AUTH", null);
+	    	 }
+	    	 
 	    	 
 	    	 /**Récupération des location dans la BDD pour remplir les listes déroulantes**/
 		    	List<Location> list_loc = new ArrayList<Location>();
@@ -229,9 +235,19 @@ import fr.uha.miage.sweetholidays.datas.LocationRepositoryImpl;
 	    	 /* Création ou récupération de la session */
 	    	 HttpSession session = request.getSession();
 	    	 List<Client> liste_resultat = new ArrayList();
+	    	 /*Encryptage du mot de passe client */
+	    	 if(client_insc.getEmail() != null) { 
+		    	 if(client_insc.getEmail().length()>16){
+		    		 client_insc.setMdp(encrypt(client_insc.getMdp()));
+		    	 }
+		    	 else {
+		    		 client_insc.setMdp(encrypt(client_insc.getMdp()));
+		    	 }
+	    	 }
 	    	 
 	    	 //Si l'utilisateur effectue une connexion au lieu d'une inscription
 	    	 if(client_insc.getName() == null) {
+	    		 System.out.println(client_insc);
 	    		 //On récupère les utilisateur ayant ce mail dans la bdd
 	    		 liste_resultat = cli.findByEmail(client_insc.getEmail());
 	    		 //On regarde si la liste contient qqun et si les mdp correpsondent
@@ -245,6 +261,11 @@ import fr.uha.miage.sweetholidays.datas.LocationRepositoryImpl;
 		    	client.saveClient(client_insc);
 		    	//On le met en session c'est considéré comme une connexion
 		    	session.setAttribute("AUTH", client_insc);
+	    	 }
+	    	 //Suppression de la session lors de la déco
+	    	 if(client_insc.getEmail() == null)
+	    	 {
+	    		 session.setAttribute("AUTH", null);
 	    	 }
 	    	
 	        return "rooms";
@@ -324,6 +345,11 @@ import fr.uha.miage.sweetholidays.datas.LocationRepositoryImpl;
 		    	//On le met en session c'est considéré comme une connexion
 		    	session.setAttribute("AUTH", client_insc);
 	    	 }
+	    	 //Suppression de la session lors de la déco
+	    	 if(client_insc.getEmail() == null)
+	    	 {
+	    		 session.setAttribute("AUTH", null);
+	    	 }
 	    	
 	    	 System.out.println("Récupération des informations et chargement par un GET De la page SweetResa");
 		    	/**Récupération des location dans la BDD pour remplir les listes déroulantes**/
@@ -393,6 +419,11 @@ import fr.uha.miage.sweetholidays.datas.LocationRepositoryImpl;
 		    	//On le met en session c'est considéré comme une connexion
 		    	session.setAttribute("AUTH", client_insc);
 	    	 }
+	    	 //Suppression de la session lors de la déco
+	    	 if(client_insc.getEmail() == null)
+	    	 {
+	    		 session.setAttribute("AUTH", null);
+	    	 }
 	    	
 	        return "activities";
 	    }
@@ -436,6 +467,12 @@ import fr.uha.miage.sweetholidays.datas.LocationRepositoryImpl;
 		    	//On le met en session c'est considéré comme une connexion
 		    	session.setAttribute("AUTH", client_insc);
 	    	 }
+	    	 //Suppression de la session lors de la déco
+	    	 if(client_insc.getEmail() == null)
+	    	 {
+	    		 session.setAttribute("AUTH", null);
+	    	 }
+	    	 
 	    	 
 	    	return "contact";
 	    }
@@ -499,6 +536,11 @@ import fr.uha.miage.sweetholidays.datas.LocationRepositoryImpl;
 		    	//On le met en session c'est considéré comme une connexion
 		    	session.setAttribute("AUTH", client_insc);
 	    	 }
+	    	 //Suppression de la session lors de la déco
+	    	 if(client_insc.getEmail() == null)
+	    	 {
+	    		 session.setAttribute("AUTH", null);
+	    	 }
 	    	 
 	        return "details";
 	    }
@@ -514,14 +556,16 @@ import fr.uha.miage.sweetholidays.datas.LocationRepositoryImpl;
 		        	System.out.println(bindingResult.toString());
 		            return "index";
 		        }
-
+		        
+		        if(recherche.getArrivalDate() != null){
+		        	rech = recherche;
+		        }
+		        
 		        /* Création ou récupération de la session */
 		    	 HttpSession session = request.getSession();
 		    	 List<Client> liste_resultat1 = new ArrayList();
-		    	 /*Encryptage du mot de passe client */
-		    	 if(session.getAttribute("AUTH") == null) {
-		    		 
-		    		 if(client_insc.getEmail() != null) {
+		    	 /*Encryptage du mot de passe client */    		 
+		    		 if(client_insc.getEmail() != null && session.getAttribute("AUTH") == null) {
 				    	 if(client_insc.getEmail().length()>16){
 				    		 client_insc.setMdp(encrypt(client_insc.getMdp()));
 				    	 }
@@ -531,7 +575,9 @@ import fr.uha.miage.sweetholidays.datas.LocationRepositoryImpl;
 		    		 }
 		    	 
 			    	 //Si l'utilisateur effectue une connexion au lieu d'une inscription
-			    	 if(client_insc.getName() == null) {
+			    	 if(recherche.getArrivalDate() == null && client_insc.getName() == null && session.getAttribute("AUTH") == null && client_insc.getEmail() != null) {
+			    		//On réaffiche la recherche préinscription
+				        recherche = rech;
 			    		 //On récupère les utilisateur ayant ce mail dans la bdd
 			    		 liste_resultat1 = cli.findByEmail(client_insc.getEmail());
 			    		 //On regarde si la liste contient qqun et si les mdp correpsondent
@@ -540,9 +586,10 @@ import fr.uha.miage.sweetholidays.datas.LocationRepositoryImpl;
 			    			 session.setAttribute("AUTH", liste_resultat1.get(0));
 			    		 }
 			    	 }
-		        
+
 			        //Si la recherche est null c'est qu'il y a une inscription
-			        if(recherche.getArrivalDate() == null) {
+			        if(recherche.getArrivalDate() == null && client_insc.getName() != null && session.getAttribute("AUTH") == null) {
+			        	System.out.println(client_insc);
 			        	//On réaffiche la recherche préinscription
 			        	recherche = rech;
 			        	 /*On récupère l'inscription du client sur la page et on l'enregistre dans la base*/
@@ -550,10 +597,11 @@ import fr.uha.miage.sweetholidays.datas.LocationRepositoryImpl;
 				    	//On le met en session c'est considéré comme une connexion
 				    	  session.setAttribute("AUTH", client_insc);
 			        }
-			        else {
-			        	//Sinon on garde en mémoire la recherche actuel au cas ou il y a une inscri
-			        	rech = recherche;
-			        }
+			        
+		    	 //Suppression de la session lors de la déco
+		    	 if(client_insc.getEmail() == null && recherche.getArrivalDate() == null)
+		    	 {
+		    		 session.setAttribute("AUTH", null);
 		    	 }
 	       		/*
 		        * 1.Récupérer les informations de la recherche 
@@ -577,7 +625,7 @@ import fr.uha.miage.sweetholidays.datas.LocationRepositoryImpl;
 		        //Envoyez la liste vers la page résultat
 		        model.addAttribute("Loc_result", liste_resultat);
 		        model.addAttribute("recherche", rech);
-		        
+
 		        return "resultat";
 		    }
 	     
@@ -622,12 +670,13 @@ import fr.uha.miage.sweetholidays.datas.LocationRepositoryImpl;
 		    }
 		    @RequestMapping(value="/SweetValidation", method=RequestMethod.POST)
 		    public String showResaValidPost(@Valid Client client_insc, Location loc_result, Model model, BindingResult bindingResult, HttpServletRequest request) {
-		    	 if (bindingResult.hasErrors()) {
+		    	if (bindingResult.hasErrors()) {
 		    		 	System.out.println("Erreur : "+bindingResult.toString());
 			            return "reservation_validation";
 			        }
 		    	 HttpSession session = request.getSession();
 		    	 Client lio = (Client) session.getAttribute("AUTH");
+		    	 
 		    	 System.out.println(lio.getId());
 		    	 //Récupération de l'id de la location
 		    	 System.out.println(loc_result.getId());
@@ -636,7 +685,7 @@ import fr.uha.miage.sweetholidays.datas.LocationRepositoryImpl;
 		    	 long id_Loc_Loue = loc_result.getId(); 
 		    	 long id_client_reserve = lio.getId() ; 
 		    	
-		    	 System.out.println("Votre recherche : "+rech.toString());
+		    	System.out.println("Votre recherche : "+rech.toString());
 		    	
 		    	Reservation reservation_enregistre = new Reservation(id_client_reserve, id_Loc_Loue,rech.getArrivalDate(), rech.getDepartureDate(), rech.getNumber_of_People()); 
 		    	System.out.println("Reservation enregistré : "+reservation_enregistre);

@@ -82,9 +82,9 @@
 						<form th:if="${session.AUTH == null}">
 							<a id="modal_trigger" href="#modal" ><input type="button" value="Connexion" style="width: 280px;"/></a>
 						</form>
-						<form th:if="${session.AUTH != null}" >
-							<p style="color:white; margin-top:-0.9%;">Bonjour</p>
-							<p style="color:white;" th:text="${session.AUTH.name} + ' ' + ${session.AUTH.prenom}"></p>
+						<form th:action="@{/SweetResa}" th:if="${session.AUTH != null}" method="post">
+							<p style="color:white; margin-top:0.7%; margin-right:10%" th:text="${session.AUTH.name} + ' ' + ${session.AUTH.prenom}"></p>
+							<p class="deco_btn"><input type="submit" value="Déconnexion"/></p>
 						</form>
 					</div>
 					<div id="modal" class="popupContainer" style="display:none;">
@@ -221,8 +221,7 @@
 					<div class="sel_room left">
 							<h5>Adultes :</h5> <!--start section_room-->
 								<div class="section_room">
-									<select th:field="*{Number_of_People}" id="country2" onchange="change_country(this.value)"
-										class="frm-field required">
+									<select th:field="*{Number_of_People}" id="country2" onchange="change_country(this.value)" class="frm-field required">
 										<option th:each="capa : ${list_capacity_load}"  th:text="${capa}" th:value="${capa}"></option>
 									</select>
 								</div>

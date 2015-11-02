@@ -23,7 +23,6 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p,
     background: #000;
     display: none;
 }
-
 .popupContainer{
 	position:absolute;
 	width:330px;
@@ -185,7 +184,7 @@ body {
 }
 /* start h_right */
 .h_right {
-	width: 75%;
+	width: 85%;
 	float: right;
 }
 /* start menu */
@@ -484,6 +483,52 @@ input[type="number"] {
 }
 
 .date_btn input[type="submit"]:hover {
+	background: #818387;
+}
+.deco_btn {
+margin-top:-3%;
+}
+.deco_btn p input[type="submit"] {
+	text-transform: capitalize;
+	background: #DE8300;
+	width: 12% !important;
+	font-family: 'Open Sans', sans-serif;
+	margin-right:-20%;
+	color: #FFF;
+	padding: 8px;
+	border: none;
+	font-size: 1em;
+	transition: 0.5s all;
+	-webkit-transition: 0.5s all;
+	-moz-transition: 0.5s all;
+	-o-transition: 0.5s all;
+	outline: none;
+	cursor: pointer;
+}
+
+.deco_btn p input[type="submit"]:hover {
+	background: #818387;
+}
+
+.deco_btn input[type="submit"] {
+	text-transform: capitalize;
+	background: #DE8300;
+	width: 12% !important;
+	font-family: 'Open Sans', sans-serif;
+	color: #FFF;
+	padding: 8px;
+	margin-right:-20%;
+	border: none;
+	font-size: 1em;
+	transition: 0.5s all;
+	-webkit-transition: 0.5s all;
+	-moz-transition: 0.5s all;
+	-o-transition: 0.5s all;
+	outline: none;
+	cursor: pointer;
+}
+
+.deco_btn input[type="submit"]:hover {
 	background: #818387;
 }
 

@@ -91,9 +91,9 @@
 							<form th:if="${session.AUTH == null}">
 								<a id="modal_trigger" href="#modal" ><input type="button" value="Connexion" style="width: 280px;"/></a>
 							</form>
-							<form th:if="${session.AUTH != null}" >
-								<p style="color:white; margin-top:-0.9%;">Bonjour</p>
-								<p style="color:white;" th:text="${session.AUTH.name} + ' ' + ${session.AUTH.prenom}"></p>
+							<form th:action="@{/SweetHolidays}" th:if="${session.AUTH != null}" method="post">
+								<p style="color:white; margin-top:0.7%; margin-right:10%" th:text="${session.AUTH.name} + ' ' + ${session.AUTH.prenom}"></p>
+								<p class="deco_btn"><input type="submit" value="Déconnexion"/></p>
 							</form>
 						</div>
 						<div id="modal" class="popupContainer" style="display:none;">
