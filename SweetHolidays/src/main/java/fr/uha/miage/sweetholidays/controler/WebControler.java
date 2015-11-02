@@ -1,13 +1,9 @@
 package fr.uha.miage.sweetholidays.controler;
 
-
-import java.security.Key;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 
-import javax.crypto.Cipher;
-import javax.crypto.spec.SecretKeySpec;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
@@ -65,21 +61,15 @@ import fr.uha.miage.sweetholidays.datas.LocationRepositoryImpl;
 	    	/****Ajout***/
 	    	 registry.addViewController("/SweetAddFlat").setViewName("addApart");
 	    }
-	    /*Fonction d'encryptage du mot de passe */
-	    public String encrypt(String password,String key){
-	    	try
-	    	{
-		    	Key clef = new SecretKeySpec(key.getBytes("ISO-8859-2"),"Blowfish");
-		    	Cipher cipher=Cipher.getInstance("Blowfish");
-		    	cipher.init(Cipher.ENCRYPT_MODE,clef);
-		    	return new String(cipher.doFinal(password.getBytes()));
-	    	}
-	    	catch (Exception e)
-	    	{
-	    		System.out.println(e);
-	    		return null;
-	    	}
-    	}
+	    /*Fonction d'encryptage du mot de passe */  
+	    public String encrypt(String password){
+	        String crypte="";
+	        for (int i=0; i<password.length();i++)  {
+	            int c=password.charAt(i)^48; 
+	            crypte=crypte+(char)c;
+	        }
+	        return crypte;
+	    }
 	    
 	    @RequestMapping(value="/SweetHolidays", method=RequestMethod.GET)
 	    public String showIndexGet(Client client_insc, Recherche rech, Model model) {
@@ -124,7 +114,7 @@ import fr.uha.miage.sweetholidays.datas.LocationRepositoryImpl;
 	       		Client c1 = new Client("AMPS", "Sevan", "sevan.amps@outlook.com","sevan1010") ;
 	       		Client c2 = new Client("GRANDSIRE", "Alexandre", "zizi@outlook.com","j'aimelesvoitures") ;	       		
 	       		Client c3 = new Client("KABAB", "Fahd", "fahd.kabab@uha.fr","fk") ;
-	       		Client c4 = new Client("Muller", "Lagaffe", "gaston.lagaffe@uha.fr","jesuismaladedunez") ;
+	       		Client c4 = new Client("Grandsire", "Alexandre", "alex.grandsire@gmail.com","DUCD") ;
 	       		
 	       		client.saveClient(c1);
 	       		client.saveClient(c2);
@@ -173,13 +163,13 @@ import fr.uha.miage.sweetholidays.datas.LocationRepositoryImpl;
 	    	 /* Création ou récupération de la session */
 	    	 HttpSession session = request.getSession();
 	    	 List<Client> liste_resultat = new ArrayList();
-	    	 /*Encryption du mot de passe client */
+	    	 /*Encryptage du mot de passe client */
 	    	 if(client_insc.getEmail() != null) { 
 		    	 if(client_insc.getEmail().length()>16){
-		    		 client_insc.setMdp(encrypt(client_insc.getMdp(), client_insc.getEmail().substring(0,16)));
+		    		 client_insc.setMdp(encrypt(client_insc.getMdp()));
 		    	 }
 		    	 else {
-		    		 client_insc.setMdp(encrypt(client_insc.getMdp(), client_insc.getEmail()));
+		    		 client_insc.setMdp(encrypt(client_insc.getMdp()));
 		    	 }
 	    	 }
 	    	 
@@ -299,7 +289,7 @@ import fr.uha.miage.sweetholidays.datas.LocationRepositoryImpl;
 	        return "reservation";
 	    }  
 	    @RequestMapping(value="/SweetResa", method=RequestMethod.POST)
-	    public String showResaPost(@Valid Client client_insc, BindingResult bindingResult, HttpServletRequest request, Model model) {
+	    public String showResaPost(Recherche rech, @Valid Client client_insc, BindingResult bindingResult, HttpServletRequest request, Model model) {
 	    	 if (bindingResult.hasErrors()) {
 	    		 System.out.println(bindingResult.toString());
 		            return "reservation";
@@ -308,13 +298,13 @@ import fr.uha.miage.sweetholidays.datas.LocationRepositoryImpl;
 	    	 /* Création ou récupération de la session */
 	    	 HttpSession session = request.getSession();
 	    	 List<Client> liste_resultat = new ArrayList();
-	    	 /*Encryption du mot de passe client */
+	    	 /*Encryptage du mot de passe client */
 	    	 if(client_insc.getEmail() != null) { 
 		    	 if(client_insc.getEmail().length()>16){
-		    		 client_insc.setMdp(encrypt(client_insc.getMdp(), client_insc.getEmail().substring(0,16)));
+		    		 client_insc.setMdp(encrypt(client_insc.getMdp()));
 		    	 }
 		    	 else {
-		    		 client_insc.setMdp(encrypt(client_insc.getMdp(), client_insc.getEmail()));
+		    		 client_insc.setMdp(encrypt(client_insc.getMdp()));
 		    	 }
 	    	 }
 	    	 
@@ -377,13 +367,13 @@ import fr.uha.miage.sweetholidays.datas.LocationRepositoryImpl;
 	    	 /* Création ou récupération de la session */
 	    	 HttpSession session = request.getSession();
 	    	 List<Client> liste_resultat = new ArrayList();
-	    	 /*Encryption du mot de passe client */
+	    	 /*Encryptage du mot de passe client */
 	    	 if(client_insc.getEmail() != null) { 
 		    	 if(client_insc.getEmail().length()>16){
-		    		 client_insc.setMdp(encrypt(client_insc.getMdp(), client_insc.getEmail().substring(0,16)));
+		    		 client_insc.setMdp(encrypt(client_insc.getMdp()));
 		    	 }
 		    	 else {
-		    		 client_insc.setMdp(encrypt(client_insc.getMdp(), client_insc.getEmail()));
+		    		 client_insc.setMdp(encrypt(client_insc.getMdp()));
 		    	 }
 	    	 }
 	    	 
@@ -420,13 +410,13 @@ import fr.uha.miage.sweetholidays.datas.LocationRepositoryImpl;
 			/* Création ou récupération de la session */
 	    	 HttpSession session = request.getSession();
 	    	 List<Client> liste_resultat = new ArrayList();
-	    	 /*Encryption du mot de passe client */
+	    	 /*Encryptage du mot de passe client */
 	    	 if(client_insc.getEmail() != null) {
 		    	 if(client_insc.getEmail().length()>16){
-		    		 client_insc.setMdp(encrypt(client_insc.getMdp(), client_insc.getEmail().substring(0,16)));
+		    		 client_insc.setMdp(encrypt(client_insc.getMdp()));
 		    	 }
 		    	 else {
-		    		 client_insc.setMdp(encrypt(client_insc.getMdp(), client_insc.getEmail()));
+		    		 client_insc.setMdp(encrypt(client_insc.getMdp()));
 		    	 }
 	    	 }
 	    	 
@@ -483,13 +473,13 @@ import fr.uha.miage.sweetholidays.datas.LocationRepositoryImpl;
 	    	 /* Création ou récupération de la session */
 	    	 HttpSession session = request.getSession();
 	    	 List<Client> liste_resultat = new ArrayList();
-	    	 /*Encryption du mot de passe client */
+	    	 /*Encryptage du mot de passe client */
 	    	 if(client_insc.getEmail() != null) {
 		    	 if(client_insc.getEmail().length()>16){
-		    		 client_insc.setMdp(encrypt(client_insc.getMdp(), client_insc.getEmail().substring(0,16)));
+		    		 client_insc.setMdp(encrypt(client_insc.getMdp()));
 		    	 }
 		    	 else {
-		    		 client_insc.setMdp(encrypt(client_insc.getMdp(), client_insc.getEmail()));
+		    		 client_insc.setMdp(encrypt(client_insc.getMdp()));
 		    	 }
 	    	 }
 	    	 
@@ -528,15 +518,15 @@ import fr.uha.miage.sweetholidays.datas.LocationRepositoryImpl;
 		        /* Création ou récupération de la session */
 		    	 HttpSession session = request.getSession();
 		    	 List<Client> liste_resultat1 = new ArrayList();
-		    	 /*Encryption du mot de passe client */
+		    	 /*Encryptage du mot de passe client */
 		    	 if(session.getAttribute("AUTH") == null) {
 		    		 
 		    		 if(client_insc.getEmail() != null) {
 				    	 if(client_insc.getEmail().length()>16){
-				    		 client_insc.setMdp(encrypt(client_insc.getMdp(), client_insc.getEmail().substring(0,16)));
+				    		 client_insc.setMdp(encrypt(client_insc.getMdp()));
 				    	 }
 				    	 else {
-				    		 client_insc.setMdp(encrypt(client_insc.getMdp(), client_insc.getEmail()));
+				    		 client_insc.setMdp(encrypt(client_insc.getMdp()));
 				    	 }
 		    		 }
 		    	 
