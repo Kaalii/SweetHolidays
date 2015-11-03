@@ -105,7 +105,7 @@
 <div class="wrap">
 		
 		<!-- Validation et confirmation de la réservation -->
-		<form th:action="@{/SweetSearch}" method="post" th:object="${reservation}">
+		<form th:action="@{/SweetSearch}" th:if="${reservation != null}" method="post" th:object="${reservation}">
 			<div>
 			<br /><br /><br /><br />
 		<div class="grids_of_3">
@@ -119,6 +119,20 @@
 						<p th:text="'Date d\'arrivée : ' + ${reservation.arrival_date}" />
 						<p th:text="'Date de départ : ' + ${reservation.departure_date}" />
 						<p th:text="'Nombre de personnes : ' + ${reservation.number_of_people}" />
+				</div>
+		</div>
+		
+			</div>
+		</form>
+		<form th:action="@{/SweetSearch}" th:if="${reservation == null}" method="post" th:object="${reservation}">
+			<div>
+			<br /><br /><br /><br />
+		<div class="grids_of_3">
+				<div class="grid1_of_3">
+					<h4>
+						<a href="/SweetHolidays">Votre reservation :</a>
+					</h4>
+					<p>Malheuresement le créneaux de réservation voulu n'est pas disponible.</p>
 				</div>
 		</div>
 		

@@ -53,6 +53,13 @@ public class Reservation implements Serializable {
 		this.departure_date = departure_date;
 		this.number_of_people = number_of_people;
 	}
+	
+	
+
+	public Reservation() {
+		super();
+	}
+
 
 	/**
 	 * @return the id

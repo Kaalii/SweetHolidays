@@ -1,6 +1,9 @@
 package fr.uha.miage.sweetholidays.controler;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 
@@ -54,6 +57,8 @@ import fr.uha.miage.sweetholidays.datas.LocationRepositoryImpl;
 		
 		//Variable qui permet de mémoriser les info POST en cas d'inscription
 		Recherche rech;
+		//Boolean de reservation ok/not
+		boolean resa;
 		
 	    @Override
 	    public void addViewControllers(ViewControllerRegistry registry) {
@@ -612,6 +617,43 @@ import fr.uha.miage.sweetholidays.datas.LocationRepositoryImpl;
 		        //Récupération des paramètres de recherche
 		        String date_arrivee = recherche.getArrivalDate() ; 
 		        String date_debut = recherche.getDepartureDate() ; 
+		        //Formater de date
+		        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+		        //Date voulu par le client
+	    		Date date_arr_resa_voulu;
+	    		Date date_deb_resa_voulu;
+	    		//Liste de toutes les resa
+	    		List<Reservation> liste_resa = new ArrayList();
+				liste_resa = (List<Reservation>) res.findAll();
+				resa = true;
+				
+				try {
+					date_arr_resa_voulu = formatter.parse(date_arrivee);
+					date_deb_resa_voulu = formatter.parse(date_debut);
+					
+					for (int i = 0; i < liste_resa.size(); i++) {
+						Date date_deb_resa = formatter.parse(liste_resa.get(i).getArrival_date());
+						Date date_arr_resa = formatter.parse(liste_resa.get(i).getDeparture_date());
+						
+						if(date_arr_resa_voulu.before(date_deb_resa) && date_deb_resa_voulu.before(date_arr_resa)){
+							resa = true;
+						}
+						else if(date_arr_resa_voulu.after(date_deb_resa) && date_deb_resa_voulu.after(date_arr_resa)){
+							resa = true;
+						}
+						else {
+							resa = false;
+						}
+					}
+					
+		    		//System.out.println(formatter.format(date_arr_resa_voulu));
+				} catch (ParseException e) {
+					e.printStackTrace();
+				}
+				
+				
+
+		    	
 		        int nombre_de_personnes = recherche.getNumber_of_People() ;
 		        //String type_de_chambre = recherche.getType_of_room(); 
 		        String city = recherche.getCity() ; 
@@ -687,13 +729,23 @@ import fr.uha.miage.sweetholidays.datas.LocationRepositoryImpl;
 		    	
 		    	System.out.println("Votre recherche : "+rech.toString());
 		    	
-		    	Reservation reservation_enregistre = new Reservation(id_client_reserve, id_Loc_Loue,rech.getArrivalDate(), rech.getDepartureDate(), rech.getNumber_of_People()); 
-		    	System.out.println("Reservation enregistré : "+reservation_enregistre);
+		    	if(resa){
+		    		
+			    	Reservation reservation_enregistre = new Reservation(id_client_reserve, id_Loc_Loue,rech.getArrivalDate(), rech.getDepartureDate(), rech.getNumber_of_People()); 
+			    	System.out.println("Reservation enregistré : "+reservation_enregistre);
+			    	
+			    	reserv.saveResa(reservation_enregistre);
+			    	System.out.println("Liste de réservation : "+reserv.printRep());
+
+			    	model.addAttribute("reservation", reservation_enregistre );
+		    	}
+		    	else{
+		    		
+		    		Reservation reservation_enregistre = null;
+		    		model.addAttribute("reservation", reservation_enregistre );
+		    		
+		    	}
 		    	
-		    	reserv.saveResa(reservation_enregistre);
-		    	System.out.println("Liste de réservation : "+reserv.printRep());
-		    	
-		    	model.addAttribute("reservation", reservation_enregistre );
 		        return "reservation_validation";
 		    }
 
