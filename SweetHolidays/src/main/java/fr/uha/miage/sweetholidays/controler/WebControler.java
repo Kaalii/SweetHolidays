@@ -80,12 +80,17 @@ import fr.uha.miage.sweetholidays.datas.LocationRepositoryImpl;
 	    public String showIndexGet(Client client_insc, Recherche rech, Model model) {
 	    	
 	    	// Effacement des répertoires pour des multiples recherches.
-	    	locate.effaceRep();
-	    	client.effaceRepClient();
-	    	//reserv.effaceRep();
+	    	long count_location = locate.countLocations(); 
+	    	long count_clients = client.countClients() ; 
 	    	
-	    	/******Création fictive pour test****/
+	   /*	if(count_location == 0 && count_clients == 0){
+	    		locate.effaceRep();
+	    		client.effaceRepClient();
+	    	}
+	   */
+
 	    	 List<Location> Loc = new ArrayList<Location>();
+	    	
 	    	//Récupération des résultats
 	        Location loc1 =new Location("Sweet", 125.0, 4,"8 StrauStrasse", "F5", "Réglement intérieur", "Description visuelle de l'appart", "ser_pic3.jpg", "Bern");
 	        Location loc2 =new Location("SweetHome1", 185.0, 4,"8 StrauStrasse", "F8", "Réglement intérieur", "Description visuelle de l'appart", "ser_pic4.jpg", "Berlin");
@@ -95,6 +100,7 @@ import fr.uha.miage.sweetholidays.datas.LocationRepositoryImpl;
 	        Location loc6 =new Location("SweetHome5", 225.0, 4,"50 rue des fleurs", "F5", "Réglement intérieur", "Description visuelle de l'appart", "ser_pic7.jpg", "Bern");
 	        Location loc7 =new Location("SweetHome6", 225.0, 4,"Blablabla", "F8", "Réglement intérieur", "Description visuelle de l'appart", "ser_pic4.jpg", "Berlin");
 	        
+	        if(count_location == 0 ){
 	       		Loc.add(loc1);
 	       		Loc.add(loc2);
 	       		Loc.add(loc3);
@@ -110,12 +116,13 @@ import fr.uha.miage.sweetholidays.datas.LocationRepositoryImpl;
 	       		locate.saveLoc(loc5);
 	       		locate.saveLoc(loc6);
 	       		locate.saveLoc(loc7);
-	       		
+	        }
 	    	
 	       		
 	       		/* partie client 
 	       		 * 
 	       		 */
+	        if(count_clients == 0 ){
 	       		Client c1 = new Client("AMPS", "Sevan", "sevan.amps@outlook.com","sevan1010") ;
 	       		Client c2 = new Client("GRANDSIRE", "Alexandre", "zizi@outlook.com","j'aimelesvoitures") ;	       		
 	       		Client c3 = new Client("KABAB", "Fahd", "fahd.kabab@uha.fr","fk") ;
@@ -127,6 +134,7 @@ import fr.uha.miage.sweetholidays.datas.LocationRepositoryImpl;
 	       		client.saveClient(c3);
 	       		client.saveClient(c4);
 	       		client.saveClient(c5);
+	        }
 	       		
 	       	/*	System.out.println("c1 : "+c1.toString());
 	       		System.out.println("c2 : "+c2.toString()); 
@@ -156,6 +164,10 @@ import fr.uha.miage.sweetholidays.datas.LocationRepositoryImpl;
 	    	}
 	    	List<Integer> Loca_number = new ArrayList<Integer>(CapacitySet);
 	    	
+	    	System.out.println("Affichage de toutes les locations sur la page Index");
+	    	for (int i = 0; i < list_loc.size(); i++) {
+	    		System.out.println(list_loc.get(i).toString());
+	    	}
 	    	
 	    	model.addAttribute("list_city_load", City);
 	    	model.addAttribute("list_capacity_load", Loca_number);
@@ -696,9 +708,11 @@ import fr.uha.miage.sweetholidays.datas.LocationRepositoryImpl;
 	         String city = newflat.getVille_Log();
 	         
 	         Location loc1 = new Location(name,price,capacity_location,address,accomodation_type,accomadation_Rules,accomodation_description,img_location,city);
+	    
+	       		
 	         locate.saveLoc(loc1);
 
-	    //     System.out.println("loc1 : "+loc1.toString());
+	         System.out.println("------------- La location sauvegardé est : : "+loc1.toString());
 	         return "addApart";
 	     }
 
