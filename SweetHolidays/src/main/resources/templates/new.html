@@ -60,13 +60,15 @@
 					<li><a href="SweetResa">réservation</a></li>
 					<li><a href="SweetActivities">activités</a></li>
 					<li><a href="SweetContact">contact</a></li>
+					<li th:if="${session.AUTH != null}">
+							<a href="SweetAccount" th:text="${session.AUTH.name} + ' ' + ${session.AUTH.prenom}"></a>
+					</li>
+					<li th:if="${session.AUTH != null}">
+						<form th:action="@{/SweetHolidays}" method="post">
+							<a class="deco_btn"><input type="submit" value="Déconnexion"/></a>
+						</form>	
+					</li>
 				</ul>
-					<div class="co_btn">
-						<form th:action="@{/SweetHolidays}" th:if="${session.AUTH != null}" method="post">
-							<p style="color:white; margin-top:0.7%; margin-right:10%" th:text="${session.AUTH.name} + ' ' + ${session.AUTH.prenom}"></p>
-							<p class="deco_btn"><input type="submit" value="Déconnexion"/></p>
-						</form>
-					</div>	
 			</div>
 			<div class="clear"></div>
 			<div class="top-nav">

@@ -488,32 +488,10 @@ input[type="number"] {
 .deco_btn {
 margin-top:-2.6%;
 }
-.deco_btn p input[type="submit"] {
-	text-transform: capitalize;
-	background: #DE8300;
-	width: 12% !important;
-	font-family: 'Open Sans', sans-serif;
-	margin-right:-20%;
-	color: #FFF;
-	padding: 8px;
-	border: none;
-	font-size: 1em;
-	transition: 0.5s all;
-	-webkit-transition: 0.5s all;
-	-moz-transition: 0.5s all;
-	-o-transition: 0.5s all;
-	outline: none;
-	cursor: pointer;
-}
-
-.deco_btn p input[type="submit"]:hover {
-	background: #818387;
-}
-
 .deco_btn input[type="submit"] {
 	text-transform: capitalize;
 	background: #DE8300;
-	width: 12% !important;
+	width: 150% !important;
 	font-family: 'Open Sans', sans-serif;
 	color: #FFF;
 	padding: 8px;
@@ -1016,10 +994,10 @@ p.para {
 	margin-top: 0.25%;
 }
 
-.co_btn form input[type="button"] {
+.co_btn input[type="button"] {
 	display: inline-block;
 	text-transform: capitalize;
-	width: 15% !important;
+	width: 180% !important;
 	background: #DE8300;
 	font-family: 'Open Sans', sans-serif;
 	color: #FFF;
@@ -1035,7 +1013,7 @@ p.para {
 	-webkit-appearance: none;
 }
 
-.co_btn form input[type="button"]:hover {
+.co_btn input[type="button"]:hover {
 	background: #818387;
 }
 
