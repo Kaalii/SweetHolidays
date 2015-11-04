@@ -120,21 +120,23 @@ import fr.uha.miage.sweetholidays.datas.LocationRepositoryImpl;
 	       		Client c2 = new Client("GRANDSIRE", "Alexandre", "zizi@outlook.com","j'aimelesvoitures") ;	       		
 	       		Client c3 = new Client("KABAB", "Fahd", "fahd.kabab@uha.fr","fk") ;
 	       		Client c4 = new Client("Grandsire", "Alexandre", "alex.grandsire@gmail.com","DUCD") ;
+	       		Client c5 = new Client("AMPS", "Sevan", "sevan.amps@outlook.com","DUCD") ;
 	       		
 	       		client.saveClient(c1);
 	       		client.saveClient(c2);
 	       		client.saveClient(c3);
 	       		client.saveClient(c4);
+	       		client.saveClient(c5);
 	       		
-	       		System.out.println("c1 : "+c1.toString());
+	       	/*	System.out.println("c1 : "+c1.toString());
 	       		System.out.println("c2 : "+c2.toString()); 
-	       		System.out.println("Les clients ont étés sauvées");
+	       		System.out.println("Les clients ont étés sauvées"); */
 	       		
 	       		client.printRepClient(); 
 	       		List<Client> list_cli = new ArrayList();
 	       		
 	       		list_cli = cli.findByName("AMPS"); 
-	       		System.out.println("Find by name donne : "+list_cli.toString());
+	       		//System.out.println("Find by name donne : "+list_cli.toString());
 	       		
 	    	/**Récupération des location dans la BDD pour remplir les listes déroulantes**/
 	    	List<Location> list_loc = new ArrayList<Location>();
@@ -252,7 +254,7 @@ import fr.uha.miage.sweetholidays.datas.LocationRepositoryImpl;
 	    	 
 	    	 //Si l'utilisateur effectue une connexion au lieu d'une inscription
 	    	 if(client_insc.getName() == null) {
-	    		 System.out.println(client_insc);
+	    		// System.out.println(client_insc);
 	    		 //On récupère les utilisateur ayant ce mail dans la bdd
 	    		 liste_resultat = cli.findByEmail(client_insc.getEmail());
 	    		 //On regarde si la liste contient qqun et si les mdp correpsondent
@@ -284,13 +286,13 @@ import fr.uha.miage.sweetholidays.datas.LocationRepositoryImpl;
 		            return "reservation";
 		        }
 	    	
-	    	System.out.println("Récupération des informations et chargement par un GET De la page SweetResa");
+	    //	System.out.println("Récupération des informations et chargement par un GET De la page SweetResa");
 	    	/**Récupération des location dans la BDD pour remplir les listes déroulantes**/
 	    	List<Location> list_loc = new ArrayList<Location>();
 	    	//Toutes les location dans la BDD
 	    	list_loc = locate.printRep();
-	    	System.out.println("List_loc : "+list_loc.toString());
-	    	System.out.println("locate : "+locate.printRep());
+	    //	System.out.println("List_loc : "+list_loc.toString());
+	    //	System.out.println("locate : "+locate.printRep());
 	    	//On extrait les city
 	    	HashSet<String> citySet = new HashSet<String>();
 	    	for (int i = 0; i < list_loc.size(); i++) {
@@ -356,13 +358,13 @@ import fr.uha.miage.sweetholidays.datas.LocationRepositoryImpl;
 	    		 session.setAttribute("AUTH", null);
 	    	 }
 	    	
-	    	 System.out.println("Récupération des informations et chargement par un GET De la page SweetResa");
+	    	// System.out.println("Récupération des informations et chargement par un GET De la page SweetResa");
 		    	/**Récupération des location dans la BDD pour remplir les listes déroulantes**/
 		    	List<Location> list_loc = new ArrayList<Location>();
 		    	//Toutes les location dans la BDD
 		    	list_loc = locate.printRep();
-		    	System.out.println("List_loc : "+list_loc.toString());
-		    	System.out.println("locate : "+locate.printRep());
+		    //	System.out.println("List_loc : "+list_loc.toString());
+		    //	System.out.println("locate : "+locate.printRep());
 		    	//On extrait les city
 		    	HashSet<String> citySet = new HashSet<String>();
 		    	for (int i = 0; i < list_loc.size(); i++) {
@@ -594,7 +596,7 @@ import fr.uha.miage.sweetholidays.datas.LocationRepositoryImpl;
 
 			        //Si la recherche est null c'est qu'il y a une inscription
 			        if(recherche.getArrivalDate() == null && client_insc.getName() != null && session.getAttribute("AUTH") == null) {
-			        	System.out.println(client_insc);
+			        //	System.out.println(client_insc);
 			        	//On réaffiche la recherche préinscription
 			        	recherche = rech;
 			        	 /*On récupère l'inscription du client sur la page et on l'enregistre dans la base*/
@@ -661,7 +663,7 @@ import fr.uha.miage.sweetholidays.datas.LocationRepositoryImpl;
 		        //Récupération de la liste 
 		       // List<Location> liste_resultat = loc.findByAccomodation_TypeAndCapacity_LocationAndCity(type_de_chambre, nombre_de_personnes, city);
 		        List<Location> liste_resultat = loc.findByCapacity_LocationAndCity(nombre_de_personnes,city);
-		        System.out.println("La liste résultat est : " + loc.toString());
+		      //  System.out.println("La liste résultat est : " + loc.toString());
 		        
 		        
 		        //Envoyez la liste vers la page résultat
@@ -696,7 +698,7 @@ import fr.uha.miage.sweetholidays.datas.LocationRepositoryImpl;
 	         Location loc1 = new Location(name,price,capacity_location,address,accomodation_type,accomadation_Rules,accomodation_description,img_location,city);
 	         locate.saveLoc(loc1);
 
-	         System.out.println("loc1 : "+loc1.toString());
+	    //     System.out.println("loc1 : "+loc1.toString());
 	         return "addApart";
 	     }
 
@@ -719,15 +721,15 @@ import fr.uha.miage.sweetholidays.datas.LocationRepositoryImpl;
 		    	 HttpSession session = request.getSession();
 		    	 Client lio = (Client) session.getAttribute("AUTH");
 		    	 
-		    	 System.out.println(lio.getId());
+		//    	 System.out.println(lio.getId());
 		    	 //Récupération de l'id de la location
-		    	 System.out.println(loc_result.getId());
+		  //  	 System.out.println(loc_result.getId());
 		    	
 		    	 //Enregistrement de la réservation
 		    	 long id_Loc_Loue = loc_result.getId(); 
 		    	 long id_client_reserve = lio.getId() ; 
 		    	
-		    	System.out.println("Votre recherche : "+rech.toString());
+		    //	System.out.println("Votre recherche : "+rech.toString());
 		    	
 		    	if(resa){
 		    		
