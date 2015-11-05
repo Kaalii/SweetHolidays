@@ -1017,7 +1017,7 @@ p.para {
 	background: #818387;
 }
 
-/* start portfolio page */
+/* start activities page */
 .service_list {
 	display: block;
 }
@@ -1270,6 +1270,23 @@ span.next:hover {
 .read_more a:hover {
 	background: #818387;
 }
+
+.details p a {
+	color: #DE8300;
+	-webkit-transition: all 0.3s ease-in-out;
+	-moz-transition: all 0.3s ease-in-out;
+	-o-transition: all 0.3s ease-in-out;
+	transition: all 0.3s ease-in-out;
+}
+
+.details p a:hover {
+	color: #191919;
+}
+
+.details hidden {
+	color: #F0F0F0; /*######################################################################################################################*/
+}
+
 /***** Media Quries *****/
 @media only screen and (max-width: 1366px) {
 	.wrap {
