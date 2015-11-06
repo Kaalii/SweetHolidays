@@ -123,13 +123,11 @@ import fr.uha.miage.sweetholidays.datas.LocationRepositoryImpl;
 	       		 * 
 	       		 */
 	        if(count_clients == 0 ){
-	       		Client c1 = new Client("AMPS", "Sevan", "sevan.amps@outlook.com","sevan1010") ;
 	       		Client c2 = new Client("GRANDSIRE", "Alexandre", "zizi@outlook.com","j'aimelesvoitures") ;	       		
 	       		Client c3 = new Client("KABAB", "Fahd", "fahd.kabab@uha.fr","fk") ;
 	       		Client c4 = new Client("Grandsire", "Alexandre", "alex.grandsire@gmail.com","DUCD") ;
 	       		Client c5 = new Client("AMPS", "Sevan", "sevan.amps@outlook.com","DUCD") ;
 	       		
-	       		client.saveClient(c1);
 	       		client.saveClient(c2);
 	       		client.saveClient(c3);
 	       		client.saveClient(c4);
@@ -773,6 +771,20 @@ import fr.uha.miage.sweetholidays.datas.LocationRepositoryImpl;
 		    }
 		    @RequestMapping(value="/SweetAdmin", method=RequestMethod.POST)
 		    public String showResaAdminPOST() {
+		        return "reservation_admin";
+		    }
+		    
+		    @RequestMapping(value="/SweetAccount", method=RequestMethod.GET)
+		    public String showResaCliGET(Model model, HttpServletRequest request) {
+	    		//Envoyer la liste de réservations sur la page. La liste => reserv
+		    	
+		    	HttpSession session = request.getSession();
+		    	Client cli = (Client) session.getAttribute("AUTH");
+	    		model.addAttribute("liste_resa", res.findById_client(cli.getId()));
+		        return "reservation_admin";
+		    }
+		    @RequestMapping(value="/SweetAccount", method=RequestMethod.POST)
+		    public String showResaCliPOST() {
 		        return "reservation_admin";
 		    }
 

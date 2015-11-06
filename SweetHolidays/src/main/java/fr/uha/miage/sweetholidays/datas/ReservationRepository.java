@@ -15,4 +15,6 @@ public interface ReservationRepository extends CrudRepository<Reservation, Long>
  	@Query("select r from Reservation r where r.id_client= :id_client and r.id_logement= :id_logement")
 	List<Reservation> findById_clientAndId_logement(@Param("id_client") String id_client,@Param("id_logement") String id_logement);
  
+ 	@Query("select r from Reservation r where r.id_client= :id_client order by r.arrival_date DESC")
+	List<Reservation> findById_client(@Param("id_client") long id_client);
 }
