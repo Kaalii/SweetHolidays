@@ -32,7 +32,7 @@ public class Reservation implements Serializable {
 	@Column private int number_of_people ;
 	
 	
-	private static int number_of_reservation = 0 ; 
+	private static int number_of_reservation = 1 ; 
 
 	/**
 	 * @param id

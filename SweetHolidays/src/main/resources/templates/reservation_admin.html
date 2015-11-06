@@ -1,0 +1,170 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>SweetHolidays</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700' rel='stylesheet' type='text/css'/>
+<link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
+<script src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/jquery.leanModal.min.js"></script>
+<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" />
+<!--strat-date-piker-->
+<link rel="stylesheet" href="css/jquery-ui.css" />
+<script src="js/jquery-ui.js"></script>
+<script>
+	$(function() {
+		$("#datepicker").datepicker({ dateFormat: 'dd-mm-yy', onClose: function( selectedDate ) {
+	          $( "#datepicker1" ).datepicker( "option", "minDate", selectedDate );
+        }}).val();
+		$("#datepicker1").datepicker({ dateFormat: 'dd-mm-yy', onClose: function( selectedDate ) {
+	          $( "#datepicker" ).datepicker( "option", "maxDate", selectedDate );
+      }}).val();
+	   
+	});
+</script>
+<!--/End-date-piker-->
+<script type="text/javascript" src="js/validation_form.js"></script>
+<link type="text/css" rel="stylesheet" href="css/JFFormStyle-1.css" />
+<script type="text/javascript" src="js/JFForms.js"></script>
+		<!-- Set here the key for your domain in order to hide the watermark on the web server -->
+		<script type="text/javascript">
+			(function() {
+				JC.init({
+					domainKey: ''
+				});
+				})();
+		</script>
+<!--nav-->
+<script>
+//<![CDATA[
+		$(function() {
+			var pull 		= $('#pull');
+				menu 		= $('nav ul');
+				menuHeight	= menu.height();
+
+			$(pull).on('click', function(e) {
+				e.preventDefault();
+				menu.slideToggle();
+			});
+
+			$(window).resize(function(){
+        		var w = $(window).width();
+        		if(w > 320 && menu.is(':hidden')) {
+        			menu.removeAttr('style');
+        		}
+    		});
+		});
+		//]]>
+</script>
+</head>
+<body>
+<!-- start header -->
+<div class="header_bg">
+	<div class="wrap">
+		<div class="header">
+			<div class="logo">
+				<a href="SweetHolidays"><img src="images/logo.png" alt="" /></a>
+			</div>
+			<div class="h_right">
+				<!--start menu -->
+				<ul class="menu">
+					<li><a href="SweetNew">Devenez hôte</a></li>
+					<li><a href="SweetHolidays">hôtel</a></li>
+					<li><a href="SweetPlace">chambres &amp; appartements</a></li>
+					<li class="active"><a href="SweetResa">réservation</a></li>
+					<li><a href="SweetActivities">activités</a></li>
+					<li><a href="SweetContact">contact</a></li>
+					<li th:if="${session.AUTH != null}">
+							<a href="SweetAccount" th:text="${session.AUTH.name} + ' ' + ${session.AUTH.prenom}"></a>
+					</li>
+					<li th:if="${session.AUTH != null}">
+						<form th:action="@{/SweetHolidays}" method="post">
+							<a class="deco_btn"><input type="submit" value="Déconnexion"/></a>
+						</form>	
+					</li>
+				</ul>
+			</div>
+			<div class="clear"></div>
+			<div class="top-nav">
+				<nav class="clearfix">
+					<ul>
+						<li><a href="SweetNew">Devenez hôte</a></li>
+						<li><a href="SweetHolidays">hôtel</a></li>
+						<li><a href="SweetPlace">chambres &amp; appartements</a></li>
+						<li class="active"><a href="SweetResa">réservation</a></li>
+						<li><a href="SweetActivities">activités</a></li>
+						<li><a href="SweetContact">contact</a></li>
+					</ul>
+					<a href="#" id="pull">Menu</a>
+				</nav>
+			</div>
+		</div>
+	</div>
+</div>
+<!--start main -->
+<div class="main_bg">
+<div class="wrap">
+		<br /><br />
+		<h1>Ecran administrateur : liste de toutes les réservations</h1>
+		<!-- Validation et confirmation de la réservation -->
+		<form th:action="@{/SweetSearch}" th:if="${liste_resa != null}" method="post" >
+		<br /><br />
+			<div th:each="reservation : ${liste_resa}">
+				<h4 th:text="'Reservation n° : ' + ${reservation.id} "></h4>
+					<p th:text="'Id : ' + ${reservation.id} + ' - ' + 'Id client : ' + ${reservation.id_client} + ' - ' +'Id logement : ' + ${reservation.id_logement}+' - '+'Date d\'arrivée : ' + ${reservation.arrival_date}+' - '+'Date de départ : ' + ${reservation.departure_date}+' - '+'Nombre de personnes : ' + ${reservation.number_of_people}" />
+					<br/><br/>
+			</div>
+		</form>
+		<form th:action="@{/SweetSearch}" th:if="${liste_resa == null}" method="post" th:object="${liste_resa}">
+			<div>
+			<br /><br /><br /><br />
+		<div class="grids_of_3">
+				<div class="grid1_of_3">
+					<h4>
+						<a href="/SweetHolidays">Votre reservation :</a>
+					</h4>
+					<p>Malheuresement le créneaux de réservation voulu n'est pas disponible.</p>
+				</div>
+		</div>
+		
+			</div>
+		</form>
+			
+		<br /><br />
+</div>
+</div>		
+<!--start main -->
+<div class="footer_bg">
+	<div class="wrap">
+		<div class="footer">
+			<div class="copy">
+				<p class="link">
+					<span>© All rights reserved Team BAZOOKA</span>
+				</p>
+			</div>
+			<div class="f_nav">
+				<ul>
+					<li><a href="SweetNew">Devenez hôte</a></li>
+					<li><a href="SweetHolidays">hôtel</a></li>
+					<li><a href="SweetPlace">chambres &amp; appartements</a></li>
+					<li class="active"><a href="SweetResa">réservation</a></li>
+					<li><a href="SweetActivities">activités</a></li>
+					<li><a href="SweetContact">contact</a></li>
+				</ul>
+			</div>
+			<div class="soc_icons">
+				<ul>
+					<li><a class="icon1" href="#facebook"></a></li>
+					<li><a class="icon2" href="#twitter"></a></li>
+					<li><a class="icon3" href="#vimeo"></a></li>
+					<li><a class="icon4" href="#dribble"></a></li>
+					<li><a class="icon5" href="#flickr"></a></li>
+				</ul>
+			</div>
+			<div class="clear"></div>
+		</div>
+	</div>
+</div>
+</body>
+</html>

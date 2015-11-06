@@ -745,24 +745,35 @@ import fr.uha.miage.sweetholidays.datas.LocationRepositoryImpl;
 		    	
 		    //	System.out.println("Votre recherche : "+rech.toString());
 		    	
-		    	if(resa){
-		    		
-			    	Reservation reservation_enregistre = new Reservation(id_client_reserve, id_Loc_Loue,rech.getArrivalDate(), rech.getDepartureDate(), rech.getNumber_of_People()); 
-			    	System.out.println("Reservation enregistré : "+reservation_enregistre);
-			    	
-			    	reserv.saveResa(reservation_enregistre);
-			    	System.out.println("Liste de réservation : "+reserv.printRep());
-
-			    	model.addAttribute("reservation", reservation_enregistre );
-		    	}
-		    	else{
-		    		
-		    		Reservation reservation_enregistre = null;
-		    		model.addAttribute("reservation", reservation_enregistre );
-		    		
-		    	}
+		    	 if(resa){
+			    		
+				    	Reservation reservation_enregistre = new Reservation(id_client_reserve, id_Loc_Loue,rech.getArrivalDate(), rech.getDepartureDate(), rech.getNumber_of_People()); 
+				    	
+				    	reserv.saveResa(reservation_enregistre);
+				    	res.save(reservation_enregistre);
+				    	//System.out.println("Liste de réservation : "+reserv.printRep());
+	
+				    	model.addAttribute("reservation", reservation_enregistre );
+			    	}
+			    	else{
+			    		
+			    		Reservation reservation_enregistre = null;
+			    		model.addAttribute("reservation", reservation_enregistre );
+			    		
+			    	}
 		    	
 		        return "reservation_validation";
+		    }
+		    
+		    @RequestMapping(value="/SweetAdmin", method=RequestMethod.GET)
+		    public String showResaAdminGET(Model model) {
+	    		//Envoyer la liste de réservations sur la page. La liste => reserv 
+	    		model.addAttribute("liste_resa",reserv.printRep());
+		        return "reservation_admin";
+		    }
+		    @RequestMapping(value="/SweetAdmin", method=RequestMethod.POST)
+		    public String showResaAdminPOST() {
+		        return "reservation_admin";
 		    }
 
 	}
