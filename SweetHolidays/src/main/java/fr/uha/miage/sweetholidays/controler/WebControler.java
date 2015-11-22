@@ -780,12 +780,20 @@ import fr.uha.miage.sweetholidays.datas.LocationRepositoryImpl;
 		    	
 		    	HttpSession session = request.getSession();
 		    	Client cli = (Client) session.getAttribute("AUTH");
+		    	List<Location> liste_resu = new ArrayList<Location>();
+		    	List<Reservation> liste_reserv = res.findById_client(cli.getId());
+		    	
+		    	for(int i=0; i < liste_reserv.size(); i++){
+		    		liste_resu.add(locate.findLocationById(liste_reserv.get(i).getId_logement()));
+		    	}
+
+			    model.addAttribute("Loc_result", liste_resu);
 	    		model.addAttribute("liste_resa", res.findById_client(cli.getId()));
-		        return "reservation_admin";
+		        return "SweetAccount";
 		    }
 		    @RequestMapping(value="/SweetAccount", method=RequestMethod.POST)
 		    public String showResaCliPOST() {
-		        return "reservation_admin";
+		        return "SweetAccount";
 		    }
 
 	}

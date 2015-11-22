@@ -72,10 +72,10 @@
 					<li><a href="SweetNew">Devenez hôte</a></li>
 					<li><a href="SweetHolidays">hôtel</a></li>
 					<li><a href="SweetPlace">chambres &amp; appartements</a></li>
-					<li class="active"><a href="SweetResa">réservation</a></li>
+					<li><a href="SweetResa">réservation</a></li>
 					<li><a href="SweetActivities">activités</a></li>
 					<li><a href="SweetContact">contact</a></li>
-					<li th:if="${session.AUTH != null}">
+					<li class="active" th:if="${session.AUTH != null}">
 							<a href="SweetAccount" th:text="${session.AUTH.name} + ' ' + ${session.AUTH.prenom}"></a>
 					</li>
 					<li th:if="${session.AUTH != null}">
@@ -92,7 +92,7 @@
 						<li><a href="SweetNew">Devenez hôte</a></li>
 						<li><a href="SweetHolidays">hôtel</a></li>
 						<li><a href="SweetPlace">chambres &amp; appartements</a></li>
-						<li class="active"><a href="SweetResa">réservation</a></li>
+						<li ><a href="SweetResa">réservation</a></li>
 						<li><a href="SweetActivities">activités</a></li>
 						<li><a href="SweetContact">contact</a></li>
 					</ul>
@@ -108,15 +108,33 @@
 		<br /><br />
 		<h1>Vos réservations</h1>
 		<!-- Validation et confirmation de la réservation -->
-		<form th:action="@{/SweetSearch}" th:if="${liste_resa != null}" method="post" >
+		<form th:each="reservation : ${liste_resa}" th:if="${liste_resa != null}">
 		<br /><br />
-			<div th:each="reservation : ${liste_resa}">
+			<div class="grid1_of_3">
 				<h4 th:text="'Reservation n° : ' + ${reservation.id} "></h4>
-					<p th:text="'Id : ' + ${reservation.id} + ' - ' + 'Id client : ' + ${reservation.id_client} + ' - ' +'Id logement : ' + ${reservation.id_logement}+' - '+'Date d\'arrivée : ' + ${reservation.arrival_date}+' - '+'Date de départ : ' + ${reservation.departure_date}+' - '+'Nombre de personnes : ' + ${reservation.number_of_people}" />
-					<br/><br/>
+				<p th:text="'Date d\'arrivée : ' + ${reservation.arrival_date}+' - '+'Date de départ : ' + ${reservation.departure_date}" />
+			</div>
+			<br/>
+			<div th:each="location : ${Loc_result}" th:if="${location.id == reservation.id_logement}" class="grids_of_3">
+				<div  class="grid1_of_3">
+					<div class="grid1_of_3_img">	
+						<a href="SweetDetails"> <img th:src="@{images/{id}(id=${location.Img_Location})}" alt="" />
+						</a>
+					</div>
+				</div>
+				<div  class="grid1_of_3">
+					<h4>
+						<a href="#">
+						<span th:text="${location.Name}"></span>
+						<span th:text="${location.Price}"></span><span>€</span></a>
+					</h4>
+					<p th:text="'Description : ' + ${location.Accomodation_Description}"></p>
+					<p th:text="'Réglement : ' + ${location.Accomadation_Rules}"></p>
+				</div>
+				<div class="clear"></div>
 			</div>
 		</form>
-		<form th:action="@{/SweetSearch}" th:if="${liste_resa == null}" method="post" th:object="${liste_resa}">
+		<form th:if="${liste_resa == null}" th:object="${liste_resa}">
 			<div>
 			<br /><br /><br /><br />
 		<div class="grids_of_3">
@@ -130,8 +148,7 @@
 		
 			</div>
 		</form>
-			
-		<br /><br />
+		<br/>
 </div>
 </div>		
 <!--start main -->
