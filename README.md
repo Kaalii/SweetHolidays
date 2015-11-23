@@ -10,7 +10,7 @@ Réservation rapide, fluide et ergonomique, nous vous proposons une solution pou
   - Sevan AMPS
   - Alexandre GRANDSIRE
   - Fahd  KABAB
-  - Olivier MULLER
+  - Olivier MULLER 
 
   Procédure d'installation : 
   - Démarrer votre application "Eclipse JEE"
