@@ -7,10 +7,10 @@ Notre site web est fait pour vous.
 Réservation rapide, fluide et ergonomique, nous vous proposons une solution pour répondre à vos besoins.
 
   L'équipe à l'origine de ce projet est la suivante : 
-    - Sevan AMPS
-    - Alexandre GRANDSIRE
-    - Fahd  KABAB
-    - Olivier MULLER
+  - Sevan AMPS
+  - Alexandre GRANDSIRE
+  - Fahd  KABAB
+  - Olivier MULLER
 
   Procédure d'installation : 
   - Démarrer votre application "Eclipse JEE"
