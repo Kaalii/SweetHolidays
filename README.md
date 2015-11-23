@@ -13,7 +13,7 @@ Réservation rapide, fluide et ergonomique, nous vous proposons une solution pou
   - Olivier MULLER
 
 
-Procédure d'installation :
+## Procédure d'installation :
   - Démarrez votre application "Eclipse JEE"
   - Dans le menu "File" choissisez Import
   - Cherchez "Git - project from GIT"
@@ -24,6 +24,7 @@ Procédure d'installation :
   - Laissez sur "'import existing projet "
   - Cliquez sur next et finish 
 
+## Execution du projet
 Pour lancer le projet, il vous suffit de cliquer sur la flèche blanche sur fond vert qui permet de faire un RUN du projet OU vous pouvez faire un clic droit sur le fichier SweetHolidaysApplication.java allez dans "Run as" puis sélectionner "Java Application" 
 
 Allez dans votre navigateur préféré et rentrez "localhost:8080/SweetHolidays"
