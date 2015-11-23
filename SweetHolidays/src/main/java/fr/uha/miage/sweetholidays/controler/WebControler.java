@@ -122,13 +122,11 @@ import fr.uha.miage.sweetholidays.datas.LocationRepositoryImpl;
 	       		/* partie client 
 	       		 * 
 	       		 */
-	        if(count_clients == 0 ){
-	       		Client c2 = new Client("GRANDSIRE", "Alexandre", "zizi@outlook.com","j'aimelesvoitures") ;	       		
+	        if(count_clients == 0 ){	
 	       		Client c3 = new Client("KABAB", "Fahd", "fahd.kabab@uha.fr","fk") ;
 	       		Client c4 = new Client("Grandsire", "Alexandre", "alex.grandsire@gmail.com","DUCD") ;
 	       		Client c5 = new Client("AMPS", "Sevan", "sevan.amps@outlook.com","DUCD") ;
 	       		
-	       		client.saveClient(c2);
 	       		client.saveClient(c3);
 	       		client.saveClient(c4);
 	       		client.saveClient(c5);
